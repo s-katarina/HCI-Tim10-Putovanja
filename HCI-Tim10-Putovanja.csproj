@@ -8,8 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="constants\logo.webp" />
+    <None Remove="constants\logo2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="User\Model\" />
+    <Folder Include="User\ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="constants\logo.webp" />
+    <Resource Include="constants\logo2.jpg" />
   </ItemGroup>
 
 </Project>
