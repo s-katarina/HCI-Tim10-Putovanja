@@ -3,7 +3,13 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Login">
@@ -67,6 +73,8 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="14"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
                             <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
@@ -77,22 +85,7 @@
                         </TextBox.Text>
 
                     </TextBox>
-                    <Validation.ErrorTemplate>
-                        <ControlTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Background="Red"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Validation.ErrorTemplate>
+                    
                 </Border>
 
                 <TextBlock Text="Lozinka" Margin="5, 30, 0, 5"></TextBlock>
@@ -115,39 +108,19 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                         >
-                        <PasswordBox.DataContext>
-                            <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="lozinku"/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </PasswordBox.DataContext>
+                         PasswordChanged="PasswordBox_PasswordChanged">
+
 
                     </PasswordBox>
-                    <Validation.ErrorTemplate>
-                        <ControlTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
 
-                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Background="Red"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Validation.ErrorTemplate>
                 </Border>
+                <TextBlock x:Name="passwordErrorTextBlock" Foreground="Red"/>
             </StackPanel>
 
             <Button x:Name="btnLogIn"
                         Grid.Row="3"
                         Grid.Column="0"
-                        Content="Registruj se"
+                        Content="Prijavi se"
                     Width="300"
                     Padding="0, 10"
                     Margin="0, 40"

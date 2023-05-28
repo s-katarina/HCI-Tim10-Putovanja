@@ -1,4 +1,4 @@
-﻿<Window x:Class="HCI_Tim10_Putovanja.User.Registration"
+﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.Registration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,26 +11,14 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="Registration" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen"
-        MouseDown="Window_MouseDown"
+      d:DesignHeight="450" d:DesignWidth="800"
+        Title="Registration" 
         >
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-            </Grid>
+            
             <StackPanel
                 Grid.Row="0"
                 Grid.Column="1"
@@ -75,6 +63,8 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="14"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
                             <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
@@ -85,22 +75,7 @@
                         </TextBox.Text>
 
                     </TextBox>
-                    <Validation.ErrorTemplate>
-                        <ControlTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Background="Red"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Validation.ErrorTemplate>
+                    
                 </Border>
 
                 <TextBlock Text="Prezime" Margin="5, 30, 0, 5"></TextBlock>
@@ -123,6 +98,8 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="14"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
                             <Binding Path="UserLastname" UpdateSourceTrigger="PropertyChanged">
@@ -133,22 +110,7 @@
                         </TextBox.Text>
 
                     </TextBox>
-                    <Validation.ErrorTemplate>
-                        <ControlTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Background="Red"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Validation.ErrorTemplate>
+                    
                 </Border>
 
                 <TextBlock Text="Email" Margin="5, 30, 0, 5"></TextBlock>
@@ -171,6 +133,8 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="14"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
                             <Binding Path="UserEmail" UpdateSourceTrigger="PropertyChanged">
@@ -181,22 +145,7 @@
                         </TextBox.Text>
 
                     </TextBox>
-                    <Validation.ErrorTemplate>
-                        <ControlTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Background="Red"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Validation.ErrorTemplate>
+                    
                 </Border>
 
                 <TextBlock Text="Telefon" Margin="5, 30, 0, 5"></TextBlock>
@@ -219,7 +168,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                           materialDesign:ValidationAssist.FontSize="12"
+                           materialDesign:ValidationAssist.FontSize="14"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -263,29 +212,28 @@
                 <TextBlock x:Name="passwordErrorTextBlock" Foreground="Red"/>
 
 
-            </StackPanel>
-
-            <Button x:Name="btnRegistration"
-                        Grid.Row="3"
-                        Grid.Column="0"
+                <Button x:Name="btnRegistration"
                         Content="Registruj se"
                     Width="300"
                     Padding="0, 10"
                     Margin="0, 40"
                     Click="Register_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#48C6C6"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="Black"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#48C6C6"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+
+            
 
         </Grid>
     </ScrollViewer>
 
-</Window>
+</Page>

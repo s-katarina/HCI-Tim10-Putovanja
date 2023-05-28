@@ -27,6 +27,7 @@ namespace HCI_Tim10_Putovanja.User.View
 		{
 			InitializeComponent();
 			DataContext = this;
+			ErrorMessagee = "";
 		}
 
 		private string userName;
@@ -56,6 +57,16 @@ namespace HCI_Tim10_Putovanja.User.View
 			}
 		}
 
+		public string ErrorMessagee { get; private set; }
+
 		public void Login_Click(object sender, RoutedEventArgs e) { }
+
+		private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+		{
+			Password = ((PasswordBox)sender).Password;
+			ErrorMessagee = Password.Length < 5 ? "Lozinka mora imati bar 5 karaktera" : "";
+			
+			passwordErrorTextBlock.Text = ErrorMessagee;
+		}
 	}
 }

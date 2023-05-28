@@ -12,11 +12,40 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}">
-    <Grid>
-        <StackPanel>
-            <materialDesign:Card Padding="32" Margin="16">
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}">My First Material Design App</TextBlock>
-            </materialDesign:Card>
-        </StackPanel>
-    </Grid>
+    
+    <TabControl 
+Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
+TabStripPlacement="Top"
+materialDesign:ShadowAssist.ShadowDepth="Depth2" 
+materialDesign:ColorZoneAssist.Mode="Light"
+materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10" 
+materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+
+        <materialDesign:NavigationRailAssist.FloatingContent>
+            <StackPanel Orientation="Horizontal" MaxWidth="600">
+                <Button Content="Putovanja" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button Content="Registracija" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button Background="LightBlue" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Prijava</TextBlock>
+                        <Image Source="/constants/avatar.jpg" Width="10" Stretch="None" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </materialDesign:NavigationRailAssist.FloatingContent>
+
+        <TabItem HorizontalAlignment="Right">
+            <TabItem.Header>
+                <Image Source="/constants/logo.webp" Height="60"></Image>
+                
+            </TabItem.Header>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                <Frame x:Name="MainFrame" Margin="10, 10">
+                </Frame>
+            </Grid>
+            </ScrollViewer>
+        </TabItem>
+
+    </TabControl>
 </Window>

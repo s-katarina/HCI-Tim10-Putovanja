@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HCI_Tim10_Putovanja.User;
+using HCI_Tim10_Putovanja.User.View;
 
 namespace HCI_Tim10_Putovanja
 {
@@ -23,6 +25,15 @@ namespace HCI_Tim10_Putovanja
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+		private void Registration_Click(object sender, RoutedEventArgs e)
+		{
+            MainFrame.Content = new Registration();
+		}
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Login();
         }
     }
 }

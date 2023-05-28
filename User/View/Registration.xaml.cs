@@ -12,12 +12,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using HCI_Tim10_Putovanja.Core;
 
-namespace HCI_Tim10_Putovanja.User
+namespace HCI_Tim10_Putovanja.User.View
 {
 	/// <summary>
 	/// Interaction logic for Registration.xaml
 	/// </summary>
-	public partial class Registration : Window
+	public partial class Registration : Page
 	{
 		public SecureString SecurePassword { private get; set; }
 		private ObservableObject observableObject = new ObservableObject();
@@ -96,9 +96,7 @@ namespace HCI_Tim10_Putovanja.User
 
 		public string ErrorMessagee { get; private set; }
 
-		private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
-			if (e.LeftButton == MouseButtonState.Pressed) DragMove();
-		}
+		
 
 		/*public event PropertyChangedEventHandler PropertyChanged;
 		protected virtual void OnPropertyChanged(string name)
