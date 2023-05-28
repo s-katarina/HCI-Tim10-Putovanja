@@ -1,0 +1,82 @@
+﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.OneTripView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="18"
+      xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View" xmlns:core="clr-namespace:HCI_Tim10_Putovanja.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
+      mc:Ignorable="d" 
+      d:DesignHeight="462.126" d:DesignWidth="875.449"
+      Title="OneTripView">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="10, 0, 0, 0">
+                <TextBlock Text="Ovcar planina" Margin="0, 0, 0, 30">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="30" />
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Grid Margin="0, 0, 0, 15">
+                    <materialDesign:PackIcon Kind="PiggyBankOutline" Height="26"/>
+                    <TextBlock Text="Cena:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    <TextBlock x:Name="priceTxt" Text="{Binding Price}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                </Grid>
+                <Grid Margin="0, 0, 0, 15">
+                    <materialDesign:PackIcon Kind="TimerCheckOutline" Height="26"/>
+                    <TextBlock Text="Datum polaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    <TextBlock x:Name="startDateTxt" Text="{Binding StrartTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                </Grid>
+                <Grid Margin="0, 0, 0, 15">
+                    <materialDesign:PackIcon Kind="TimerMarkerOutline" Height="26"/>
+                    <TextBlock Text="Datum dolaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    <TextBlock x:Name="endDateTxt" Text="{Binding EndTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                </Grid>
+                <Grid Margin="0, 0, 0, 15">
+                    <materialDesign:PackIcon Kind="LocationEnter" Height="26"/>
+                    <TextBlock Text="Mesto polaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    <TextBlock x:Name="startLocationTxt" Text="{Binding StartLocation.Address}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                </Grid>
+                <Grid>
+                    <materialDesign:PackIcon Kind="LocationExit" Height="26"/>
+                    <TextBlock Text="Mesto dolaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    <TextBlock x:Name="endLocationTxt" Text="{Binding EndLocation.Address}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                </Grid>
+                
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1" Margin="0, 8, 0, 0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Kupi" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
+                    <Button Content="Rezervisi" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                </StackPanel>
+                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,-122.34942" ZoomLevel="12">
+                    <m:Pushpin Location="47.620574,-122.34942"/>
+                </m:Map>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0, 8, 0, 0">
+                <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Opis"></TextBlock>
+                <StackPanel Orientation="Vertical" Width="700">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

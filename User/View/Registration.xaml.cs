@@ -21,6 +21,7 @@ namespace HCI_Tim10_Putovanja.User.View
 	{
 		public SecureString SecurePassword { private get; set; }
 		private ObservableObject observableObject = new ObservableObject();
+		private Database database = new Database();
 		public Registration()
 		{
 			InitializeComponent();
@@ -106,8 +107,15 @@ namespace HCI_Tim10_Putovanja.User.View
 
 		private void Register_Click(object sender, RoutedEventArgs e)
 		{
+			if (userEmail == null || userName == null || userLastname == null|| userPhone == null || userPassword==null || userPassword.Length < 5) {
+				MessageBox.Show("Molimo vas popunite sva polja.", "Obustavljena registracija", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			database.AddUser(new AppUser(UserName, UserLastname, UserEmail, userPhone, UserPassword, Role.PASSENGER));
+			MessageBox.Show("Uspesno napravljen nalog.", "USPESNA registracija", MessageBoxButton.OK, MessageBoxImage.Information);
 
 		}
+
 
 		private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
 		{

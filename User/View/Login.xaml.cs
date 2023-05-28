@@ -22,6 +22,7 @@ namespace HCI_Tim10_Putovanja.User.View
 	public partial class Login : Page
 	{
 		private ObservableObject observableObject = new ObservableObject();
+		private Database database = new Database();
 
 		public Login()
 		{
@@ -59,7 +60,20 @@ namespace HCI_Tim10_Putovanja.User.View
 
 		public string ErrorMessagee { get; private set; }
 
-		public void Login_Click(object sender, RoutedEventArgs e) { }
+		public void Login_Click(object sender, RoutedEventArgs e) {
+			if (userName == null || userName.Length < 2 || Password == null || Password.Length < 5)
+			{
+				MessageBox.Show("Molimo vas popunite sva polja.", "Obustavljena prijava", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			foreach (AppUser user in database.Users) {
+				if (user.Email == userName && user.Password == Password) {
+					MessageBox.Show("Uspesna prijava.", "Uspesna prijava", MessageBoxButton.OK, MessageBoxImage.Information);
+					return;
+				}
+			}
+			MessageBox.Show("Netacni kredincijali.", "Obustavljena prijava", MessageBoxButton.OK, MessageBoxImage.Error);
+		}
 
 		private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
 		{

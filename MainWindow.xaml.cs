@@ -35,5 +35,9 @@ namespace HCI_Tim10_Putovanja
         {
             MainFrame.Content = new Login();
         }
+
+        private void Trips_Click(object sender, RoutedEventArgs e) {
+            MainFrame.Content = new OneTripView(new Trip(10000.0, DateTime.Now, DateTime.Now, new Location(44.0, 23.0, "polazak"), new Location(44.0, 23.0, "dolayak"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", null, null, null));
+        }
     }
 }

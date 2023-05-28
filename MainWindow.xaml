@@ -23,7 +23,7 @@ materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
 
         <materialDesign:NavigationRailAssist.FloatingContent>
             <StackPanel Orientation="Horizontal" MaxWidth="600">
-                <Button Content="Putovanja" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button Content="Putovanja" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
                 <Button Content="Registracija" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
                 <Button Background="LightBlue" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
                     <StackPanel Orientation="Horizontal">
