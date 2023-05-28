@@ -71,7 +71,7 @@
                         <TextBox.Text>
                             <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="lozinka"/>
+                                    <val:EmailValidation ValidationStep="ConvertedProposedValue"/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>

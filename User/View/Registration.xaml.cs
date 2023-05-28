@@ -19,7 +19,6 @@ namespace HCI_Tim10_Putovanja.User
 	/// </summary>
 	public partial class Registration : Window
 	{
-		public string Password { private get; set; }
 		public SecureString SecurePassword { private get; set; }
 		private ObservableObject observableObject = new ObservableObject();
 		public Registration()
@@ -114,17 +113,11 @@ namespace HCI_Tim10_Putovanja.User
 
 		private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
 		{
-			Debug.WriteLine("lozinka ");
+			UserPassword = ((PasswordBox)sender).Password;
+			ErrorMessagee = UserPassword.Length < 5 ? "Lozinka mora imati bar 5 karaktera" : "";
+			Debug.WriteLine(UserPassword);
 			Debug.WriteLine(ErrorMessagee);
-			if (DataContext != null)
-			{ ((dynamic)DataContext).Password = ((PasswordBox)sender).Password;
-				ErrorMessagee = Password.Length < 5 ? "Lozinka mora imati bar 5 karaktera" : "";
-			}
-
-			else
-			{
-				ErrorMessagee = "Lozinka mora imati bar 5 karaktera";
-			}
+			passwordErrorTextBlock.Text = ErrorMessagee;
 		}
 	}
 }

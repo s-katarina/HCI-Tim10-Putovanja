@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -10,7 +12,7 @@ namespace HCI_Tim10_Putovanja.User.View
 {
 	class validators: ValidationRule
     {
-        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             Debug.WriteLine("heeej22");
 
@@ -30,8 +32,17 @@ namespace HCI_Tim10_Putovanja.User.View
             }
         }
     }
+	public class EmailValidation : ValidationRule
+	{
+		public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+		{
+            Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            if (regex.IsMatch(value.ToString())) return new ValidationResult(true, null);
+            return new ValidationResult(false, "Email treba biti formata ime@domen");
+        }
+	}
 
-    public class NotNullText : ValidationRule
+	public class NotNullText : ValidationRule
     {
         public string FieldName
         {
