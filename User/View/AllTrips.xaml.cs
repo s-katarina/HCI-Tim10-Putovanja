@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,19 @@ namespace HCI_Tim10_Putovanja.User.View
 
 			// Navigate to the page, using the NavigationService
 			this.NavigationService.Navigate(page);
+		}
+		private void txtNameToSearch_TextChanged(object sender,
+TextChangedEventArgs e)
+		{
+			string searchName = txtNameToSearch.Text;
+			string lower = searchName.ToLower();
+			List<Trip> filtered = new();
+			foreach (Trip trip in trips) {
+				if (trip.Name.ToLower().Contains(lower)) filtered.Add(trip);
+			}
+
+
+			tripsListBox.ItemsSource = filtered;
 		}
 	}
 }

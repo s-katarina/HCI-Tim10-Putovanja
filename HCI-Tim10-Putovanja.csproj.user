@@ -13,6 +13,9 @@
     <Compile Update="User\View\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="User\View\OneAtraction.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="User\View\OneTripView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +31,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="User\View\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="User\View\OneAtraction.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="User\View\OneTripView.xaml">

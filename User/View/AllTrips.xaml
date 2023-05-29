@@ -14,8 +14,13 @@
       Title="AllTrips">
 
     <Grid>
-       
-        <ListBox x:Name="tripsListBox" ItemsSource="{Binding Trips}" SelectionChanged="ListBox_SelectionChanged">
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="25,18,0,0"
+Name="textBlock1" Text="Pretraga po imenu"
+VerticalAlignment="Top" Width="200" />
+        <TextBox HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="250,10,0,0"
+Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged"
+VerticalAlignment="Top" Width="202" />
+        <ListBox x:Name="tripsListBox" Margin="0, 90, 0, 0" ItemsSource="{Binding Trips}" SelectionChanged="ListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="10">

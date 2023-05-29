@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,32 +16,13 @@ using System.Windows.Shapes;
 namespace HCI_Tim10_Putovanja.User.View
 {
 	/// <summary>
-	/// Interaction logic for OneTripView.xaml
+	/// Interaction logic for OneAtraction.xaml
 	/// </summary>
-	public partial class OneTripView : Page
+	public partial class OneAtraction : Page
 	{
-		private Trip trip;
-		public OneTripView()
+		public OneAtraction()
 		{
 			InitializeComponent();
-			DataContext = this;
-		}
-
-		public OneTripView(Trip trip) {
-			this.trip = trip;
-			InitializeComponent();
-			DataContext = trip;
-			Debug.WriteLine(trip.Price);
-		}
-
-		private void Bye_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void Reserve_Click(object sender, RoutedEventArgs e)
-		{
-
 		}
 	}
 }
