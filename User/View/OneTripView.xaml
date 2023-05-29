@@ -10,10 +10,11 @@
       TextElement.FontSize="18"
       xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View" xmlns:core="clr-namespace:HCI_Tim10_Putovanja.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
       mc:Ignorable="d" 
-      d:DesignHeight="462.126" d:DesignWidth="875.449"
+      d:DesignHeight="800" d:DesignWidth="875.449"
       Title="OneTripView">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
+        <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -65,18 +66,63 @@
                     <Button Content="Kupi" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
                     <Button Content="Rezervisi" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
                 </StackPanel>
-                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,-122.34942" ZoomLevel="12">
-                    <m:Pushpin Location="47.620574,-122.34942"/>
+                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12">
+                    <m:Pushpin Location="47.620574,22.34942"/>
                 </m:Map>
 
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0, 8, 0, 0">
+            
+        </Grid>
+            <StackPanel HorizontalAlignment="Left" Margin="10, 8, 0, 0">
                 <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Opis"></TextBlock>
                 <StackPanel Orientation="Vertical" Width="700">
                     <TextBlock TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
                 </StackPanel>
+                <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
+
+                <ListBox ItemsSource="{Binding Atractions}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                <materialDesign:Card VerticalAlignment="Center" MinWidth="270" HorizontalAlignment="Center">
+                    <StackPanel>
+                        <Image Source="\constants\logo2.jpg" Height="180"></Image>
+                        <Grid Background="#E5E5E5" Height="40">
+                                        <TextBlock Text="{Binding Location.Address}" Margin="20, 8, 0, 0" ></TextBlock>
+                            <Button Content="Detalji" HorizontalAlignment="Right" BorderBrush="#5B5A5A" Foreground="Black" Background="#C2C1C1" Margin="0, 0, 10, 0"/>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Restorani"></TextBlock>
+                <ListBox ItemsSource="{Binding Restaurants}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid MinWidth="200">
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Location.Address}" HorizontalAlignment="Right" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Smestaji"></TextBlock>
+                <ListBox ItemsSource="{Binding Acommodations}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid MinWidth="200">
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Location.Address}" HorizontalAlignment="Right" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
             </StackPanel>
-        </Grid>
+        </StackPanel>
     </ScrollViewer>
 </Page>

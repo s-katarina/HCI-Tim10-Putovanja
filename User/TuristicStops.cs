@@ -19,6 +19,6 @@ namespace HCI_Tim10_Putovanja.User
 		}
 
 		public string Name { get => name; set => name = value; }
-		internal Location Location { get => location; set => location = value; }
+		public Location Location { get => location; set => location = value; }
 	}
 }

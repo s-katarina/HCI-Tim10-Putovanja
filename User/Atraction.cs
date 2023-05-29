@@ -26,6 +26,6 @@ namespace HCI_Tim10_Putovanja.User
 
 		public string Description { get => description; set => description = value; }
 		public List<string> Images { get => images; set => images = value; }
-		internal Location Location { get => location; set => location = value; }
+		public Location Location { get => location; set => location = value; }
 	}
 }

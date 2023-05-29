@@ -43,7 +43,7 @@ namespace HCI_Tim10_Putovanja.User
 		public DateTime EndTime { get => endTime; set => endTime = value; }
 		public string Description { get => description; set => description = value; }
 		public Location EndLocation { get => endLocation; set => endLocation = value; }
-		public List<Atraction> Atractions1 { get => atractions; set => atractions = value; }
+		public List<Atraction> Atractions { get => atractions; set => atractions = value; }
 		public List<TuristicStops> Restaurants { get => restaurants; set => restaurants = value; }
 		public List<TuristicStops> Acommodations { get => acommodations; set => acommodations = value; }
 		public Location StartLocation { get => startLocation; set => startLocation = value; }

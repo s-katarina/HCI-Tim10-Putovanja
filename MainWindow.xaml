@@ -22,16 +22,16 @@ materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
 materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
 
         <materialDesign:NavigationRailAssist.FloatingContent>
-            <StackPanel Orientation="Horizontal" MaxWidth="600">
-                <Button Content="Putovanja" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button Content="Registracija" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button Background="LightBlue" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
+            <Grid MinWidth="600">
+                <Button Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button Content="Registracija" HorizontalAlignment="Left" Margin="100, 0, 0, 0" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button Background="LightBlue" HorizontalAlignment="Right" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Prijava</TextBlock>
-                        <Image Source="/constants/avatar.jpg" Width="10" Stretch="None" />
+                        <TextBlock Margin="0, 4, 3, 0">Prijava</TextBlock>
+                        <materialDesign:PackIcon Kind="AccountCircleOutline" Height="26"/>
                     </StackPanel>
                 </Button>
-            </StackPanel>
+            </Grid>
         </materialDesign:NavigationRailAssist.FloatingContent>
 
         <TabItem HorizontalAlignment="Right">
