@@ -8,6 +8,7 @@ namespace HCI_Tim10_Putovanja.User
 {
 	public class Trip
 	{
+		private string name;
 		private double price;
 		private DateTime strartTime;
 		private DateTime endTime;
@@ -18,6 +19,11 @@ namespace HCI_Tim10_Putovanja.User
 		private List<TuristicStops> restaurants;
 		private List<TuristicStops> acommodations;
 
+		public override string ToString()
+		{
+			return this.name;
+		}
+
 		public Trip()
 		{
 			atractions = new List<Atraction>();
@@ -25,8 +31,9 @@ namespace HCI_Tim10_Putovanja.User
 			acommodations = new List<TuristicStops>();
 		}
 
-		public Trip(double price, DateTime strartTime, DateTime endTime, Location startLocation, Location endLocation, string description, List<Atraction> atractions, List<TuristicStops> restaurants, List<TuristicStops> acommodations)
+		public Trip(string name, double price, DateTime strartTime, DateTime endTime, Location startLocation, Location endLocation, string description, List<Atraction> atractions, List<TuristicStops> restaurants, List<TuristicStops> acommodations)
 		{
+			this.name = name;
 			this.price = price;
 			this.strartTime = strartTime;
 			this.endTime = endTime;
@@ -47,5 +54,6 @@ namespace HCI_Tim10_Putovanja.User
 		public List<TuristicStops> Restaurants { get => restaurants; set => restaurants = value; }
 		public List<TuristicStops> Acommodations { get => acommodations; set => acommodations = value; }
 		public Location StartLocation { get => startLocation; set => startLocation = value; }
+		public string Name { get => name; set => name = value; }
 	}
 }

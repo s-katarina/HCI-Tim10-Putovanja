@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="constants\carska.jpg" />
+    <None Remove="constants\carska2.jpg" />
     <None Remove="constants\logo.webp" />
     <None Remove="constants\logo2.jpg" />
   </ItemGroup>
@@ -23,6 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="constants\carska.jpg" />
+    <Resource Include="constants\carska2.jpg" />
     <Resource Include="constants\logo.webp" />
     <Resource Include="constants\logo2.jpg" />
   </ItemGroup>

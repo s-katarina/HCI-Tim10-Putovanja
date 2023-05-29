@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="User\View\AllTrips.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="User\View\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,6 +22,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="User\View\AllTrips.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="User\View\Login.xaml">

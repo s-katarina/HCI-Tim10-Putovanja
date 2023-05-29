@@ -26,7 +26,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Margin="10, 0, 0, 0">
-                <TextBlock Text="Ovcar planina" Margin="0, 0, 0, 30">
+                    <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 30">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="30" />
@@ -102,7 +102,7 @@
                 <ListBox ItemsSource="{Binding Restaurants}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid MinWidth="200">
+                            <Grid MinWidth="500">
                                 <TextBlock Text="{Binding Name}" />
                                 <TextBlock Text="{Binding Location.Address}" HorizontalAlignment="Right" />
                             </Grid>
@@ -114,7 +114,7 @@
                 <ListBox ItemsSource="{Binding Acommodations}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid MinWidth="200">
+                            <Grid MinWidth="500">
                                 <TextBlock Text="{Binding Name}" />
                                 <TextBlock Text="{Binding Location.Address}" HorizontalAlignment="Right" />
                             </Grid>
