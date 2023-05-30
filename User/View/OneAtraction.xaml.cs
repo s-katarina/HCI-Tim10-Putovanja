@@ -24,5 +24,10 @@ namespace HCI_Tim10_Putovanja.User.View
 		{
 			InitializeComponent();
 		}
+		public OneAtraction(Atraction atraction)
+		{
+			InitializeComponent();
+			DataContext = atraction;
+		}
 	}
 }

@@ -37,11 +37,20 @@ namespace HCI_Tim10_Putovanja
         }
 
         private void Trips_Click(object sender, RoutedEventArgs e) {
+            List<String> images = new List<string>();
+            images.Add("\\constants\\logo2.jpg");
+            images.Add("\\constants\\logo2.jpg");
+            images.Add("\\constants\\logo2.jpg");
+            images.Add("\\constants\\logo2.jpg");
+            images.Add("\\constants\\logo2.jpg");
+            images.Add("\\constants\\logo2.jpg");
+            images.Add("\\constants\\logo2.jpg");
+            images.Add("\\constants\\logo2.jpg");
             List<Atraction> atractions = new List<Atraction>();
-            atractions.Add(new Atraction(new Location(0.0, 0.0, "adresaa"), "ssssss00", null));
-            atractions.Add(new Atraction(new Location(0.0, 0.0, "adresaa"), "ssssss00", null));
-            atractions.Add(new Atraction(new Location(0.0, 0.0, "adresaa"), "ssssss00", null));
-            atractions.Add(new Atraction(new Location(0.0, 0.0, "adresaa"), "ssssss00", null));
+            atractions.Add(new Atraction("atrakcija1", new Location(0.0, 0.0, "adresaa"), "Holla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", images));
+            atractions.Add(new Atraction("atrakcija3", new Location(0.0, 0.0, "adresaa"), "Holla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", images));
+            atractions.Add(new Atraction("atrakcija2", new Location(0.0, 0.0, "adresaa"), "Holla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", null));
+            atractions.Add(new Atraction("atrakcija4", new Location(0.0, 0.0, "adresaa"), "Holla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", null));
             List<TuristicStops> restar = new List<TuristicStops>();
             restar.Add(new TuristicStops("restoran", new Location(0.0, 0.0, "asjhks")));
             restar.Add(new TuristicStops("restoran", new Location(0.0, 0.0, "asjhks")));

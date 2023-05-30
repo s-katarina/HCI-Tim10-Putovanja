@@ -63,7 +63,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                             materialDesign:ValidationAssist.FontSize="14"
+                             materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -98,7 +98,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                             materialDesign:ValidationAssist.FontSize="14"
+                             materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -133,7 +133,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                             materialDesign:ValidationAssist.FontSize="14"
+                             materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -168,7 +168,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                           materialDesign:ValidationAssist.FontSize="14"
+                           materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -209,7 +209,7 @@
                     </PasswordBox>
                     
                 </Border>
-                <TextBlock x:Name="passwordErrorTextBlock" Foreground="Red"/>
+                <TextBlock Margin="10, 0, 0, 0" x:Name="passwordErrorTextBlock" Foreground="Red"/>
 
 
                 <Button x:Name="btnRegistration"
@@ -218,8 +218,7 @@
                     Padding="0, 10"
                     Margin="0, 40"
                     Click="Register_Click"
-                        IsDefault="True"
-        Command="{Binding SaveProtocolCommand}">
+                        IsDefault="True">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="IsEnabled" Value="False"/>

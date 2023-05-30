@@ -3,12 +3,49 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="18" 
       xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OneAtraction">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel Margin="10">
+        <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 30">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30" />
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <m:Map x:Name="myMap" Height="300" MinWidth="300" Margin="0, 0, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12">
+                <m:Pushpin Location="47.620574,22.34942"/>
+            </m:Map>
+            <StackPanel Orientation="Vertical" Grid.Column="1" MaxWidth="500">
+                <TextBlock TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
+            </StackPanel>
+        </Grid>
+        <TextBlock Margin="0, 30, 0, 15" FontSize="22" Text="Galerija"></TextBlock>
+        <ListView ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="800" >
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="\constants\logo2.jpg" Width="220"></Image>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListView>
+
+    </StackPanel>
 </Page>

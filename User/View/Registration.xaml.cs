@@ -19,6 +19,7 @@ namespace HCI_Tim10_Putovanja.User.View
 	/// </summary>
 	public partial class Registration : Page
 	{
+		public bool disabled;
 		public SecureString SecurePassword { private get; set; }
 		private ObservableObject observableObject = new ObservableObject();
 		private Database database = new Database();
@@ -27,6 +28,7 @@ namespace HCI_Tim10_Putovanja.User.View
 			InitializeComponent();
 			DataContext = this;
 			ErrorMessagee = "";
+			disabled = true;
 		}
 
 		private string userName;
@@ -119,6 +121,7 @@ namespace HCI_Tim10_Putovanja.User.View
 
 		private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
 		{
+			disabled = false;
 			UserPassword = ((PasswordBox)sender).Password;
 			ErrorMessagee = UserPassword.Length < 5 ? "Lozinka mora imati bar 5 karaktera" : "";
 			Debug.WriteLine(UserPassword);

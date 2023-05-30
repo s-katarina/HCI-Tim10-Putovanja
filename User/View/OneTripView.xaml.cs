@@ -44,5 +44,14 @@ namespace HCI_Tim10_Putovanja.User.View
 		{
 
 		}
+
+		private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			// Instantiate the page to navigate to
+			OneAtraction page = new OneAtraction((Atraction)atractionListBox.SelectedItem);
+
+			// Navigate to the page, using the NavigationService
+			this.NavigationService.Navigate(page);
+		}
 	}
 }
