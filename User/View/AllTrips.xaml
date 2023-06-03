@@ -17,10 +17,10 @@
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="25,18,0,0"
 Name="textBlock1" Text="Pretraga po imenu"
 VerticalAlignment="Top" Width="200" />
-        <TextBox HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="250,10,0,0"
+        <TextBox HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="200,10,0,0"
 Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged"
 VerticalAlignment="Top" Width="202" />
-        <ListView x:Name="tripsListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="1100" Margin="0, 90, 0, 0" ItemsSource="{Binding Trips}" SelectionChanged="ListBox_SelectionChanged">
+        <ListView x:Name="tripsListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding Trips}" SelectionChanged="ListBox_SelectionChanged" MinWidth="800">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -28,14 +28,13 @@ VerticalAlignment="Top" Width="202" />
             </ListView.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel Orientation="Horizontal">
                         <Grid Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <materialDesign:Card Grid.Column="0" VerticalAlignment="Center" Width="500" HorizontalAlignment="Center">
-                            <StackPanel Margin="10">
+                        <materialDesign:Card Grid.Column="0" VerticalAlignment="Center" >
+                            <StackPanel Margin="10" >
                                 <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 25">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
@@ -58,13 +57,12 @@ VerticalAlignment="Top" Width="202" />
                                     <TextBlock Text="Datum dolaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
                                     <TextBlock x:Name="endDateTxt" Text="{Binding EndTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                                 </Grid>
-                                <Image Source="\constants\carska.jpg" Height="200"></Image>
+                                <Image Source="\constants\carska.jpg" Height="200" Width="400"></Image>
 
                             </StackPanel>
                         </materialDesign:Card>
                         
                     </Grid>
-                    </WrapPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListView>

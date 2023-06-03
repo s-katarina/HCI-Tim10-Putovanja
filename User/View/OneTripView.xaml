@@ -9,16 +9,20 @@
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18"
       xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View" xmlns:core="clr-namespace:HCI_Tim10_Putovanja.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
+      xmlns:converters="clr-namespace:HCI_Tim10_Putovanja.User.Converter"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="875.449"
-      Title="OneTripView">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+      Title="OneTripView"
+      x:Name="atractions">
+    <Page.Resources>
+        <converters:GreaterThanConverter x:Key="GreaterThanConverter"></converters:GreaterThanConverter>
+    </Page.Resources>
 
         <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -76,32 +80,45 @@
         </Grid>
             <StackPanel HorizontalAlignment="Left" Margin="10, 8, 0, 0">
                 <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Opis"></TextBlock>
-                <StackPanel Orientation="Vertical" Width="700">
+                <StackPanel Orientation="Vertical" >
                     <TextBlock TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
                 </StackPanel>
                 <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
+                <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                                <materialDesign:Card VerticalAlignment="Center" MinWidth="270" HorizontalAlignment="Center">
+                                    <StackPanel>
+                                        <Image Source="\constants\logo2.jpg" Height="180"></Image>
+                                        <Grid Background="#E5E5E5" Height="40">
+                                        <TextBlock Text="{Binding Name}" Margin="20, 8, 0, 0" ></TextBlock>
+                                            <Button Content="Detalji" HorizontalAlignment="Right" BorderBrush="#5B5A5A" Foreground="Black" Background="#C2C1C1" Margin="0, 0, 10, 0"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-                <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="900">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal"/>
+                            <!--/<StackPanel>
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ActualWidth, ElementName=atractions, Converter={StaticResource GreaterThanConverter}, ConverterParameter=400}" Value="True">
+                                                <Setter Property="Orientation" Value="Horizontal"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                            </StackPanel>/-->
+                            <WrapPanel HorizontalAlignment="Right"></WrapPanel>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                <materialDesign:Card VerticalAlignment="Center" MinWidth="270" HorizontalAlignment="Center">
-                    <StackPanel>
-                        <Image Source="\constants\logo2.jpg" Height="180"></Image>
-                        <Grid Background="#E5E5E5" Height="40">
-                                        <TextBlock Text="{Binding Location.Address}" Margin="20, 8, 0, 0" ></TextBlock>
-                            <Button Content="Detalji" HorizontalAlignment="Right" BorderBrush="#5B5A5A" Foreground="Black" Background="#C2C1C1" Margin="0, 0, 10, 0"/>
-                        </Grid>
-                    </StackPanel>
-                </materialDesign:Card>
-
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
                 </ListView>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
 
                 <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Restorani"></TextBlock>
                 <Grid  HorizontalAlignment="Left">
@@ -154,19 +171,21 @@
                 <ListBox ItemsSource="{Binding Acommodations}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid MinWidth="550">
+                        <Grid MinWidth="400" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Name}" />
-                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                            
+                            <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1"/>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
+
+                
+            </ListBox>
 
             </StackPanel>
         </StackPanel>
-    </ScrollViewer>
 </Page>
