@@ -10,7 +10,7 @@ namespace HCI_Tim10_Putovanja.User
 	{
 		private string name;
 		private double price;
-		private DateTime strartTime;
+		private DateTime startTime;
 		private DateTime endTime;
 		private Location startLocation;
 		private Location endLocation;
@@ -35,7 +35,7 @@ namespace HCI_Tim10_Putovanja.User
 		{
 			this.name = name;
 			this.price = price;
-			this.strartTime = strartTime;
+			this.startTime = strartTime;
 			this.endTime = endTime;
 			this.StartLocation = startLocation;
 			this.endLocation = endLocation;
@@ -46,7 +46,7 @@ namespace HCI_Tim10_Putovanja.User
 		}
 
 		public double Price { get => price; set => price = value; }
-		public DateTime StrartTime { get => strartTime; set => strartTime = value; }
+		public DateTime StartTime { get => startTime; set => startTime = value; }
 		public DateTime EndTime { get => endTime; set => endTime = value; }
 		public string Description { get => description; set => description = value; }
 		public Location EndLocation { get => endLocation; set => endLocation = value; }
