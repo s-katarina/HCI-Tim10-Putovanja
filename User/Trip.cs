@@ -16,8 +16,7 @@ namespace HCI_Tim10_Putovanja.User
 		private Location endLocation;
 		private string description;
 		private List<Atraction> atractions;
-		private List<TuristicStops> restaurants;
-		private List<TuristicStops> acommodations;
+		private List<TuristicStops> touristicStops;
 
 		public override string ToString()
 		{
@@ -27,11 +26,10 @@ namespace HCI_Tim10_Putovanja.User
 		public Trip()
 		{
 			atractions = new List<Atraction>();
-			restaurants = new List<TuristicStops>();
-			acommodations = new List<TuristicStops>();
+			touristicStops = new List<TuristicStops>();
 		}
 
-		public Trip(string name, double price, DateTime strartTime, DateTime endTime, Location startLocation, Location endLocation, string description, List<Atraction> atractions, List<TuristicStops> restaurants, List<TuristicStops> acommodations)
+		public Trip(string name, double price, DateTime strartTime, DateTime endTime, Location startLocation, Location endLocation, string description, List<Atraction> atractions, List<TuristicStops> ts)
 		{
 			this.name = name;
 			this.price = price;
@@ -41,8 +39,7 @@ namespace HCI_Tim10_Putovanja.User
 			this.endLocation = endLocation;
 			this.description = description;
 			this.atractions = atractions;
-			this.restaurants = restaurants;
-			this.acommodations = acommodations;
+			this.touristicStops = ts;
 		}
 
 		public double Price { get => price; set => price = value; }
@@ -51,8 +48,7 @@ namespace HCI_Tim10_Putovanja.User
 		public string Description { get => description; set => description = value; }
 		public Location EndLocation { get => endLocation; set => endLocation = value; }
 		public List<Atraction> Atractions { get => atractions; set => atractions = value; }
-		public List<TuristicStops> Restaurants { get => restaurants; set => restaurants = value; }
-		public List<TuristicStops> Acommodations { get => acommodations; set => acommodations = value; }
+		public List<TuristicStops> TouristicStops { get => touristicStops; set => touristicStops = value; }
 		public Location StartLocation { get => startLocation; set => startLocation = value; }
 		public string Name { get => name; set => name = value; }
 	}

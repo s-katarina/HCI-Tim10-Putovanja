@@ -4,11 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:core="clr-namespace:HCI_Tim10_Putovanja.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18" 
-      xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View"
       mc:Ignorable="d" 
       d:DesignHeight="831.264" d:DesignWidth="800"
       Title="UpdateTrip">
@@ -24,6 +23,7 @@
 
         <Button x:Name="btnDelete"
                         Content="Obrisi putovanje"
+                    Click="Delete"
                     Width="180"
                     Padding="10"
                     Margin="0, 10, 20, 0"
@@ -53,11 +53,12 @@
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
-                         Height="35"
+                         Height="45"
                          VerticalContentAlignment="Center"
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                         FontWeight="Normal"
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
@@ -86,11 +87,12 @@
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
-                         Height="35"
+                         Height="45"
                          VerticalContentAlignment="Center"
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                         FontWeight="Normal"
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
@@ -114,14 +116,15 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtStartLocation"
-                     Text="{Binding StartTime}"
+                     Text="{Binding StartLocation.Address}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
-                         Height="35"
+                         Height="45"
                          VerticalContentAlignment="Center"
                          Padding="10, 0"
                          Margin="5, 0"
+                         FontWeight="Normal"
                          HorizontalAlignment="Stretch"
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -151,10 +154,11 @@
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
-                         Height="35"
+                         Height="45"
                          VerticalContentAlignment="Center"
                          Padding="10, 0"
                          Margin="5, 0"
+                         FontWeight="Normal"
                          HorizontalAlignment="Stretch"
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -183,10 +187,11 @@
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
-                         Height="35"
+                         Height="45"
                          VerticalContentAlignment="Center"
                          Padding="10, 0"
                          Margin="5, 0"
+                         FontWeight="Normal"
                          HorizontalAlignment="Stretch"
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -211,17 +216,18 @@
                     <GradientStop Color="#000000" Offset="1"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-            
+
             <TextBox x:Name="txtPrice"
                      Text="{Binding Price}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
-                         Height="35"
+                         Height="45"
                          VerticalContentAlignment="Center"
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                         FontWeight="Normal"
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
@@ -232,7 +238,7 @@
         <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
         <Border CornerRadius="10"
                 BorderThickness="1"
-                Width="500"
+                Width="700"
                 HorizontalAlignment="Left"
                         >
             <Border.BorderBrush>
@@ -242,16 +248,19 @@
                     <GradientStop Color="#000000" Offset="1"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-            <TextBox x:Name="txtOpis"
+            <TextBox x:Name="txtDesc"
                      Text="{Binding Description}"
-                         CaretBrush="LightGray"
+                        CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
-                         Height="85"
                          VerticalContentAlignment="Center"
+                         MaxHeight="150"
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
+                         TextWrapping="Wrap"
+                          AcceptsReturn="True"
+                         FontWeight="Normal"
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
@@ -260,39 +269,183 @@
 
         </Border>
 
+        <StackPanel Orientation="Horizontal">
 
-        <TextBlock Margin="0, 30, 0, 15" Text="Galerija"></TextBlock>
-        <ListView ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="\constants\logo2.jpg" Width="220"></Image>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+            <StackPanel Orientation="Vertical">
 
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel HorizontalAlignment="Right"></WrapPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
+                <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
+                <Grid  HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"></ColumnDefinition>
+                        <ColumnDefinition Width="245*"/>
+                        <ColumnDefinition Width="177*"></ColumnDefinition>
+                        <ColumnDefinition Width="68*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
-        <Button x:Name="btnChangeGallery"
-                        Content="Izmeni izbor slika"
-                    Width="180"
+                    <TextBlock Text="Ime" Grid.ColumnSpan="2" Margin="0,0,0,12" Grid.RowSpan="2"  />
+                    <TextBlock Text="Adresa" Grid.Column="1" Margin="245,0,0,12" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+                    <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="4" Margin="-10,0,0,0" ></Line>
+
+                </Grid>
+                <ListBox Name="lbAttractions" ItemsSource="{Binding Atractions}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid MinWidth="550">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="100 75 0 0" Width="400">
+                <ComboBox Name="cbOtherAttractions" HorizontalContentAlignment="Stretch" Loaded="OnLoadAttr">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="btnAddAttraction"
+                        Content="Dodaj na spisak"
+                        Click="AddAttraction"
+                    Width="160"
                     Padding="10"
-                    Margin="0, 10, 20, 0"
-                    HorizontalAlignment="Center"
-                    FontSize="16">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#48C6C6"/>
-                </Style>
-            </Button.Style>
-        </Button>
+                    Margin="0, 30, 0, 0"
+                    HorizontalAlignment="Center">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#ffffff"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="btnRemoveAttraction"
+                        Content="Ukloni sa spiska"
+                        Click="RemoveAttraction"
+                    Width="160"
+                    Padding="10"
+                    Margin="0, 70, 0, 0"
+                    HorizontalAlignment="Center">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#ffffff"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </StackPanel>
+            
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal">
+
+            <StackPanel Orientation="Vertical">
+
+                <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Restorani i Smestaji"></TextBlock>
+                <Grid  HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Ime"  />
+                    <TextBlock Text="Adresa" Grid.Column="1" />
+                    <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
+
+                </Grid>
+                <ListBox Name="lbTouristicStops" ItemsSource="{Binding TouristicStops}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid MinWidth="550">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="100 75 0 0" Width="400">
+                <ComboBox Name="cbOtherTouristicStops" HorizontalContentAlignment="Stretch" Loaded="OnLoadTouristicStop">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="btnAddTouristicStop"
+                        Content="Dodaj na spisak"
+                        Click="AddTouristicStop"
+                    Width="160"
+                    Padding="10"
+                    Margin="0, 30, 0, 0"
+                    HorizontalAlignment="Center">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#ffffff"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="btnRemoveTouristicStop"
+                        Content="Ukloni sa spiska"
+                        Click="RemoveTouristicStop"
+                    Width="160"
+                    Padding="10"
+                    Margin="0, 70, 0, 0"
+                    HorizontalAlignment="Center">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#ffffff"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </StackPanel>
+
+        </StackPanel>
 
 
         <Button x:Name="btnSave"
                         Content="Sacuvaj promene"
+                    Click="Save"
                     Width="280"
                     Padding="10"
                     Margin="0, 50, 20, 0"
