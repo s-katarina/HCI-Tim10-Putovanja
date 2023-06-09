@@ -14,6 +14,8 @@ namespace HCI_Tim10_Putovanja.User
 		private string phone;
 		private string password;
 		private Role role;
+		private List<Trip> reservedTrip;
+		private List<Trip> boughtTrip;
 
 		public AppUser(string name, string lastname, string email, string phone, string password, Role role)
 		{
@@ -23,6 +25,24 @@ namespace HCI_Tim10_Putovanja.User
 			this.phone = phone;
 			this.password = password;
 			this.role = role;
+			reservedTrip = new List<Trip>();
+			boughtTrip = new List<Trip>();
+
+		}
+
+		public AppUser(string name, string lastname, string email, string phone, string password, Role role, List<Trip> reservedTrip, List<Trip> boughtTrip) : this(name, lastname, email, phone, password, role)
+		{
+			this.reservedTrip = reservedTrip;
+			this.boughtTrip = boughtTrip;
+		}
+
+		public void AddReservedTrip(Trip trip) {
+			this.reservedTrip.Add(trip);
+		}
+
+		public void AddBoughtTrip(Trip trip)
+		{
+			this.boughtTrip.Add(trip);
 		}
 
 		public AppUser()
@@ -35,6 +55,8 @@ namespace HCI_Tim10_Putovanja.User
 		public string Password { get => password; set => password = value; }
 		public string Phone { get => phone; set => phone = value; }
 		internal Role Role { get => role; set => role = value; }
+		public List<Trip> ReservedTrip { get => reservedTrip; set => reservedTrip = value; }
+		public List<Trip> BoughtTrip { get => boughtTrip; set => boughtTrip = value; }
 	}
 
 	enum Role { 

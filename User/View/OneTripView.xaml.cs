@@ -22,6 +22,10 @@ namespace HCI_Tim10_Putovanja.User.View
 	public partial class OneTripView : Page
 	{
 		private Trip trip;
+		public static RoutedCommand MyCommand = new();
+
+		public Trip Trip { get => trip; set => trip = value; }
+
 		public OneTripView()
 		{
 			InitializeComponent();
@@ -29,20 +33,37 @@ namespace HCI_Tim10_Putovanja.User.View
 		}
 
 		public OneTripView(Trip trip) {
-			this.trip = trip;
+			this.Trip = trip;
 			InitializeComponent();
-			DataContext = trip;
+			DataContext = this;
 			Debug.WriteLine(trip.Price);
+			MyCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
 		}
 
 		private void Bye_Click(object sender, RoutedEventArgs e)
 		{
-
+			if (MessageBox.Show("Da li zelite da zavrsite kupovinu " + Trip.Name + "?", "Potvrda", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+			{
+				Debug.WriteLine("no");
+			}
+			else
+			{
+				Debug.WriteLine("yes");
+				MessageBox.Show("Uspesno ste kupili novo putovanje!", "Cestitamo", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
 		}
 
 		private void Reserve_Click(object sender, RoutedEventArgs e)
 		{
-
+			if (MessageBox.Show("Da li zelite da rezervisete " + Trip.Name + "?", "Potvrda", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+			{
+				Debug.WriteLine("no");
+			}
+			else
+			{
+				Debug.WriteLine("yes");
+				MessageBox.Show("Uspesno ste rezervisali novo putovanje!", "Cestitamo", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
 		}
 
 		private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -53,5 +74,36 @@ namespace HCI_Tim10_Putovanja.User.View
 			// Navigate to the page, using the NavigationService
 			this.NavigationService.Navigate(page);
 		}
+	}
+
+	public class MyViewModel
+	{
+		private ICommand byeShortcut;
+		public ICommand ByeShortcut => byeShortcut
+					?? (byeShortcut = new ActionCommand(() =>
+					{
+						MessageBox.Show("SomeCommand");
+					}));
+	}
+	public class ActionCommand : ICommand
+	{
+		private readonly Action _action;
+
+		public ActionCommand(Action action)
+		{
+			_action = action;
+		}
+
+		public void Execute(object parameter)
+		{
+			_action();
+		}
+
+		public bool CanExecute(object parameter)
+		{
+			return true;
+		}
+
+		public event EventHandler CanExecuteChanged;
 	}
 }
