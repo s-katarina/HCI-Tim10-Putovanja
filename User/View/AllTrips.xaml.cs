@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Tim10_Putovanja.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -43,10 +44,15 @@ namespace HCI_Tim10_Putovanja.User.View
 			Debug.WriteLine(tripsListBox.SelectedItem.ToString());
 			Debug.WriteLine("Holamibebebe");
 			// Instantiate the page to navigate to
-			OneTripView page = new OneTripView((Trip)tripsListBox.SelectedItem);
-
-			// Navigate to the page, using the NavigationService
-			this.NavigationService.Navigate(page);
+			if (Database.loggedInUser == null || Database.loggedInUser.Role.Equals(Role.PASSENGER))
+			{
+				OneTripView page = new OneTripView((Trip)tripsListBox.SelectedItem);
+				this.NavigationService.Navigate(page);
+			} else if (Database.loggedInUser.Role.Equals(Role.AGENT))
+            {
+				UpdateTrip page = new UpdateTrip((Trip)tripsListBox.SelectedItem);
+				this.NavigationService.Navigate(page);
+            }
 		}
 		private void txtNameToSearch_TextChanged(object sender,
 TextChangedEventArgs e)

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HCI_Tim10_Putovanja.Core;
 
 namespace HCI_Tim10_Putovanja.User.View
 {
@@ -38,6 +39,11 @@ namespace HCI_Tim10_Putovanja.User.View
 			DataContext = this;
 			Debug.WriteLine(trip.Price);
 			MyCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+			if (Database.loggedInUser == null)
+			{
+				byeBtn.Visibility = Visibility.Hidden;
+				reserveBtn.Visibility = Visibility.Hidden;
+			}
 		}
 
 		private void Bye_Click(object sender, RoutedEventArgs e)

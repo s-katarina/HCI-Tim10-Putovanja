@@ -50,7 +50,7 @@ VerticalAlignment="Top" Width="202" />
                                 <Grid Margin="0, 0, 0, 10">
                                     <materialDesign:PackIcon Kind="TimerCheckOutline" Height="26"/>
                                     <TextBlock Text="Datum polaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
-                                    <TextBlock x:Name="startDateTxt" Text="{Binding StrartTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                                    <TextBlock x:Name="startDateTxt" Text="{Binding StartTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                                 </Grid>
                                 <Grid Margin="0, 0, 0, 10">
                                     <materialDesign:PackIcon Kind="TimerMarkerOutline" Height="26"/>

@@ -69,6 +69,7 @@ namespace HCI_Tim10_Putovanja.User.View
 			foreach (AppUser user in database.Users) {
 				if (user.Email == userName && user.Password == Password) {
 					MessageBox.Show("Uspesna prijava.", "Uspesna prijava", MessageBoxButton.OK, MessageBoxImage.Information);
+					Database.loggedInUser = user;
 					return;
 				}
 			}

@@ -1,0 +1,82 @@
+﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.AllAttractions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="18"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AllAttractions">
+
+    <StackPanel>
+        <TextBlock Text="Pregled svih atrakcija" Margin="10, 10, 0, 30">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30" />
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Button x:Name="btnAddNew"
+                        Content="+ Dodaj novu Atrakciju"
+                    Width="320"
+                    Height="50"
+                    Padding="10"
+                    Margin="0, 0, 80, 0"
+                    FontSize="22"
+                    HorizontalAlignment="Right"
+                    Click="AddNew_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#48C6C6"/>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <ListView x:Name="attractionsListBox" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding Attractions}" SelectionChanged="ListBox_SelectionChanged" MinWidth="900">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:Card Grid.Column="0" VerticalAlignment="Center" MinWidth="500" MaxWidth="500" MinHeight="220" MaxHeight="220">
+                            <StackPanel Margin="10" >
+                                <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 25">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontSize" Value="25" />
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <Grid Margin="0, 0, 0, 10">
+                                    <materialDesign:PackIcon Kind="Location" Height="26"/>
+                                    <TextBlock Text="Lokacija:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                                    <TextBlock x:Name="startDateTxt" Text="{Binding Location.Address}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                                </Grid>
+                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="30, 0, 30, 10" MaxHeight="75" >
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontSize" Value="14" />
+                                            <Setter Property="FontWeight" Value="Light"/>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </materialDesign:Card>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Page>
