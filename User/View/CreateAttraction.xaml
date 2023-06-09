@@ -3,12 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18" 
-      xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View"
       mc:Ignorable="d" 
       d:DesignHeight="831.264" d:DesignWidth="800"
       Title="CreateAttraction">
@@ -22,20 +21,23 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <TextBlock Text="Naziv" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
-        <Border CornerRadius="10"
+        <StackPanel Margin="50, 0">
+
+
+            <TextBlock Text="Naziv" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="300"
                 HorizontalAlignment="Left"
                         >
-            <Border.BorderBrush>
-                <LinearGradientBrush >
-                    <GradientStop Color="#000000" Offset="0"></GradientStop>
-                    <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#000000" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-            <TextBox x:Name="txtName"
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtName"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -47,25 +49,31 @@
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
+                    <TextBox.Text>
+                        <Binding Path="AName" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Naziv"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-            </TextBox>
+            </Border>
 
-        </Border>
-
-        <TextBlock Text="Lokacija" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
-        <Border CornerRadius="10"
+            <TextBlock Text="Lokacija" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="300"
                 HorizontalAlignment="Left"
                         >
-            <Border.BorderBrush>
-                <LinearGradientBrush >
-                    <GradientStop Color="#000000" Offset="0"></GradientStop>
-                    <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#000000" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-            <TextBox x:Name="txtLocation"
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtLocation"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -77,25 +85,31 @@
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
+                    <TextBox.Text>
+                        <Binding Path="LocationAddress" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Lokacija"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-            </TextBox>
+            </Border>
 
-        </Border>
-
-        <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
-        <Border CornerRadius="10"
+            <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="500"
                 HorizontalAlignment="Left"
                         >
-            <Border.BorderBrush>
-                <LinearGradientBrush >
-                    <GradientStop Color="#000000" Offset="0"></GradientStop>
-                    <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#000000" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-            <TextBox x:Name="txtOpis"
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtOpis"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -107,56 +121,74 @@
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
+                    <TextBox.Text>
+                        <Binding Path="Description" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Opis"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-            </TextBox>
+            </Border>
 
-        </Border>
+            <TextBlock Margin="0, 30, 0, 15" Text="Galerija"></TextBlock>
+            <ListView ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="\constants\logo2.jpg" Width="220"></Image>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
 
-        <TextBlock Margin="0, 30, 0, 15" Text="Galerija"></TextBlock>
-        <ListView ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="\constants\logo2.jpg" Width="220"></Image>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Right"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
 
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel HorizontalAlignment="Right"></WrapPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-
-        <Button x:Name="btnChangeGallery"
+            <Button x:Name="btnChangeGallery"
                         Content="Dodaj izbor slika"
+                    Click="AddImages"
                     Width="180"
                     Padding="10"
                     Margin="20, 0, 0, 0"
                     HorizontalAlignment="Left"
                     FontSize="16">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#48C6C6"/>
-                </Style>
-            </Button.Style>
-        </Button>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#48C6C6"/>
+                    </Style>
+                </Button.Style>
+            </Button>
 
 
-        <Button x:Name="btnSave"
+            <Button x:Name="btnSave"
                         Content="Kreiraj atrakciju"
+                    Click="Save"
                     Width="280"
                     Padding="10"
                     Margin="0, 50, 20, 0"
                     HorizontalAlignment="Center"
                     FontSize="22">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="LightGray"/>
-                </Style>
-            </Button.Style>
-        </Button>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtName}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtLocation}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
 
-
+        </StackPanel>
 
     </StackPanel>
 

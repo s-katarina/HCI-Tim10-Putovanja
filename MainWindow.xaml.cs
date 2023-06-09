@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HCI_Tim10_Putovanja.Core;
 using HCI_Tim10_Putovanja.User;
 using HCI_Tim10_Putovanja.User.View;
 
@@ -22,6 +23,8 @@ namespace HCI_Tim10_Putovanja
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Database dbKata = new Database();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -71,5 +74,15 @@ namespace HCI_Tim10_Putovanja
             MainFrame.Content = new AllTrips(trips);
             //MainFrame.Content = new OneTripView(new Trip(10000.0, DateTime.Now, DateTime.Now, new Location(44.0, 23.0, "polazak"), new Location(44.0, 23.0, "dolayak"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", atractions, restar, acom));
         }
+
+        private void TouristicStops_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AllTouristicStops(dbKata.TouristicStops);
+        }
+        private void Attractions_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new AllAttractions(dbKata.Attractions);
+        }
+
     }
 }
