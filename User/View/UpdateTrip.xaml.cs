@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using Microsoft.Maps.MapControl.WPF;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -154,6 +155,46 @@ namespace HCI_Tim10_Putovanja.User.View
             }
         }
 
+        private void MapWithPushpins_TouchDown(object sender, TouchEventArgs t)
+        {
+            Pushpin p = new Pushpin();
+            p.Location = new Microsoft.Maps.MapControl.WPF.Location();
+            myMap.Children.Add(new Pushpin());
+        }
+
+        Vector _mouseToMarker;
+        private bool _dragPin;
+        public Pushpin SelectedPushpin { get; set; }
+
+        void Pin_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            SelectedPushpin = sender as Pushpin;
+            _dragPin = true;
+            _mouseToMarker = Point.Subtract(
+              myMap.LocationToViewportPoint(SelectedPushpin.Location),
+              e.GetPosition(myMap));
+        }
+
+        void Pin_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            SelectedPushpin = null;
+            _dragPin = false;
+        }
+
+        private void MyMap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (_dragPin && SelectedPushpin != null)
+                {
+                    SelectedPushpin.Location = myMap.ViewportPointToLocation(
+                      Point.Add(e.GetPosition(myMap), _mouseToMarker));
+                    e.Handled = true;
+                }
+            }
+        }
 
     }
 }
