@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HCI_Tim10_Putovanja.Core;
 
 namespace HCI_Tim10_Putovanja.User.View
 {
@@ -22,7 +23,7 @@ namespace HCI_Tim10_Putovanja.User.View
 	public partial class OneTripView : Page
 	{
 		private Trip trip;
-		public static RoutedCommand MyCommand = new();
+		public static RoutedCommand GoBackShortcut = new RoutedCommand();
 
 		public Trip Trip { get => trip; set => trip = value; }
 
@@ -37,7 +38,12 @@ namespace HCI_Tim10_Putovanja.User.View
 			InitializeComponent();
 			DataContext = this;
 			Debug.WriteLine(trip.Price);
-			MyCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+			GoBackShortcut.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Shift));
+			if (Database.loggedInUser == null)
+			{
+				byeBtn.Visibility = Visibility.Hidden;
+				reserveBtn.Visibility = Visibility.Hidden;
+			}
 		}
 
 		private void Bye_Click(object sender, RoutedEventArgs e)
@@ -48,7 +54,9 @@ namespace HCI_Tim10_Putovanja.User.View
 			}
 			else
 			{
+				if (already_bought()) return;
 				Debug.WriteLine("yes");
+				Database.SoldTrips.Add(new Record(Database.loggedInUser, trip, DateTime.Now));
 				MessageBox.Show("Uspesno ste kupili novo putovanje!", "Cestitamo", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 		}
@@ -61,9 +69,47 @@ namespace HCI_Tim10_Putovanja.User.View
 			}
 			else
 			{
+				if (already_reserved()) return;
+				if (already_bought()) return;
 				Debug.WriteLine("yes");
+				Database.ReservedTrips.Add(new Record(Database.loggedInUser, trip, DateTime.Now) );
 				MessageBox.Show("Uspesno ste rezervisali novo putovanje!", "Cestitamo", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
+		}
+
+		private bool already_reserved()
+		{
+			foreach (Record r in Database.ReservedTrips)
+			{
+				if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
+				{
+					MessageBox.Show("Ovo putovanje je vec rezervisano!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private bool already_bought()
+		{
+			foreach (Record r in Database.SoldTrips)
+			{
+				if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
+				{
+					MessageBox.Show("Ovo putovanje je vec kupljeno!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private void Go_Back_Click(object sender, RoutedEventArgs e)
+		{
+			// Instantiate the page to navigate to
+			AllTrips page = new AllTrips(Database.Trips);
+
+			// Navigate to the page, using the NavigationService
+			this.NavigationService.Navigate(page);
 		}
 
 		private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,34 +122,5 @@ namespace HCI_Tim10_Putovanja.User.View
 		}
 	}
 
-	public class MyViewModel
-	{
-		private ICommand byeShortcut;
-		public ICommand ByeShortcut => byeShortcut
-					?? (byeShortcut = new ActionCommand(() =>
-					{
-						MessageBox.Show("SomeCommand");
-					}));
-	}
-	public class ActionCommand : ICommand
-	{
-		private readonly Action _action;
-
-		public ActionCommand(Action action)
-		{
-			_action = action;
-		}
-
-		public void Execute(object parameter)
-		{
-			_action();
-		}
-
-		public bool CanExecute(object parameter)
-		{
-			return true;
-		}
-
-		public event EventHandler CanExecuteChanged;
-	}
+	
 }

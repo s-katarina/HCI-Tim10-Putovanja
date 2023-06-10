@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
@@ -13,6 +14,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Login">
+    
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:Login.MyCommand}" 
+                     Executed="Login_Click"/>
+    </Page.CommandBindings>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
@@ -44,7 +50,7 @@
                 <TextBlock
                            HorizontalAlignment="Center"
                        
-                       Text="Prijava na sistem"
+                       Text="Prijava"
                     Margin="0, 0, 0, 20">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
@@ -73,7 +79,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                             materialDesign:ValidationAssist.FontSize="14"
+                             materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -114,7 +120,7 @@
                     </PasswordBox>
 
                 </Border>
-                <TextBlock x:Name="passwordErrorTextBlock" Foreground="Red"/>
+                <TextBlock Margin="15, 0, 0, 0" x:Name="passwordErrorTextBlock" Foreground="Red"/>
             </StackPanel>
 
             <Button x:Name="btnLogIn"

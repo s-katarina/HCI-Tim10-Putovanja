@@ -23,7 +23,7 @@
 
 
         <materialDesign:NavigationRailAssist.FloatingContent>
-            <Grid HorizontalAlignment="Center" >
+            <Grid HorizontalAlignment="Left" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -35,10 +35,17 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Button Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button Grid.Column="2" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button Grid.Column="3" Content="Registracija" HorizontalAlignment="Left" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button Grid.Column="4" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
+                <Button x:Name="atractionBtn" Visibility="Hidden" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="restorantsBtn" Visibility="Hidden" Grid.Column="2"  Margin="-160, 0, 0, 0" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="reportBtn" Visibility="Hidden" Grid.Column="3" Margin="-5, 0, 0, 0" Content="Izvestaji" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="tripReportBtn" Visibility="Hidden" Grid.Column="3" Margin="75, 0, 0, 0" Content="Izvestaji" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
+                <Button x:Name="logoutBtn" Visibility="Hidden" Grid.Column="4" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
+                <Button x:Name="boughtTripsBtn" Visibility="Hidden" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
+                <Button x:Name="registrationBtn" Grid.Column="1" Content="Registracija" HorizontalAlignment="Left" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="loginBtn" Grid.Column="1" Margin="150, 0,0, 0" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="0, 4, 3, 0">Prijava</TextBlock>
                         <materialDesign:PackIcon Kind="AccountCircleOutline" Height="26"/>
@@ -48,10 +55,10 @@
         </materialDesign:NavigationRailAssist.FloatingContent>
 
         <TabItem HorizontalAlignment="Right">
-            <TabItem.Header>
+            <!--<TabItem.Header>
                 <Image Source="/constants/logo.webp" Height="60"></Image>
                 
-            </TabItem.Header>
+            </TabItem.Header>/-->
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                 <Grid>
                 <Frame x:Name="MainFrame" Margin="10, 10">

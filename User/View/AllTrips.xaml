@@ -12,15 +12,25 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AllTrips">
-
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:AllTrips.OneTripShortcut}" 
+                     />
+    </Page.CommandBindings>
+    
     <Grid>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="25,18,0,0"
 Name="textBlock1" Text="Pretraga po imenu"
 VerticalAlignment="Top" Width="200" />
-        <TextBox HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="200,10,0,0"
+        <TextBox HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="25,40,0,0"
 Name="txtNameToSearch" TextChanged="txtNameToSearch_TextChanged"
 VerticalAlignment="Top" Width="202" />
-        <ListView x:Name="tripsListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding Trips}" SelectionChanged="ListBox_SelectionChanged" MinWidth="800">
+        <ListView x:Name="tripsListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding Trips}" 
+                   MinWidth="800" KeyboardNavigation.TabNavigation="Cycle">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="ListBox_Klick" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
