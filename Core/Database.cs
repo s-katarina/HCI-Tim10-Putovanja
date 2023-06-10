@@ -36,7 +36,7 @@ namespace HCI_Tim10_Putovanja.Core
 			users.Add(new AppUser("Pera", "peric", "pera@gmail.com", "e22212120", "22222", Role.AGENT));
 			users.Add(new AppUser("Nina", "peric", "nina@gmail.com", "e22212120", "22222", Role.PASSENGER));
 			users.Add(new AppUser("Mika", "peric", "mika@gmail.com", "e22212120", "22222", Role.PASSENGER));
-			loggedInUser = users[0];
+			loggedInUser = users[1];
 
 			touristicStops.Add(new TuristicStops("Restoran Urma", new Location(0.0, 0.0, "Yitm Rd 12, Maroko")));
 			touristicStops.Add(new TuristicStops("Restoran Bellagio", new Location(0.0, 0.0, "Svetosavska 17A, Novi Beograd")));
@@ -69,8 +69,8 @@ namespace HCI_Tim10_Putovanja.Core
 			trips.Add(new Trip("Deliblatska pescara", 10000.0, new DateTime(2023, 1, 20), DateTime.Now, new Location(44.0, 23.0, "Autobuska stanica, Novi Sad"), new Location(44.0, 23.0, "Beograd BAS"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a1, t3));
 
 			soldTrips.Add(new Record(users[1], trips[0], new DateTime(2023, 8, 20)));
-			soldTrips.Add(new Record(users[1], trips[1], new DateTime(2023, 12, 20)));
-			soldTrips.Add(new Record(users[1], trips[2], new DateTime(2023, 3, 20)));
+			reservedTrips.Add(new Record(users[1], trips[1], new DateTime(2023, 12, 20)));
+			reservedTrips.Add(new Record(users[1], trips[2], new DateTime(2023, 3, 20)));
 			soldTrips.Add(new Record(users[2], trips[0], new DateTime(2023, 3, 20)));
 			soldTrips.Add(new Record(users[2], trips[1], new DateTime(2023, 3, 20)));
 		}

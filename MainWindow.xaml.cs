@@ -32,11 +32,11 @@ namespace HCI_Tim10_Putovanja
 
 		private void Registration_Click(object sender, RoutedEventArgs e)
 		{
-            MainFrame.Content = new MonthReport();
+            MainFrame.Content = new UserTrips();
 		}
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new TripReport();
+            MainFrame.Content = new Login();
         }
 
         private void Trips_Click(object sender, RoutedEventArgs e) {
