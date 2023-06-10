@@ -37,8 +37,10 @@ namespace HCI_Tim10_Putovanja
             else
                 name = key;
 
-            string path = Database.helpFolderPath + name + ".htm";
-            
+            //string path = Database.helpFolderPath + name + ".htm";
+            string path = System.IO.Path.GetFullPath(@"..\..\..\").Replace("\\", "/") + "Help/" + name + ".htm";
+            MessageBox.Show(path);
+
             if (!File.Exists(path))
             {
                 name = "error";
