@@ -27,6 +27,8 @@ namespace HCI_Tim10_Putovanja.User
 		{
 			atractions = new List<Atraction>();
 			touristicStops = new List<TuristicStops>();
+			startLocation = new Location(0, 0, "");
+			endLocation = new Location(0, 0, "");
 		}
 
 		public Trip(string name, double price, DateTime strartTime, DateTime endTime, Location startLocation, Location endLocation, string description, List<Atraction> atractions, List<TuristicStops> ts)

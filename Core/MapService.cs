@@ -58,6 +58,29 @@ namespace HCI_Tim10_Putovanja.Core
             }
         }
 
+        public static async void GetAddressForCreateTrip(double lat, double lon, TripDataContext tdt, Boolean isStartLocation, CreateTrip updateTripPage)
+        {
+            {
+                RootObject lr = await GetLocationAsync(lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn");
+                if (lr.statusCode == 200
+                    && lr.resourceSets.Length > 0
+                    && lr.resourceSets[0].resources.Length > 0)
+                {
+                    updateTripPage.Tdt = tdt;
+                    if (isStartLocation)
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name), true);
+                        updateTripPage.txtStartLocation.Text = tdt.startAddress;
+                    }
+                    else
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name));
+                        updateTripPage.txtEndLocation.Text = tdt.endAddress;
+                    }
+                }
+            }
+        }
+
         public static async void GetAddressForUpdateTouristicStop(double lat, double lon, TuristicStops ts, UpdateTouristicStop page)
         {
             {

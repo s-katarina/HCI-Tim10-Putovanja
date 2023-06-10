@@ -67,5 +67,12 @@ TextChangedEventArgs e)
 
 			tripsListBox.ItemsSource = filtered;
 		}
+
+		private void AddNew_Click(object sender, RoutedEventArgs e)
+		{
+			CreateTrip page = new CreateTrip();
+			this.NavigationService.Navigate(page);
+		}
+
 	}
 }
