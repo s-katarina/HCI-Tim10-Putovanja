@@ -42,6 +42,34 @@ namespace HCI_Tim10_Putovanja.User
 			this.touristicStops = ts;
 		}
 
+		public Trip(Trip t, Location startLocation, bool isStart)
+		{
+			this.name = t.name;
+			this.price = t.price;
+			this.startTime = t.startTime;
+			this.endTime = t.endTime;
+			this.StartLocation = startLocation;
+			this.endLocation = t.endLocation;
+			this.description = t.description;
+			this.atractions = t.atractions;
+			this.touristicStops = t.touristicStops;
+			Console.WriteLine(t.startLocation.Address);
+		}
+
+		public Trip(Trip t, Location endLocation)
+		{
+			this.name = t.name;
+			this.price = t.price;
+			this.startTime = t.startTime;
+			this.endTime = t.endTime;
+			this.StartLocation = t.StartLocation;
+			this.endLocation = endLocation;
+			this.description = t.description;
+			this.atractions = t.atractions;
+			this.touristicStops = t.touristicStops;
+			Console.WriteLine(t.endLocation.Address);
+		}
+
 		public double Price { get => price; set => price = value; }
 		public DateTime StartTime { get => startTime; set => startTime = value; }
 		public DateTime EndTime { get => endTime; set => endTime = value; }

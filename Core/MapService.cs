@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Tim10_Putovanja.User.View;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,11 @@ namespace HCI_Tim10_Putovanja.Core
             return lr;
         }
 
-        public static async Task<string> GetAddress(double lat, double lon)
+        public static async Task<string> GetAddress(double lat, double lon, TripDataContext tdt, Boolean isStartLocation, UpdateTrip updateTripPage)
         {
             try
             {
-                string p = "http://dev.virtualearth.net/REST/v1/Locations/" + lat + "," + lon + "?&key=";
+                string p = "http://dev.virtualearth.net/REST/v1/Locations/" + lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn";
                 //client.BaseAddress = new Uri("http://dev.virtualearth.net/REST/v1/Locations/{point}?&key={BingMapsKey}");
                 Console.WriteLine(p);
                 client.BaseAddress = new Uri(p);
@@ -43,6 +44,17 @@ namespace HCI_Tim10_Putovanja.Core
                     && lr.resourceSets.Length > 0
                     && lr.resourceSets[0].resources.Length > 0)
                 {
+                    updateTripPage.Tdt = tdt;
+                    if (isStartLocation)
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name), true);
+                        updateTripPage.txtStartLocation.Text = tdt.startAddress;
+                    }
+                    else
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name));
+                        updateTripPage.txtEndLocation.Text = tdt.endAddress;
+                    }
                     return lr.resourceSets[0].resources[0].name;
                 }
                 return null;

@@ -52,7 +52,7 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
             <TextBox x:Name="txtName"
-                     Text="{Binding Name}"
+                     Text="{Binding Trip.Name}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -86,7 +86,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtStartTime"
-                     Text="{Binding StartTime}"
+                     Text="{Binding Trip.StartTime}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -117,7 +117,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtStartLocation"
-                     Text="{Binding StartLocation.Address}"
+                     Text="{Binding StartAddress}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -151,7 +151,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtEndTime"
-                     Text="{Binding EndTime}"
+                     Text="{Binding Trip.EndTime}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -184,7 +184,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtEndLocation"
-                     Text="{Binding EndLocation.Address}"
+                     Text="{Binding EndAddress}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -204,17 +204,17 @@
             </StackPanel>
 
                 <m:Map x:Name="myMap" Height="250" Width="250" Margin="40, 50, 0, 0"
-                       CredentialsProvider="" 
+                       CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
                        Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12" 
                        TouchDown="MapWithPushpins_TouchDown"
                        MouseMove="MyMap_MouseMove">
                     <m:Pushpin x:Name="startPin" Location="47.620574,22.34942" 
-                               ToolTip="{Binding StartLocation.Address}"
+                               ToolTip="{Binding StartAddress}"
                                MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
                         <TextBlock Text="1"/>
                     </m:Pushpin>
                     <m:Pushpin x:Name="endPin" Location="47.620574,23.34942" 
-                               ToolTip="{Binding EndLocation.Address}"
+                               ToolTip="{Binding EndAddress}"
                                MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
                         <TextBlock Text="2"/>
                     </m:Pushpin>
@@ -237,7 +237,7 @@
             </Border.BorderBrush>
 
             <TextBox x:Name="txtPrice"
-                     Text="{Binding Price}"
+                     Text="{Binding Trip.Price}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -268,7 +268,7 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
             <TextBox x:Name="txtDesc"
-                     Text="{Binding Description}"
+                     Text="{Binding Trip.Description}"
                         CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -308,7 +308,7 @@
                         <TextBlock Text="Adresa" Grid.Column="1" />
                         <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
                     </Grid>
-                <ListBox Name="lbAttractions" ItemsSource="{Binding Atractions}">
+                <ListBox Name="lbAttractions" ItemsSource="{Binding Trip.Atractions}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid MinWidth="550">
@@ -401,7 +401,7 @@
                     <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
 
                 </Grid>
-                <ListBox Name="lbTouristicStops" ItemsSource="{Binding TouristicStops}">
+                <ListBox Name="lbTouristicStops" ItemsSource="{Binding Trip.TouristicStops}">
 
                     <ListBox.ItemTemplate>
                         <DataTemplate>

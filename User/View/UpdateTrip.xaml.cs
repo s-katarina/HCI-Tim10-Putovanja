@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Maps.MapControl.WPF;
+using System.ComponentModel;
 
 namespace HCI_Tim10_Putovanja.User.View
 {
@@ -17,8 +18,7 @@ namespace HCI_Tim10_Putovanja.User.View
         private ArrayList cbAttractionsItems;
         private ArrayList cbTouristicStopsItems;
         private ArrayList TouristicStops;
-        private string startAddress;
-        private string endAddress;
+        private TripDataContext tdt;
 
         public UpdateTrip()
         {
@@ -28,13 +28,32 @@ namespace HCI_Tim10_Putovanja.User.View
         public UpdateTrip(Trip t)
         {
             trip = t;
-            InitializeComponent();
-            DataContext = trip;
+            tdt = new TripDataContext(t, t.StartLocation.Address, t.EndLocation.Address);
+            DataContext = tdt;
             TouristicStops = new ArrayList();
             cbAttractionsItems = LoadCbAttractionsData();
             cbTouristicStopsItems = LoadCbTouristicStopsData();
-            startAddress = trip.StartLocation.Address;
-            endAddress = trip.EndLocation.Address;
+            InitializeComponent();
+        }
+
+        public TripDataContext Tdt
+        {
+            get => tdt;
+            set
+            {
+                if (value != tdt)
+                {
+                    tdt = value;
+                    OnPropertyChanged("Tdt");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void OnLoadAttr(object sender, RoutedEventArgs e)
@@ -140,7 +159,7 @@ namespace HCI_Tim10_Putovanja.User.View
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete putovanje? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete putovanje? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.OK)
             {
                 Database.Trips.Remove(trip);
@@ -180,22 +199,21 @@ namespace HCI_Tim10_Putovanja.User.View
             if (startPin.Location.Latitude == SelectedPushpin.Location.Latitude && startPin.Location.Longitude == SelectedPushpin.Location.Longitude)
             {
                 startPin.Location = SelectedPushpin.Location;
-                string v = await MapService.GetAddress(startPin.Location.Latitude, startPin.Location.Longitude);
-                if (v != null)
-                {
-                    trip.StartLocation = new Location(startPin.Location.Latitude, endPin.Location.Longitude, v);
-                    txtStartLocation.Text = trip.StartLocation.Address;
-                }
+                string v = await MapService.GetAddress(startPin.Location.Latitude, startPin.Location.Longitude, tdt, true, this);
+                //if (v != null)
+                //{
+                //    trip.StartLocation = new Location(startPin.Location.Latitude, endPin.Location.Longitude, v);
+                //}
             }
             else
             {
                 endPin.Location = SelectedPushpin.Location;
-                string v = await MapService.GetAddress(endPin.Location.Latitude, endPin.Location.Longitude);
-                if (v != null)
-                {
-                    trip.EndLocation = new Location(endPin.Location.Latitude, endPin.Location.Longitude, v);
-                    txtEndLocation.Text = trip.StartLocation.Address;
-                }
+                string v = await MapService.GetAddress(endPin.Location.Latitude, endPin.Location.Longitude, tdt, false, this);
+                //if (v != null)
+                //{
+                //    trip.EndLocation = new Location(endPin.Location.Latitude, endPin.Location.Longitude, v);
+                //    txtEndLocation.Text = trip.StartLocation.Address;
+                //}
             }
             e.Handled = true;
             SelectedPushpin = null;
@@ -217,4 +235,68 @@ namespace HCI_Tim10_Putovanja.User.View
 
 
     }
+
+    public class TripDataContext
+    {
+        public Trip trip;
+        public string startAddress;
+        public string endAddress;
+
+        public TripDataContext(Trip t, string sa, string ea)
+        {
+            this.Trip = t;
+            this.StartAddress = sa;
+            this.EndAddress = ea;
+        }
+
+        public Trip Trip
+        {
+            get => trip;
+            set
+            {
+                if (value != trip)
+                {
+                    trip = value;
+                    this.StartAddress = trip.StartLocation.Address;
+                    this.EndAddress = trip.EndLocation.Address;
+                    OnPropertyChanged("Trip");
+                };
+            }
+        }
+
+        public string StartAddress
+        {
+            get => startAddress;
+            set
+            {
+                if (value != startAddress)
+                {
+                    startAddress = value;
+                    OnPropertyChanged("StartAddress");
+                }
+            }
+        }
+
+        public string EndAddress
+        {
+            get => endAddress;
+            set
+            {
+                if (value != endAddress)
+                {
+                    endAddress = value;
+                    OnPropertyChanged("EndAddress");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+    }
+
 }
