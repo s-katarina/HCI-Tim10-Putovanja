@@ -23,6 +23,12 @@ namespace HCI_Tim10_Putovanja.Core
 		private static List<Trip> trips = new List<Trip>();
 		public static List<Trip> Trips { get => trips; }
 
+		private static List<Record> soldTrips = new List<Record>();
+		public static List<Record> SoldTrips { get => soldTrips; }
+
+		private static List<Record> reservedTrips = new List<Record>();
+		public static List<Record> ReservedTrips { get => reservedTrips; }
+
 		public static AppUser loggedInUser;
 
 		public Database()
@@ -56,12 +62,17 @@ namespace HCI_Tim10_Putovanja.Core
 			List<TuristicStops> t2 = touristicStops.GetRange(1, 2);
 			List<TuristicStops> t3 = touristicStops.GetRange(1, 3);
 
-			trips.Add(new Trip("Carska bara", 10000.0, DateTime.Now, DateTime.Now, new Location(44.0, 23.0, "Parking kod Master Centra, Novi Sad"), new Location(44.0, 23.0, "Zeleznicka stanica, Novi Sad"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a1, t1));
-			trips.Add(new Trip("Ovcar planina", 10000.0, DateTime.Now, DateTime.Now, new Location(44.0, 23.0, "Beograd BAS"), new Location(44.0, 23.0, "Parking kod Master Centra, Novi Sad"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a2, t2));
-			trips.Add(new Trip("Avantura na Tari", 10000.0, DateTime.Now, DateTime.Now, new Location(44.0, 23.0, "Zeleznicka stanica, Novi Sad"), new Location(44.0, 23.0, "Autobuska stanica, Novi Sad"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a3, t3));
-			trips.Add(new Trip("Prelepi pogledi kanjona Uvca", 10000.0, DateTime.Now, DateTime.Now, new Location(44.0, 23.0, "Autobuska stanica, Novi Sad"), new Location(44.0, 23.0, "Beograd BAS"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a4, t1));
-			trips.Add(new Trip("Deliblatska pescara", 10000.0, DateTime.Now, DateTime.Now, new Location(44.0, 23.0, "Autobuska stanica, Novi Sad"), new Location(44.0, 23.0, "Beograd BAS"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a1, t3));
+			trips.Add(new Trip("Carska bara", 10000.0, new DateTime(2020, 3, 20), DateTime.Now, new Location(44.0, 23.0, "Parking kod Master Centra, Novi Sad"), new Location(44.0, 23.0, "Zeleznicka stanica, Novi Sad"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a1, t1));
+			trips.Add(new Trip("Ovcar planina", 100000000.0, new DateTime(2020, 3, 20), DateTime.Now, new Location(44.0, 23.0, "Beograd BAS"), new Location(44.0, 23.0, "Parking kod Master Centra, Novi Sad"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a2, t2));
+			trips.Add(new Trip("Avantura na Tari", 10000.0, new DateTime(1990, 5, 20), DateTime.Now, new Location(44.0, 23.0, "Zeleznicka stanica, Novi Sad"), new Location(44.0, 23.0, "Autobuska stanica, Novi Sad"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a3, t3));
+			trips.Add(new Trip("Prelepi pogledi kanjona Uvca", 10000.0, new DateTime(1990, 8, 20), DateTime.Now, new Location(44.0, 23.0, "Autobuska stanica, Novi Sad"), new Location(44.0, 23.0, "Beograd BAS"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a4, t1));
+			trips.Add(new Trip("Deliblatska pescara", 10000.0, new DateTime(2023, 1, 20), DateTime.Now, new Location(44.0, 23.0, "Autobuska stanica, Novi Sad"), new Location(44.0, 23.0, "Beograd BAS"), " have several Classes that contain Classes and need to access their properties in the WPF Forms. I am trying to Bind properties of ppl to controls. Using Path=ppl.wife apparently is not correct. (obviously I am new to WPF)", a1, t3));
 
+			soldTrips.Add(new Record(users[1], trips[0], new DateTime(2023, 8, 20)));
+			soldTrips.Add(new Record(users[1], trips[1], new DateTime(2023, 12, 20)));
+			soldTrips.Add(new Record(users[1], trips[2], new DateTime(2023, 3, 20)));
+			soldTrips.Add(new Record(users[2], trips[0], new DateTime(2023, 3, 20)));
+			soldTrips.Add(new Record(users[2], trips[1], new DateTime(2023, 3, 20)));
 		}
 
 		public void AddUser(AppUser appUser) {
