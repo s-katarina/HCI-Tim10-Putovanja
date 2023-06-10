@@ -98,8 +98,8 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                             materialDesign:ValidationAssist.FontSize="16"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 materialDesign:ValidationAssist.FontSize="16"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
                             <Binding Path="UserLastname" UpdateSourceTrigger="PropertyChanged">
