@@ -44,7 +44,7 @@
                 <TextBlock
                            HorizontalAlignment="Center"
                        
-                       Text="Prijava na sistem"
+                       Text="Prijava"
                     Margin="0, 0, 0, 20">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
@@ -73,7 +73,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                             materialDesign:ValidationAssist.FontSize="14"
+                             materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -114,7 +114,7 @@
                     </PasswordBox>
 
                 </Border>
-                <TextBlock x:Name="passwordErrorTextBlock" Foreground="Red"/>
+                <TextBlock Margin="15, 0, 0, 0" x:Name="passwordErrorTextBlock" Foreground="Red"/>
             </StackPanel>
 
             <Button x:Name="btnLogIn"

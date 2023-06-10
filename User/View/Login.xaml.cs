@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,8 +67,12 @@ namespace HCI_Tim10_Putovanja.User.View
 				MessageBox.Show("Molimo vas popunite sva polja.", "Obustavljena prijava", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
-			foreach (AppUser user in database.Users) {
+
+			Debug.WriteLine("u loginu2");
+			foreach (AppUser user in Database.Users) {
+				Debug.WriteLine(user.Email);
 				if (user.Email == userName && user.Password == Password) {
+					((MainWindow)System.Windows.Application.Current.MainWindow).ChangeNavbar(user.Role);
 					MessageBox.Show("Uspesna prijava.", "Uspesna prijava", MessageBoxButton.OK, MessageBoxImage.Information);
 					Database.loggedInUser = user;
 					return;

@@ -39,6 +39,21 @@ namespace HCI_Tim10_Putovanja
             MainFrame.Content = new Login();
         }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Database.loggedInUser = null;
+            loginBtn.Visibility = Visibility.Visible;
+            registrationBtn.Visibility = Visibility.Visible;
+            logoutBtn.Visibility = Visibility.Hidden;
+            atractionBtn.Visibility = Visibility.Hidden;
+            restorantsBtn.Visibility = Visibility.Hidden;
+            reportBtn.Visibility = Visibility.Hidden;
+            boughtTripsBtn.Visibility = Visibility.Hidden;
+            reservedTripsBtn.Visibility = Visibility.Hidden;
+            MainFrame.Content = new Login();
+
+        }
+
         private void Trips_Click(object sender, RoutedEventArgs e) {
             
             MainFrame.Content = new AllTrips(Database.Trips);
@@ -53,5 +68,22 @@ namespace HCI_Tim10_Putovanja
             MainFrame.Content = new AllAttractions(Database.Attractions);
         }
 
-    }
+		internal void ChangeNavbar(Role role)
+		{
+            loginBtn.Visibility = Visibility.Hidden;
+            registrationBtn.Visibility = Visibility.Hidden;
+            logoutBtn.Visibility = Visibility.Visible;
+            MainFrame.Content = new AllTrips(Database.Trips);
+            if (role == Role.AGENT)
+            {
+                atractionBtn.Visibility = Visibility.Visible;
+                restorantsBtn.Visibility = Visibility.Visible;
+                reportBtn.Visibility = Visibility.Visible;
+            }
+            else { 
+                boughtTripsBtn.Visibility = Visibility.Visible;
+                reservedTripsBtn.Visibility = Visibility.Visible;
+            }
+        }
+	}
 }

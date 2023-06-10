@@ -22,7 +22,8 @@ namespace HCI_Tim10_Putovanja.User.View
 		public bool disabled;
 		public SecureString SecurePassword { private get; set; }
 		private ObservableObject observableObject = new ObservableObject();
-		private Database database = new Database();
+		private static Database database = new Database();
+
 		public Registration()
 		{
 			InitializeComponent();
@@ -113,8 +114,23 @@ namespace HCI_Tim10_Putovanja.User.View
 				MessageBox.Show("Molimo vas popunite sva polja.", "Obustavljena registracija", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
-			database.AddUser(new AppUser(UserName, UserLastname, UserEmail, userPhone, UserPassword, Role.PASSENGER));
-			MessageBox.Show("Uspesno napravljen nalog.", "USPESNA registracija", MessageBoxButton.OK, MessageBoxImage.Information);
+			Debug.WriteLine("pre dodavanja");
+			Debug.WriteLine(Database.Users.Count);
+			foreach (AppUser user in Database.Users)
+			{
+				Debug.WriteLine(user.Email);
+				if (user.Email == userEmail)
+				{
+					MessageBox.Show("Korinik sa ovim nalogom vec postoji.", "Neuspesna prijava", MessageBoxButton.OK, MessageBoxImage.Error);
+					return;
+				}
+			}
+			
+			Database.AddUser(new AppUser(UserName, UserLastname, UserEmail, userPhone, UserPassword, Role.PASSENGER));
+			MessageBox.Show("Uspesno napravljen nalog.", "Uspesna registracija", MessageBoxButton.OK, MessageBoxImage.Information);
+
+			Debug.WriteLine("posle dodavanja");
+			Debug.WriteLine(Database.Users.Count);
 
 		}
 
