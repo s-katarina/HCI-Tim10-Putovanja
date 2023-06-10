@@ -23,13 +23,14 @@ namespace HCI_Tim10_Putovanja.User.View
 	public partial class Login : Page
 	{
 		private ObservableObject observableObject = new ObservableObject();
-		private Database database = new Database();
+		public static RoutedCommand MyCommand = new RoutedCommand();
 
 		public Login()
 		{
 			InitializeComponent();
 			DataContext = this;
 			ErrorMessagee = "";
+			MyCommand.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.None));
 		}
 
 		private string userName;
@@ -85,8 +86,8 @@ namespace HCI_Tim10_Putovanja.User.View
 		{
 			Password = ((PasswordBox)sender).Password;
 			ErrorMessagee = Password.Length < 5 ? "Lozinka mora imati bar 5 karaktera" : "";
-			
 			passwordErrorTextBlock.Text = ErrorMessagee;
 		}
+
 	}
 }
