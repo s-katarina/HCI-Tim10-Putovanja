@@ -21,10 +21,10 @@ namespace HCI_Tim10_Putovanja.User.View
     /// <summary>
     /// Interaction logic for Reports.xaml
     /// </summary>
-    public partial class Reports : Page, INotifyPropertyChanged
+    public partial class MonthReport : Page, INotifyPropertyChanged
     {
 
-        public Reports()
+        public MonthReport()
         {
             InitializeComponent();
             PopulateYearComboBox();
