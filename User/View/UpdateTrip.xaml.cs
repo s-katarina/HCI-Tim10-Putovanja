@@ -33,6 +33,7 @@ namespace HCI_Tim10_Putovanja.User.View
             TouristicStops = new ArrayList();
             cbAttractionsItems = LoadCbAttractionsData();
             cbTouristicStopsItems = LoadCbTouristicStopsData();
+            MapService.SetUpService();
             InitializeComponent();
         }
 
@@ -136,7 +137,7 @@ namespace HCI_Tim10_Putovanja.User.View
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OK);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OKCancel);
             if (messageBoxResult == MessageBoxResult.OK)
             {
                 if (txtName.Text == null || txtStartTime.Text == null || txtEndTime.Text == null 
@@ -149,8 +150,8 @@ namespace HCI_Tim10_Putovanja.User.View
                 trip.Name = txtName.Text;
                 trip.StartTime = DateTime.Parse(txtStartTime.Text);
                 trip.EndTime = DateTime.Parse(txtEndTime.Text);
-                trip.StartLocation = new Location(0,0,txtStartLocation.Text);
-                trip.EndLocation = new Location(0,0, txtEndLocation.Text);
+                trip.StartLocation.Address = txtStartLocation.Text;
+                trip.EndLocation.Address = txtEndLocation.Text;
                 trip.Price = double.Parse(txtPrice.Text);
                 trip.Description = txtDesc.Text;
                 MessageBox.Show("Uspesno izmenjeno putovanje!", "Uspesna izmena", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -199,7 +200,7 @@ namespace HCI_Tim10_Putovanja.User.View
             if (startPin.Location.Latitude == SelectedPushpin.Location.Latitude && startPin.Location.Longitude == SelectedPushpin.Location.Longitude)
             {
                 startPin.Location = SelectedPushpin.Location;
-                string v = await MapService.GetAddress(startPin.Location.Latitude, startPin.Location.Longitude, tdt, true, this);
+                MapService.GetAddress(startPin.Location.Latitude, startPin.Location.Longitude, tdt, true, this);
                 //if (v != null)
                 //{
                 //    trip.StartLocation = new Location(startPin.Location.Latitude, endPin.Location.Longitude, v);
@@ -208,7 +209,7 @@ namespace HCI_Tim10_Putovanja.User.View
             else
             {
                 endPin.Location = SelectedPushpin.Location;
-                string v = await MapService.GetAddress(endPin.Location.Latitude, endPin.Location.Longitude, tdt, false, this);
+                MapService.GetAddress(endPin.Location.Latitude, endPin.Location.Longitude, tdt, false, this);
                 //if (v != null)
                 //{
                 //    trip.EndLocation = new Location(endPin.Location.Latitude, endPin.Location.Longitude, v);
@@ -241,12 +242,15 @@ namespace HCI_Tim10_Putovanja.User.View
         public Trip trip;
         public string startAddress;
         public string endAddress;
-
+        public ArrayList coordinatesString;
         public TripDataContext(Trip t, string sa, string ea)
         {
             this.Trip = t;
             this.StartAddress = sa;
             this.EndAddress = ea;
+            this.coordinatesString = new ArrayList();
+            this.coordinatesString.Add(t.StartLocation.Latitude.ToString() + "," + t.StartLocation.Lagnitude.ToString());
+            this.coordinatesString.Add(t.EndLocation.Latitude.ToString() + "," + t.EndLocation.Lagnitude.ToString());
         }
 
         public Trip Trip
@@ -286,6 +290,19 @@ namespace HCI_Tim10_Putovanja.User.View
                 {
                     endAddress = value;
                     OnPropertyChanged("EndAddress");
+                }
+            }
+        }
+
+        public ArrayList CoordinatesString
+        {
+            get => coordinatesString;
+            set
+            {
+                if (value != coordinatesString)
+                {
+                    coordinatesString = value;
+                    OnPropertyChanged("CoordinatesString");
                 }
             }
         }

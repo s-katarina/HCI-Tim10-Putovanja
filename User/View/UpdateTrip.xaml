@@ -205,16 +205,14 @@
 
                 <m:Map x:Name="myMap" Height="250" Width="250" Margin="40, 50, 0, 0"
                        CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
-                       Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12" 
+                       Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6" 
                        TouchDown="MapWithPushpins_TouchDown"
                        MouseMove="MyMap_MouseMove">
-                    <m:Pushpin x:Name="startPin" Location="47.620574,22.34942" 
-                               ToolTip="{Binding StartAddress}"
+                    <m:Pushpin x:Name="startPin" Location="{Binding CoordinatesString[0]}" 
                                MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
                         <TextBlock Text="1"/>
                     </m:Pushpin>
-                    <m:Pushpin x:Name="endPin" Location="47.620574,23.34942" 
-                               ToolTip="{Binding EndAddress}"
+                    <m:Pushpin x:Name="endPin" Location="{Binding CoordinatesString[1]}" 
                                MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
                         <TextBlock Text="2"/>
                     </m:Pushpin>
