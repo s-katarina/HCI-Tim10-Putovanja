@@ -42,8 +42,11 @@ namespace HCI_Tim10_Putovanja.Core
 			images.Add("\\constants\\logo2.jpg");
 			images.Add("\\constants\\logo2.jpg");
 			images.Add("\\constants\\logo2.jpg");
+			List<String> images2 = new List<string>();
+			images2.Add("\\constants\\logo2.jpg");
+			images2.Add("\\constants\\logo2.jpg");
 			atractions.Add(new Atraction("Mountain View and Hike", new Location(0.0, 0.0, "Alpine Road 78, Uruguay"), "HbebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", images));
-			atractions.Add(new Atraction("Krstarenje", new Location(0.0, 0.0, "Pristaniste Dunav @ Beli Brod"), "Holla mibebebebebHolla mibebebebebHolla mibebebebebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", images));
+			atractions.Add(new Atraction("Krstarenje", new Location(0.0, 0.0, "Pristaniste Dunav @ Beli Brod"), "Holla mibebebebebHolla mibebebebebHolla mibebebebebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", images2));
 			atractions.Add(new Atraction("Rafting", new Location(0.0, 0.0, "Kanjon reke Tare"), "Ho mibebebebebHolla mibebebebebHolla mibebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebebHolla mibebebebeb", null));
 			atractions.Add(new Atraction("Parachuting", new Location(0.0, 0.0, "Avala 12, Beograd"), "HbeebHolla mibebebebebHolla mibebebebeb", null));
 
