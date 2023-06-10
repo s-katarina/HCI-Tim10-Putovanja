@@ -22,17 +22,17 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <StackPanel Orientation="Vertical" Margin="10 0 40 0">
                 <Label Content="Godina:" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <ComboBox x:Name="YearComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150"/>
+                <ComboBox x:Name="YearComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150" ToolTip="Klikom na neku od ponudjenih godina, izabrabrace se ta godina." />
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
                 <Label Content="Mesec:" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <ComboBox x:Name="MonthComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150"/>
+                <ComboBox x:Name="MonthComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150" ToolTip="Klikom na neki od ponudjenih meseca, izabrabrace se taj mesec." />
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
                 <Label Content="" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" Margin="50 0 0 0" BorderThickness="0" Click="Show_trips"></Button>
+                <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" Margin="50 0 0 0" BorderThickness="0" Click="Show_trips" ToolTip="Klikom na dugme ce u tabeli biti prikazana putovanja koja odgovaraju izabranim opcijama."></Button>
             </StackPanel>
         </StackPanel>
 

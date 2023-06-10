@@ -38,7 +38,7 @@ namespace HCI_Tim10_Putovanja
                 name = key;
 
             string path = Database.helpFolderPath + name + ".htm";
-            MessageBox.Show(path);
+            
             if (!File.Exists(path))
             {
                 name = "error";

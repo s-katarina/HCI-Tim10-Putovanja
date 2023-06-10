@@ -20,12 +20,12 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <StackPanel Orientation="Vertical" Margin="10 0 40 0">
                 <Label Content="Putovanje:" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <ComboBox x:Name="TripComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150"/>
+                <ComboBox x:Name="TripComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150" ToolTip="Klikom na neko od ponudjenih putovanja, izabrabrace se to putovanje." />
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
                 <Label Content="" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" BorderThickness="0" Click="Show_trips"></Button>
+                <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" BorderThickness="0" Click="Show_trips" ToolTip="Klikom na dugme ce u tabeli biti prikazani kupljeni aranzmani izabranog putovanja."></Button>
             </StackPanel>
         </StackPanel>
 
