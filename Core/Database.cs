@@ -30,6 +30,7 @@ namespace HCI_Tim10_Putovanja.Core
 		public static List<Record> ReservedTrips { get => reservedTrips; }
 
 		public static AppUser loggedInUser;
+		public static string helpFolderPath = "D:/Faks/3. Godina/Interakcija covek racunar/HCI-Tim10-Putovanja/Help/";
 
 		public Database()
 		{
