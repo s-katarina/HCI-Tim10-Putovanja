@@ -49,6 +49,7 @@ namespace HCI_Tim10_Putovanja
             restorantsBtn.Visibility = Visibility.Hidden;
             reportBtn.Visibility = Visibility.Hidden;
             boughtTripsBtn.Visibility = Visibility.Hidden;
+            tripReportBtn.Visibility = Visibility.Hidden;
             MainFrame.Content = new Login();
 
         }
@@ -72,6 +73,15 @@ namespace HCI_Tim10_Putovanja
             MainFrame.Content = new UserTrips();
         }
 
+        private void Report_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new MonthReport();
+        }
+        private void TripReport_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new TripReport();
+        }
+
         internal void ChangeNavbar(Role role)
 		{
             loginBtn.Visibility = Visibility.Hidden;
@@ -83,6 +93,7 @@ namespace HCI_Tim10_Putovanja
                 atractionBtn.Visibility = Visibility.Visible;
                 restorantsBtn.Visibility = Visibility.Visible;
                 reportBtn.Visibility = Visibility.Visible;
+                tripReportBtn.Visibility = Visibility.Visible;
             }
             else { 
                 boughtTripsBtn.Visibility = Visibility.Visible;

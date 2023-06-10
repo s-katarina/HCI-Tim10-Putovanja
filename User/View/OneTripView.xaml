@@ -14,10 +14,14 @@
       d:DesignHeight="800" d:DesignWidth="875.449"
       Title="OneTripView"
       x:Name="atractions">
-    
-    
 
-        <StackPanel>
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:OneTripView.GoBackShortcut}" 
+                     Executed="Go_Back_Click"/>
+    </Page.CommandBindings>
+
+
+    <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -66,10 +70,6 @@
             
             <StackPanel Grid.Column="1" Margin="0, 8, 0, 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <StackPanel.CommandBindings>
-                        <CommandBinding Command="{x:Static local:OneTripView.MyCommand}" 
-                     Executed="Bye_Click"/>
-                    </StackPanel.CommandBindings>
                     <Button x:Name="byeBtn" Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
                     <Button x:Name="reserveBtn" Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
                 </StackPanel>

@@ -12,6 +12,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AllTrips">
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:AllTrips.OneTripShortcut}" 
+                     />
+    </Page.CommandBindings>
     
     <Grid>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="25,18,0,0"

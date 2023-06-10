@@ -37,7 +37,9 @@
                 <Button Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
                 <Button x:Name="atractionBtn" Visibility="Hidden" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
                 <Button x:Name="restorantsBtn" Visibility="Hidden" Grid.Column="2"  Margin="-160, 0, 0, 0" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button x:Name="reportBtn" Visibility="Hidden" Grid.Column="3" Margin="-80, 0, 0, 0" Content="Izvestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="reportBtn" Visibility="Hidden" Grid.Column="3" Margin="-5, 0, 0, 0" Content="Izvestaji" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="tripReportBtn" Visibility="Hidden" Grid.Column="3" Margin="75, 0, 0, 0" Content="Izvestaji" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
                 <Button x:Name="logoutBtn" Visibility="Hidden" Grid.Column="4" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
                 <Button x:Name="boughtTripsBtn" Visibility="Hidden" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
