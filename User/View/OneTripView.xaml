@@ -144,7 +144,7 @@
                         </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
+           </ListBox>
 
                <!-- <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Smestaji"></TextBlock>
                 <Grid  HorizontalAlignment="Left">
@@ -170,7 +170,25 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                             
+<<<<<<< HEAD
+=======
+
+            <ListBox ItemsSource="{Binding TouristicStops}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MinWidth="550">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+
+>>>>>>> origin/milos
                             <TextBlock Text="{Binding Name}" />
                                 <TextBlock Text="{Binding Location.Address}" Grid.Column="1"/>
                             </Grid>

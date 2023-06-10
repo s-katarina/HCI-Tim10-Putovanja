@@ -32,7 +32,7 @@ namespace HCI_Tim10_Putovanja
 
 		private void Registration_Click(object sender, RoutedEventArgs e)
 		{
-            MainFrame.Content = new Registration();
+            MainFrame.Content = new UserTrips();
 		}
         private void Login_Click(object sender, RoutedEventArgs e)
         {
@@ -49,7 +49,6 @@ namespace HCI_Tim10_Putovanja
             restorantsBtn.Visibility = Visibility.Hidden;
             reportBtn.Visibility = Visibility.Hidden;
             boughtTripsBtn.Visibility = Visibility.Hidden;
-            reservedTripsBtn.Visibility = Visibility.Hidden;
             MainFrame.Content = new Login();
 
         }
@@ -68,7 +67,12 @@ namespace HCI_Tim10_Putovanja
             MainFrame.Content = new AllAttractions(Database.Attractions);
         }
 
-		internal void ChangeNavbar(Role role)
+        private void Users_Trip_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new UserTrips();
+        }
+
+        internal void ChangeNavbar(Role role)
 		{
             loginBtn.Visibility = Visibility.Hidden;
             registrationBtn.Visibility = Visibility.Hidden;
@@ -82,7 +86,6 @@ namespace HCI_Tim10_Putovanja
             }
             else { 
                 boughtTripsBtn.Visibility = Visibility.Visible;
-                reservedTripsBtn.Visibility = Visibility.Visible;
             }
         }
 	}
