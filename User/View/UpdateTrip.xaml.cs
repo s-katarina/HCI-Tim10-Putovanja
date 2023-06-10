@@ -33,7 +33,6 @@ namespace HCI_Tim10_Putovanja.User.View
             TouristicStops = new ArrayList();
             cbAttractionsItems = LoadCbAttractionsData();
             cbTouristicStopsItems = LoadCbTouristicStopsData();
-            MapService.SetUpService();
             InitializeComponent();
         }
 
@@ -200,21 +199,12 @@ namespace HCI_Tim10_Putovanja.User.View
             if (startPin.Location.Latitude == SelectedPushpin.Location.Latitude && startPin.Location.Longitude == SelectedPushpin.Location.Longitude)
             {
                 startPin.Location = SelectedPushpin.Location;
-                MapService.GetAddress(startPin.Location.Latitude, startPin.Location.Longitude, tdt, true, this);
-                //if (v != null)
-                //{
-                //    trip.StartLocation = new Location(startPin.Location.Latitude, endPin.Location.Longitude, v);
-                //}
+                MapService.GetAddressForUpdateTrip(startPin.Location.Latitude, startPin.Location.Longitude, tdt, true, this);
             }
             else
             {
                 endPin.Location = SelectedPushpin.Location;
-                MapService.GetAddress(endPin.Location.Latitude, endPin.Location.Longitude, tdt, false, this);
-                //if (v != null)
-                //{
-                //    trip.EndLocation = new Location(endPin.Location.Latitude, endPin.Location.Longitude, v);
-                //    txtEndLocation.Text = trip.StartLocation.Address;
-                //}
+                MapService.GetAddressForUpdateTrip(endPin.Location.Latitude, endPin.Location.Longitude, tdt, false, this);
             }
             e.Handled = true;
             SelectedPushpin = null;

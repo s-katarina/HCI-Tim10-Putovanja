@@ -32,10 +32,10 @@ namespace HCI_Tim10_Putovanja.Core
 			users.Add(new AppUser("Mika", "peric", "mika@gmail.com", "e22212120", "22222", Role.PASSENGER));
 			loggedInUser = users[0];
 
-			touristicStops.Add(new TuristicStops("Restoran Urma", new Location(0.0, 0.0, "Yitm Rd 12, Maroko")));
-			touristicStops.Add(new TuristicStops("Restoran Bellagio", new Location(0.0, 0.0, "Svetosavska 17A, Novi Beograd")));
-			touristicStops.Add(new TuristicStops("Hotel Orijan", new Location(0.0, 0.0, "Via Pella 91, Rim")));
-			touristicStops.Add(new TuristicStops("Motel 021", new Location(0.0, 0.0, "Pavla Papa 40, Novi Sad")));
+			touristicStops.Add(new TuristicStops("Restoran Urma", new Location(43.620574, 22.34942, "Yitm Rd 12, Maroko")));
+			touristicStops.Add(new TuristicStops("Restoran Bellagio", new Location(43.620574, 22.34942, "Svetosavska 17A, Novi Beograd")));
+			touristicStops.Add(new TuristicStops("Hotel Orijan", new Location(43.620574, 22.34942, "Via Pella 91, Rim")));
+			touristicStops.Add(new TuristicStops("Motel 021", new Location(42.620574, 21.34942, "Pavla Papa 40, Novi Sad")));
 
 			List<String> images = new List<string>();
 			images.Add("\\constants\\logo2.jpg");

@@ -1,4 +1,5 @@
 ﻿using HCI_Tim10_Putovanja.Core;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static HCI_Tim10_Putovanja.User.View.UpdateTouristicStop;
 
 namespace HCI_Tim10_Putovanja.User.View
 {
@@ -23,36 +25,14 @@ namespace HCI_Tim10_Putovanja.User.View
     /// </summary>
     public partial class CreateTouristicStop : Page
     {
+        private static readonly string coordinateStringOrigin = "43.620574,22.34942";
 
-        private string name;
-        public string TSName
-        {
-            get => name;
-            set
-            {
-                if (value != name) name = value;
-                OnPropertyChanged("TSName");
-                Debug.WriteLine(value);
-
-            }
-        }
-
-        private string addr;
-        public string LocationAddress
-        {
-            get => addr;
-            set
-            {
-                if (value != addr) addr = value;
-                OnPropertyChanged("LocationAddress");
-                Debug.WriteLine(value);
-            }
-        }
-
+        private TSDataContext tsDataContext;
         public CreateTouristicStop()
         {
             InitializeComponent();
-            DataContext = this;
+            tsDataContext = new TSDataContext(null, null,coordinateStringOrigin);
+            DataContext = tsDataContext;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -63,14 +43,67 @@ namespace HCI_Tim10_Putovanja.User.View
         }
         private void Save(object sender, RoutedEventArgs e)
         {
-            if (name == null || addr == null)
+            if (tsDataContext.TSName == null || tsDataContext.LocationAddress == null)
             {
                 MessageBox.Show("Molimo vas popunite sva polja.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            AllTouristicStops.TouristicStops.Add(new TuristicStops(name, new Location(0, 0, addr)));
+            string[] latlong = tsDataContext.CoordinatesString.Split(",", 2);
+            double lat = 0;
+            Double.TryParse(latlong[0], out lat);
+            double lon = 0;
+            Double.TryParse(latlong[1], out lon);
+            AllTouristicStops.TouristicStops.Add(new TuristicStops(tsDataContext.TSName, new Location(lat, lon, tsDataContext.LocationAddress)));
             MessageBox.Show("Uspesno kreirano!", "Uspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void MapWithPushpins_TouchDown(object sender, TouchEventArgs t)
+        {
+            Pushpin p = new Pushpin();
+            p.Location = new Microsoft.Maps.MapControl.WPF.Location();
+            myMap.Children.Add(new Pushpin());
+        }
+
+        Vector _mouseToMarker;
+        private bool _dragPin;
+        public Pushpin SelectedPushpin { get; set; }
+        private Microsoft.Maps.MapControl.WPF.Location SelectedPushpinOriginLocation;
+
+        void Pin_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            SelectedPushpin = sender as Pushpin;
+            SelectedPushpinOriginLocation = SelectedPushpin.Location;
+            _dragPin = true;
+            _mouseToMarker = Point.Subtract(
+              myMap.LocationToViewportPoint(SelectedPushpin.Location),
+              e.GetPosition(myMap));
+        }
+
+        async void Pin_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            SelectedPushpin = sender as Pushpin;
+            // Determine whether startPin or endPin has been moved and update with new location
+            mapPin.Location = SelectedPushpin.Location;
+            MapService.GetAddressForCreateTouristicStop(mapPin.Location.Latitude, mapPin.Location.Longitude, (TSDataContext) DataContext, this);
+            e.Handled = true;
+            SelectedPushpin = null;
+            _dragPin = false;
+        }
+
+        private void MyMap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (_dragPin && SelectedPushpin != null)
+                {
+                    SelectedPushpin.Location = myMap.ViewportPointToLocation(
+                      Point.Add(e.GetPosition(myMap), _mouseToMarker));
+                    e.Handled = true;
+                }
+            }
+        }
+
 
 
     }

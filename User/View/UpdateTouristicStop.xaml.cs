@@ -1,4 +1,5 @@
-﻿using Microsoft.Maps.MapControl.WPF;
+﻿using HCI_Tim10_Putovanja.Core;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,66 +32,88 @@ namespace HCI_Tim10_Putovanja.User.View
         public UpdateTouristicStop(TuristicStops ts)
         {
             InitializeComponent();
-            DataContext = this;
-            name = ts.Name;
-            addr = ts.Location.Address;
+            tsDataContext = new TSDataContext(ts.Name, ts.Location.Address, ts.Location.Latitude.ToString() + "," + ts.Location.Lagnitude.ToString());
+            DataContext = tsDataContext;
             touristic_stop = ts;
         }
 
         private TuristicStops touristic_stop;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private TSDataContext tsDataContext;
 
-        protected void OnPropertyChanged(string propertyName)
+        public class TSDataContext
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string name;
-        public string TSName
-        {
-            get => name;
-            set
+            public TSDataContext(string name, string addr, string coordStr)
             {
-                if (value != name) name = value;
-                OnPropertyChanged("TSName");
-                Debug.WriteLine(value);
+                this.name = name;
+                this.addr = addr;
+                this.coordStr = coordStr;
+            }
+            private string name;
+            public string TSName
+            {
+                get => name;
+                set
+                {
+                    if (value != name) name = value;
+                    OnPropertyChanged("TSName");
+                    Debug.WriteLine(value);
 
+                }
+            }
+
+            private string addr;
+            public string LocationAddress
+            {
+                get => addr;
+                set
+                {
+                    if (value != addr) addr = value;
+                    OnPropertyChanged("LocationAddress");
+                    Debug.WriteLine(value);
+                }
+            }
+
+            private string coordStr;
+            public string CoordinatesString
+            {
+                get => coordStr;
+                set
+                {
+                    if (value != coordStr) coordStr = value;
+                    OnPropertyChanged("CoordinatesString");
+                    Debug.WriteLine(value);
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            protected void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
-        private string addr;
-        public string LocationAddress
-        {
-            get => addr;
-            set
-            {
-                if (value != addr) addr = value;
-                OnPropertyChanged("LocationAddress");
-                Debug.WriteLine(value);
-            }
-        }
-
-
+        
         private void Save(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OK);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OKCancel);
             if (messageBoxResult == MessageBoxResult.OK)
             {
-                if (name == null || addr == null)
+                if (tsDataContext.TSName == null || tsDataContext.LocationAddress == null)
                 {
                     MessageBox.Show("Molimo vas popunite sva polja.", "Neuspesna izmena", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                touristic_stop.Name = name;
-                touristic_stop.Location.Address = addr;
+                touristic_stop.Name = tsDataContext.TSName;
+                touristic_stop.Location.Address = tsDataContext.LocationAddress;
                 MessageBox.Show("Uspesno izmenjeno!", "Uspesna izmena", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.OK)
             {
                 AllTouristicStops.TouristicStops.Remove(touristic_stop);
@@ -126,16 +149,8 @@ namespace HCI_Tim10_Putovanja.User.View
         async void Pin_MouseUp(object sender, MouseButtonEventArgs e)
         {
             SelectedPushpin = sender as Pushpin;
-            // Determine whether startPin or endPin has been moved and update with new location
-            if (mapPin.Location.Latitude == SelectedPushpin.Location.Latitude && mapPin.Location.Longitude == SelectedPushpin.Location.Longitude)
-            {
-                mapPin.Location = SelectedPushpin.Location;
-                //string v = await MapService.GetAddress(startPin.Location.Latitude, startPin.Location.Longitude, tdt, true, this);
-                //if (v != null)
-                //{
-                //    trip.StartLocation = new Location(startPin.Location.Latitude, endPin.Location.Longitude, v);
-                //}
-            }
+            mapPin.Location = SelectedPushpin.Location;
+            MapService.GetAddressForUpdateTouristicStop(mapPin.Location.Latitude, mapPin.Location.Longitude, touristic_stop, this);
             e.Handled = true;
             SelectedPushpin = null;
             _dragPin = false;
