@@ -44,7 +44,7 @@
 
                 <Button x:Name="logoutBtn" Visibility="Hidden" Grid.Column="4" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
-                <Button x:Name="boughtTripsBtn" Visibility="Hidden" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="boughtTripsBtn" Visibility="Hidden" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#kuprezProzorDugme"></Button>
 
                 <Button x:Name="registrationBtn" Grid.Column="1" Content="Registracija" HorizontalAlignment="Left" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#registracijaProzorDugme"></Button>
                 <Button x:Name="loginBtn" Grid.Column="1" Margin="150, 0,0, 0" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Click="Login_Click" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#prijavaProzorDugme">

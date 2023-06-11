@@ -27,19 +27,19 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 30 0 0" >
-            <CheckBox x:Name="kupljeniCheckBox" Content="Kupljeno" Checked="FillTrips" Unchecked="FillTrips">
+            <CheckBox x:Name="kupljeniCheckBox" Content="Kupljeno" Checked="FillTrips" Unchecked="FillTrips" l:HelpProvider.HelpKey="Indeks#kuprezKup">
                 <CheckBox.ToolTip>
                     <ToolTip Content="Ukljucivanje ovog kvadratica ce rezultirati time da se prikazuju i kupljena putovanja. Njegovim iskljucivanjem se vise nece prikazivati kupljena putovanja." />
                 </CheckBox.ToolTip>
             </CheckBox>
-            <CheckBox x:Name="rezervisaniCheckBox" Content="Rezervisano" Checked="FillTrips" Unchecked="FillTrips" Margin="30 0 0 0">
+            <CheckBox x:Name="rezervisaniCheckBox" Content="Rezervisano" Checked="FillTrips" Unchecked="FillTrips" Margin="30 0 0 0" l:HelpProvider.HelpKey="Indeks#kuprezRez">
                 <CheckBox.ToolTip>
                     <ToolTip Content="Ukljucivanje ovog kvadratica ce rezultirati time da se prikazuju i rezervisana putovanja. Njegovim iskljucivanjem se vise nece prikazivati rezervisana putovanja." />
                 </CheckBox.ToolTip>
             </CheckBox>
         </StackPanel>
 
-        <ListView Grid.Row="1" x:Name="tripsListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 40, 0, 0" ItemsSource="{Binding Trips}" MinWidth="800">
+        <ListView Grid.Row="1" x:Name="tripsListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 40, 0, 0" ItemsSource="{Binding Trips}" MinWidth="800" l:HelpProvider.HelpKey="Indeks#kuprezPutovanje">
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
