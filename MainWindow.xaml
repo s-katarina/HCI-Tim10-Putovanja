@@ -47,7 +47,7 @@
 
                 <Button x:Name="reportBtn" Visibility="Hidden" Grid.Column="3" Margin="-5, 0, 0, 0" Content="Izvestaj (za mesec)" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#imesecProzorDugme"></Button>
 
-                <Button x:Name="tripReportBtn" Visibility="Hidden" Grid.Column="3" Margin="145, 0, 0, 0" Content="Izvestaj (za putovanje)" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                <Button x:Name="tripReportBtn" Visibility="Hidden" Grid.Column="3" Margin="145, 0, 0, 0" Content="Izvestaj (za putovanje)" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#iputovanjeProzorDugme"></Button>
 
                 <Button x:Name="logoutBtn" Visibility="Hidden" Grid.Column="4" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 

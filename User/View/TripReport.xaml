@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="{DynamicResource MaterialDesignPaper}"
@@ -11,7 +12,11 @@
       TextElement.FontSize="16"
       Title="Izvestaj o kupljenom putovanju">
 
-    <Grid>
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+    <Grid l:HelpProvider.HelpKey="Indeks#iputovanje">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -20,16 +25,16 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <StackPanel Orientation="Vertical" Margin="10 0 40 0">
                 <Label Content="Putovanje:" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <ComboBox x:Name="TripComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150" ToolTip="Klikom na neko od ponudjenih putovanja, izabrabrace se to putovanje." />
+                <ComboBox x:Name="TripComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150" ToolTip="Klikom na neko od ponudjenih putovanja, izabrabrace se to putovanje." l:HelpProvider.HelpKey="Indeks#iputovanjePutovanje" />
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
                 <Label Content="" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" BorderThickness="0" Click="Show_trips" ToolTip="Klikom na dugme ce u tabeli biti prikazani kupljeni aranzmani izabranog putovanja."></Button>
+                <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" BorderThickness="0" Click="Show_trips" ToolTip="Klikom na dugme ce u tabeli biti prikazani kupljeni aranzmani izabranog putovanja." l:HelpProvider.HelpKey="Indeks#iputovanjeDugme"></Button>
             </StackPanel>
         </StackPanel>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" AutoGenerateColumns="False" Margin="10">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" AutoGenerateColumns="False" Margin="10" l:HelpProvider.HelpKey="Indeks#iputovanjeTabela">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Kupac" IsReadOnly="True">
                     <DataGridTextColumn.Binding>
