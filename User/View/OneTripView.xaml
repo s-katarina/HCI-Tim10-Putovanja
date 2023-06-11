@@ -72,6 +72,8 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button x:Name="byeBtn" Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
                     <Button x:Name="reserveBtn" Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                    <Button x:Name="cancelBtn" Content="Otkazi rezervaciju" Click="Cancel_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                    <TextBlock x:Name="buyTb" Text="Kupljeno" Margin="0, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
                 </StackPanel>
                 <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12">
                     <m:Pushpin Location="47.620574,22.34942"/>

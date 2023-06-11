@@ -39,11 +39,41 @@ namespace HCI_Tim10_Putovanja.User.View
 			DataContext = this;
 			Debug.WriteLine(trip.Price);
 			//GoBackShortcut.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Shift));
-			if (Database.loggedInUser == null)
+
+			byeBtn.Visibility = Visibility.Hidden;
+			reserveBtn.Visibility = Visibility.Hidden;
+			cancelBtn.Visibility = Visibility.Hidden;
+			buyTb.Visibility = Visibility.Hidden;
+
+			if (Database.loggedInUser != null && Database.loggedInUser.Role.Equals(Role.PASSENGER))
 			{
-				byeBtn.Visibility = Visibility.Hidden;
-				reserveBtn.Visibility = Visibility.Hidden;
+				if (IsReserved())
+					cancelBtn.Visibility = Visibility.Visible;
+				else if (IsBought())
+					buyTb.Visibility = Visibility.Visible;
+				else
+                {
+					byeBtn.Visibility = Visibility.Visible;
+					reserveBtn.Visibility = Visibility.Visible;
+                }
+
 			}
+		}
+
+		private bool IsBought()
+		{
+			foreach (Record r in Database.SoldTrips)
+				if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
+					return true;
+			return false;
+		}
+
+		private bool IsReserved()
+        {
+			foreach (Record r in Database.ReservedTrips)
+				if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
+					return true;
+			return false;
 		}
 
 		private void Bye_Click(object sender, RoutedEventArgs e)
@@ -75,6 +105,18 @@ namespace HCI_Tim10_Putovanja.User.View
 				Database.ReservedTrips.Add(new Record(Database.loggedInUser, trip, DateTime.Now) );
 				MessageBox.Show("Uspesno ste rezervisali novo putovanje!", "Cestitamo", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
+		}
+
+		private void Cancel_Click(object sender, RoutedEventArgs e)
+		{
+			foreach (Record r in Database.ReservedTrips)
+				if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
+                {
+					Database.ReservedTrips.Remove(r);
+					MessageBox.Show("Uspesno otkazano putovanje!");
+					this.NavigationService.Navigate(new AllTrips(Database.Trips));
+					break;
+                }
 		}
 
 		private bool already_reserved()
