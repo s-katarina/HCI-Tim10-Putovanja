@@ -39,6 +39,10 @@ namespace HCI_Tim10_Putovanja.User.View
 			this.trips = trips;
 			DataContext = this;
 			OneTripShortcut.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.None));
+
+			btnAddNew.Visibility = Visibility.Hidden;
+			if (Database.loggedInUser != null && Database.loggedInUser.Role.Equals(Role.AGENT))
+				btnAddNew.Visibility = Visibility.Visible;
 		}
 
 		public List<Trip> Trips { get => trips; set => trips = value; }
