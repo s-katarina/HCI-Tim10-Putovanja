@@ -40,7 +40,7 @@ namespace HCI_Tim10_Putovanja.Core
 				users.Add(new AppUser("Pera", "peric", "pera@gmail.com", "e22212120", "22222", Role.AGENT));
 				users.Add(new AppUser("Nina", "peric", "nina@gmail.com", "e22212120", "22222", Role.PASSENGER));
 				users.Add(new AppUser("Mika", "peric", "mika@gmail.com", "e22212120", "22222", Role.PASSENGER));
-				loggedInUser = users[0];
+				loggedInUser = null;
 
 				touristicStops.Add(new TuristicStops("Restoran Urma", new Location(43.620574, 22.34942, "Yitm Rd 12, Maroko")));
 				touristicStops.Add(new TuristicStops("Restoran Bellagio", new Location(43.620574, 22.34942, "Svetosavska 17A, Novi Beograd")));
