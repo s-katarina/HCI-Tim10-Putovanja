@@ -42,8 +42,8 @@
                 <Button Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
                 
                 <Button x:Name="atractionBtn" Visibility="Hidden" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                
-                <Button x:Name="restorantsBtn" Visibility="Hidden" Grid.Column="2"  Margin="-160, 0, 0, 0" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
+                <Button x:Name="restorantsBtn" Visibility="Hidden" Grid.Column="2"  Margin="-160, 0, 0, 0" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#arestoranisviProzorDugme"></Button>
 
                 <Button x:Name="reportBtn" Visibility="Hidden" Grid.Column="3" Margin="-5, 0, 0, 0" Content="Izvestaj (za mesec)" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#imesecProzorDugme"></Button>
 

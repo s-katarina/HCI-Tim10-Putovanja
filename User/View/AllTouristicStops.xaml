@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18"
@@ -11,7 +12,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AllTouristicStops">
 
-    <StackPanel>
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+    <StackPanel l:HelpProvider.HelpKey="Indeks#arestoranisvi">
         <TextBlock Text="Pregled svih restorana i smestaja" Margin="10, 10, 0, 30">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -21,6 +26,7 @@
         </TextBlock>
 
         <Button x:Name="btnAddNew"
+                l:HelpProvider.HelpKey="Indeks#arestoranisviNovi"
                         Content="+ Dodaj novi"
                     Width="320"
                     Height="50"
@@ -35,8 +41,8 @@
                 </Style>
             </Button.Style>
         </Button>
-        
-        <ListView x:Name="touristicStopsListBox" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding TouristicStops}" SelectionChanged="ListBox_SelectionChanged" MinWidth="800">
+
+        <ListView x:Name="touristicStopsListBox" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding TouristicStops}" SelectionChanged="ListBox_SelectionChanged" MinWidth="800" l:HelpProvider.HelpKey="Indeks#arestoranisviPrikazDetalja">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
