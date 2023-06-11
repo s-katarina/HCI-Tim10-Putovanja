@@ -12,6 +12,48 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}">
+    <Window.Resources>
+        <RoutedUICommand x:Key="MyCommand1" Text="Text" />
+        <RoutedUICommand x:Key="MyCommand2" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand3" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand4" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand5" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand6" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand7" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand8" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand9" Text="Another Text" />
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource MyCommand1}" 
+                    Executed="Trips_Click" />
+        <CommandBinding Command="{StaticResource MyCommand2}" 
+                    Executed="Registration_Click" />
+        <CommandBinding Command="{StaticResource MyCommand3}" 
+                    Executed="Login_Click" />
+        <CommandBinding Command="{StaticResource MyCommand4}" 
+                    Executed="Logout_Click" />
+        <CommandBinding Command="{StaticResource MyCommand5}" 
+                    Executed="Users_Trip_Click" />
+        <CommandBinding Command="{StaticResource MyCommand6}" 
+                    Executed="TouristicStops_Click" />
+        <CommandBinding Command="{StaticResource MyCommand7}" 
+                    Executed="Attractions_Click" />
+        <CommandBinding Command="{StaticResource MyCommand8}" 
+                    Executed="Report_Click" />
+        <CommandBinding Command="{StaticResource MyCommand9}" 
+                    Executed="TripReport_Click" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{StaticResource MyCommand1}" />
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{StaticResource MyCommand2}" />
+        <KeyBinding Key="D" Modifiers="Ctrl" Command="{StaticResource MyCommand3}" />
+        <KeyBinding Key="F" Modifiers="Ctrl" Command="{StaticResource MyCommand4}" />
+        <KeyBinding Key="W" Modifiers="Ctrl" Command="{StaticResource MyCommand5}" />
+        <KeyBinding Key="X" Modifiers="Ctrl" Command="{StaticResource MyCommand6}" />
+        <KeyBinding Key="Z" Modifiers="Ctrl" Command="{StaticResource MyCommand7}" />
+        <KeyBinding Key="C" Modifiers="Ctrl" Command="{StaticResource MyCommand8}" />
+        <KeyBinding Key="V" Modifiers="Ctrl" Command="{StaticResource MyCommand9}" />
+    </Window.InputBindings>
     
     <TabControl 
         Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
@@ -23,34 +65,65 @@
 
 
         <materialDesign:NavigationRailAssist.FloatingContent>
-            <Grid HorizontalAlignment="Left" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Button Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button x:Name="atractionBtn" Visibility="Hidden" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button x:Name="restorantsBtn" Visibility="Hidden" Grid.Column="2"  Margin="-160, 0, 0, 0" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button x:Name="reportBtn" Visibility="Hidden" Grid.Column="3" Margin="-5, 0, 0, 0" Content="Izvestaji" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button x:Name="tripReportBtn" Visibility="Hidden" Grid.Column="3" Margin="75, 0, 0, 0" Content="Izvestaji" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+            <Grid>
+                <Grid x:Name="logedoutGrid" HorizontalAlignment="Left" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
-                <Button x:Name="logoutBtn" Visibility="Hidden" Grid.Column="4" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button ToolTip="CTRL+S" x:Name="registrationBtn" Grid.Column="1" Content="Registracija" HorizontalAlignment="Left" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button ToolTip="CTRL+D" x:Name="loginBtn" Grid.Column="1" Margin="120, 0,0, 0" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0, 4, 3, 0">Prijava</TextBlock>
+                            <materialDesign:PackIcon Kind="AccountCircleOutline" Height="26"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid x:Name="userGrid" HorizontalAlignment="Left" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
-                <Button x:Name="boughtTripsBtn" Visibility="Hidden" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button ToolTip="CTRL+W" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    
+                    <Button ToolTip="CTRL+F" Grid.Column="2" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
-                <Button x:Name="registrationBtn" Grid.Column="1" Content="Registracija" HorizontalAlignment="Left" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button x:Name="loginBtn" Grid.Column="1" Margin="150, 0,0, 0" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="0, 4, 3, 0">Prijava</TextBlock>
-                        <materialDesign:PackIcon Kind="AccountCircleOutline" Height="26"/>
-                    </StackPanel>
-                </Button>
+                </Grid>
+                <Grid x:Name="agentGrid" HorizontalAlignment="Left" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button ToolTip="CTRL+Z" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button ToolTip="CTRL+X" Grid.Column="2" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button ToolTip="CTRL+C" Grid.Column="3" Content="Izvestaji" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button ToolTip="CTRL+V" Grid.Column="4" Content="Izvestaji" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
+                    <Button ToolTip="CTRL+F" Grid.Column="5" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
+
+                    
+                </Grid>
             </Grid>
         </materialDesign:NavigationRailAssist.FloatingContent>
 
