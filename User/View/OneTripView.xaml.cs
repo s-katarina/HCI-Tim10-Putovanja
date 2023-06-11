@@ -38,7 +38,7 @@ namespace HCI_Tim10_Putovanja.User.View
 			InitializeComponent();
 			DataContext = this;
 			Debug.WriteLine(trip.Price);
-			GoBackShortcut.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Shift));
+			//GoBackShortcut.InputGestures.Add(new KeyGesture(Key.B, ModifierKeys.Shift));
 			if (Database.loggedInUser == null)
 			{
 				byeBtn.Visibility = Visibility.Hidden;

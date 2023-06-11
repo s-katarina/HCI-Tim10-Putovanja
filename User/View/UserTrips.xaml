@@ -40,11 +40,19 @@
         </StackPanel>
 
         <ListView Grid.Row="1" x:Name="tripsListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 40, 0, 0" ItemsSource="{Binding Trips}" MinWidth="800">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="ListBox_Klick" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="10">

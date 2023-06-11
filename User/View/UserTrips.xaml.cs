@@ -71,6 +71,34 @@ namespace HCI_Tim10_Putovanja.User.View
             }
         }
 
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OpenOneTrip();
+        }
+
+        private void ListBox_Klick(object sender, MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            if (item != null)
+            {
+                OpenOneTrip();
+            }
+        }
+
+        private void OpenOneTrip()
+        {
+            if (Database.loggedInUser == null || Database.loggedInUser.Role.Equals(Role.PASSENGER))
+            {
+                OneTripView page = new OneTripView((Trip)tripsListBox.SelectedItem);
+                this.NavigationService.Navigate(page);
+            }
+            else if (Database.loggedInUser.Role.Equals(Role.AGENT))
+            {
+                UpdateTrip page = new UpdateTrip((Trip)tripsListBox.SelectedItem);
+                this.NavigationService.Navigate(page);
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
