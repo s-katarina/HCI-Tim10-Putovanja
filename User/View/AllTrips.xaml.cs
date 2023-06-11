@@ -94,5 +94,15 @@ TextChangedEventArgs e)
 			this.NavigationService.Navigate(page);
 		}
 
+		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+			if (focusedControl is DependencyObject)
+			{
+				string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+				HelpProvider.ShowHelp(str);
+			}
+		}
+
 	}
 }

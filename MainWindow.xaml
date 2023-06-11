@@ -38,8 +38,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                
-                <Button Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+
+                <Button Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#aputovanjeProzorDugme"></Button>
 
                 <Button x:Name="atractionBtn" Visibility="Hidden" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#aatrakcijaProzorDugme"></Button>
 
