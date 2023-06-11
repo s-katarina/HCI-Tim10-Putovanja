@@ -5,11 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18" 
       mc:Ignorable="d" 
-      d:DesignHeight="831.264" d:DesignWidth="800"
+      d:DesignHeight="1800" d:DesignWidth="2000"
       Title="UpdateAttraction">
 
     <StackPanel Margin="10">
@@ -108,6 +109,17 @@
 
             </Border>
 
+            <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
+                       CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
+                       Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6" 
+                       TouchDown="MapWithPushpins_TouchDown"
+                       MouseMove="MyMap_MouseMove">
+                <m:Pushpin x:Name="mapPin" Location="{Binding CoordinatesString}" 
+                               ToolTip="{Binding LocationAddress}"
+                               MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
+                </m:Pushpin>
+            </m:Map>
+
             <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
             <Border CornerRadius="10"
                 BorderThickness="1"
@@ -148,10 +160,10 @@
             </Border>
 
             <TextBlock Margin="0, 30, 0, 15" Text="Galerija"></TextBlock>
-            <ListView ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+            <ListView x:Name="lbImages" ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="\constants\logo2.jpg" Width="220"></Image>
+                        <Image Source="{Binding .}" Width="220"></Image>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
@@ -162,20 +174,38 @@
                 </ListView.ItemsPanel>
             </ListView>
 
-            <Button x:Name="btnChangeGallery"
-                        Content="Izmeni izbor slika"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button
+                        Content="Dodaj sliku"
                     Click="AddImages"
                     Width="180"
                     Padding="10"
-                    Margin="0, 10, 20, 0"
+                    Margin="0, 10, 40, 0"
                     HorizontalAlignment="Center"
                     FontSize="16">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#48C6C6"/>
-                    </Style>
-                </Button.Style>
-            </Button>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#48C6C6"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button
+                    Content="Ukloni izabranu sliku"
+                    Click="RemoveImage"
+                    Width="180"
+                    Padding="10"
+                    Margin="40, 10, 20, 0"
+                    HorizontalAlignment="Center"
+                    FontSize="16">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#48C6C6"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </StackPanel>
 
 
             <Button x:Name="btnSave"

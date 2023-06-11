@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Maps.MapControl.WPF;
+using System.ComponentModel;
 
 namespace HCI_Tim10_Putovanja.User.View
 {
@@ -17,8 +18,7 @@ namespace HCI_Tim10_Putovanja.User.View
         private ArrayList cbAttractionsItems;
         private ArrayList cbTouristicStopsItems;
         private ArrayList TouristicStops;
-        private string startAddress;
-        private string endAddress;
+        private TripDataContext tdt;
 
         public UpdateTrip()
         {
@@ -28,13 +28,32 @@ namespace HCI_Tim10_Putovanja.User.View
         public UpdateTrip(Trip t)
         {
             trip = t;
-            InitializeComponent();
-            DataContext = trip;
+            tdt = new TripDataContext(t, t.StartLocation.Address, t.EndLocation.Address);
+            DataContext = tdt;
             TouristicStops = new ArrayList();
             cbAttractionsItems = LoadCbAttractionsData();
             cbTouristicStopsItems = LoadCbTouristicStopsData();
-            startAddress = trip.StartLocation.Address;
-            endAddress = trip.EndLocation.Address;
+            InitializeComponent();
+        }
+
+        public TripDataContext Tdt
+        {
+            get => tdt;
+            set
+            {
+                if (value != tdt)
+                {
+                    tdt = value;
+                    OnPropertyChanged("Tdt");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void OnLoadAttr(object sender, RoutedEventArgs e)
@@ -117,22 +136,43 @@ namespace HCI_Tim10_Putovanja.User.View
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OK);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OKCancel);
             if (messageBoxResult == MessageBoxResult.OK)
             {
-                if (txtName.Text == null || txtStartTime.Text == null || txtEndTime.Text == null 
-                    || txtStartLocation.Text == null || txtEndLocation == null || txtPrice.Text == null 
-                    || txtDesc.Text == null)
+                if (txtName.Text == "" || txtStartTime.Text == "" || txtEndTime.Text == ""
+                   || txtStartLocation.Text == "" || txtEndLocation.Text == "" || txtPrice.Text == ""
+                   || txtDesc.Text == "")
                 {
                     MessageBox.Show("Molimo vas popunite sva polja", "Neuspesna izmena", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+                if (trip.Price < 1000 || trip.Price > 100000)
+                {
+                    MessageBox.Show("Cena se krece u opsegu od 1000 do 100 000. Molimo vas popunite polje ponovo sa ispravnom vrednoscu.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                try
+                {
+                    trip.StartTime = DateTime.Parse(txtStartTime.Text);
+                    trip.EndTime = DateTime.Parse(txtEndTime.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Polje za vreme je formata dd.MM.yyyy. HH:mm. Molimo vas popunite polje ponovo sa ispravnom vrednoscu.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                try
+                {
+                    trip.Price = double.Parse(txtPrice.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Polje Cena se unosi u ciframa.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 trip.Name = txtName.Text;
-                trip.StartTime = DateTime.Parse(txtStartTime.Text);
-                trip.EndTime = DateTime.Parse(txtEndTime.Text);
-                trip.StartLocation = new Location(0,0,txtStartLocation.Text);
-                trip.EndLocation = new Location(0,0, txtEndLocation.Text);
-                trip.Price = double.Parse(txtPrice.Text);
+                trip.StartLocation.Address = txtStartLocation.Text;
+                trip.EndLocation.Address = txtEndLocation.Text;
                 trip.Description = txtDesc.Text;
                 MessageBox.Show("Uspesno izmenjeno putovanje!", "Uspesna izmena", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -140,7 +180,7 @@ namespace HCI_Tim10_Putovanja.User.View
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete putovanje? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete putovanje? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.OK)
             {
                 Database.Trips.Remove(trip);
@@ -180,22 +220,12 @@ namespace HCI_Tim10_Putovanja.User.View
             if (startPin.Location.Latitude == SelectedPushpin.Location.Latitude && startPin.Location.Longitude == SelectedPushpin.Location.Longitude)
             {
                 startPin.Location = SelectedPushpin.Location;
-                string v = await MapService.GetAddress(startPin.Location.Latitude, startPin.Location.Longitude);
-                if (v != null)
-                {
-                    trip.StartLocation = new Location(startPin.Location.Latitude, endPin.Location.Longitude, v);
-                    txtStartLocation.Text = trip.StartLocation.Address;
-                }
+                MapService.GetAddressForUpdateTrip(startPin.Location.Latitude, startPin.Location.Longitude, tdt, true, this);
             }
             else
             {
                 endPin.Location = SelectedPushpin.Location;
-                string v = await MapService.GetAddress(endPin.Location.Latitude, endPin.Location.Longitude);
-                if (v != null)
-                {
-                    trip.EndLocation = new Location(endPin.Location.Latitude, endPin.Location.Longitude, v);
-                    txtEndLocation.Text = trip.StartLocation.Address;
-                }
+                MapService.GetAddressForUpdateTrip(endPin.Location.Latitude, endPin.Location.Longitude, tdt, false, this);
             }
             e.Handled = true;
             SelectedPushpin = null;
@@ -217,4 +247,84 @@ namespace HCI_Tim10_Putovanja.User.View
 
 
     }
+
+    public class TripDataContext
+    {
+        public Trip trip;
+        public string startAddress;
+        public string endAddress;
+        public ArrayList coordinatesString;
+        public TripDataContext(Trip t, string sa, string ea)
+        {
+            this.Trip = t;
+            this.StartAddress = sa;
+            this.EndAddress = ea;
+            this.coordinatesString = new ArrayList();
+            this.coordinatesString.Add(t.StartLocation.Latitude.ToString() + "," + t.StartLocation.Lagnitude.ToString());
+            this.coordinatesString.Add(t.EndLocation.Latitude.ToString() + "," + t.EndLocation.Lagnitude.ToString());
+        }
+
+        public Trip Trip
+        {
+            get => trip;
+            set
+            {
+                if (value != trip)
+                {
+                    trip = value;
+                    this.StartAddress = trip.StartLocation.Address;
+                    this.EndAddress = trip.EndLocation.Address;
+                    OnPropertyChanged("Trip");
+                };
+            }
+        }
+
+        public string StartAddress
+        {
+            get => startAddress;
+            set
+            {
+                if (value != startAddress)
+                {
+                    startAddress = value;
+                    OnPropertyChanged("StartAddress");
+                }
+            }
+        }
+
+        public string EndAddress
+        {
+            get => endAddress;
+            set
+            {
+                if (value != endAddress)
+                {
+                    endAddress = value;
+                    OnPropertyChanged("EndAddress");
+                }
+            }
+        }
+
+        public ArrayList CoordinatesString
+        {
+            get => coordinatesString;
+            set
+            {
+                if (value != coordinatesString)
+                {
+                    coordinatesString = value;
+                    OnPropertyChanged("CoordinatesString");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+    }
+
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
@@ -97,13 +98,22 @@
                 </TextBox>
 
             </Border>
-
+            <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
+                       CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
+                       Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6" 
+                       TouchDown="MapWithPushpins_TouchDown"
+                       MouseMove="MyMap_MouseMove">
+                <m:Pushpin x:Name="mapPin" Location="{Binding CoordinatesString}" 
+                               ToolTip="{Binding LocationAddress}"
+                               MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
+                </m:Pushpin>
+            </m:Map>
             <Button x:Name="btnSave"
                         Content="Kreiraj"
                     Click="Save"
                     Width="280"
                     Padding="10"
-                    Margin="0, 50, 20, 0"
+                    Margin="0, 20, 20, 0"
                     HorizontalAlignment="Center"
                     FontSize="22">
                 <Button.Style>

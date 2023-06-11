@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Help\" />
+    <Folder Include="constants\NewFolder\" />
     <Folder Include="User\Model\" />
   </ItemGroup>
 

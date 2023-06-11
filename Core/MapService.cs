@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HCI_Tim10_Putovanja.User;
+using HCI_Tim10_Putovanja.User.View;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +8,21 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using static HCI_Tim10_Putovanja.User.View.UpdateTouristicStop;
 
 namespace HCI_Tim10_Putovanja.Core
 {
     class MapService
     {
         static HttpClient client = new HttpClient();
+
+        public static void SetUpService()
+        {
+            client.BaseAddress = new Uri("http://dev.virtualearth.net/REST/v1/Locations/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
         static async Task<RootObject> GetLocationAsync(string path)
         {
@@ -24,35 +35,107 @@ namespace HCI_Tim10_Putovanja.Core
             return lr;
         }
 
-        public static async Task<string> GetAddress(double lat, double lon)
+        public static async void GetAddressForUpdateTrip(double lat, double lon, TripDataContext tdt, Boolean isStartLocation, UpdateTrip updateTripPage)
         {
-            try
             {
-                string p = "http://dev.virtualearth.net/REST/v1/Locations/" + lat + "," + lon + "?&key=";
-                //client.BaseAddress = new Uri("http://dev.virtualearth.net/REST/v1/Locations/{point}?&key={BingMapsKey}");
-                Console.WriteLine(p);
-                client.BaseAddress = new Uri(p);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            
-                RootObject lr = await GetLocationAsync("");
-                Console.WriteLine(lr.statusCode);
+                RootObject lr = await GetLocationAsync(lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn");
                 if (lr.statusCode == 200
                     && lr.resourceSets.Length > 0
                     && lr.resourceSets[0].resources.Length > 0)
                 {
-                    return lr.resourceSets[0].resources[0].name;
+                    updateTripPage.Tdt = tdt;
+                    if (isStartLocation)
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name), true);
+                        updateTripPage.txtStartLocation.Text = tdt.startAddress;
+                    }
+                    else
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name));
+                        updateTripPage.txtEndLocation.Text = tdt.endAddress;
+                    }
                 }
-                return null;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
+        }
 
+        public static async void GetAddressForCreateTrip(double lat, double lon, TripDataContext tdt, Boolean isStartLocation, CreateTrip updateTripPage)
+        {
+            {
+                RootObject lr = await GetLocationAsync(lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn");
+                if (lr.statusCode == 200
+                    && lr.resourceSets.Length > 0
+                    && lr.resourceSets[0].resources.Length > 0)
+                {
+                    updateTripPage.Tdt = tdt;
+                    if (isStartLocation)
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name), true);
+                        updateTripPage.txtStartLocation.Text = tdt.startAddress;
+                    }
+                    else
+                    {
+                        tdt.Trip = new User.Trip(tdt.Trip, new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name));
+                        updateTripPage.txtEndLocation.Text = tdt.endAddress;
+                    }
+                }
+            }
+        }
+
+        public static async void GetAddressForUpdateTouristicStop(double lat, double lon, TuristicStops ts, UpdateTouristicStop page)
+        {
+            {
+                RootObject lr = await GetLocationAsync(lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn");
+                if (lr.statusCode == 200
+                    && lr.resourceSets.Length > 0
+                    && lr.resourceSets[0].resources.Length > 0)
+                {
+                    ts.Location = new User.Location(lr.resourceSets[0].resources[0].point.coordinates[0], lr.resourceSets[0].resources[0].point.coordinates[1], lr.resourceSets[0].resources[0].name);
+                    page.txtLocation.Text = ts.Location.Address;
+                 }
+            }
+        }
+
+        public static async void GetAddressForCreateTouristicStop(double lat, double lon, TSDataContext tsc, CreateTouristicStop page)
+        {
+            {
+                RootObject lr = await GetLocationAsync(lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn");
+                if (lr.statusCode == 200
+                    && lr.resourceSets.Length > 0
+                    && lr.resourceSets[0].resources.Length > 0)
+                {
+                    tsc.CoordinatesString = lr.resourceSets[0].resources[0].point.coordinates[0] + "," + lr.resourceSets[0].resources[0].point.coordinates[1];
+                    tsc.LocationAddress = lr.resourceSets[0].resources[0].name;
+                    page.txtLocation.Text = lr.resourceSets[0].resources[0].name;
+                }
+            }
+        }
+
+        public static async void GetAddressForCreateAttraction(double lat, double lon, CreateAttraction page)
+        {
+            {
+                RootObject lr = await GetLocationAsync(lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn");
+                if (lr.statusCode == 200
+                    && lr.resourceSets.Length > 0
+                    && lr.resourceSets[0].resources.Length > 0)
+                {
+                    page.CoordinatesString = lr.resourceSets[0].resources[0].point.coordinates[0] + "," + lr.resourceSets[0].resources[0].point.coordinates[1];
+                    page.txtLocation.Text = lr.resourceSets[0].resources[0].name;
+                }
+            }
+        }
+
+        public static async void GetAddressForUpdateAttraction(double lat, double lon, UpdateAttraction page)
+        {
+            {
+                RootObject lr = await GetLocationAsync(lat + "," + lon + "?&key=SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn");
+                if (lr.statusCode == 200
+                    && lr.resourceSets.Length > 0
+                    && lr.resourceSets[0].resources.Length > 0)
+                {
+                    page.CoordinatesString = lr.resourceSets[0].resources[0].point.coordinates[0] + "," + lr.resourceSets[0].resources[0].point.coordinates[1];
+                    page.txtLocation.Text = lr.resourceSets[0].resources[0].name;
+                }
+            }
         }
 
     }

@@ -27,6 +27,8 @@ namespace HCI_Tim10_Putovanja.User
 		{
 			atractions = new List<Atraction>();
 			touristicStops = new List<TuristicStops>();
+			startLocation = new Location(0, 0, "");
+			endLocation = new Location(0, 0, "");
 		}
 
 		public Trip(string name, double price, DateTime strartTime, DateTime endTime, Location startLocation, Location endLocation, string description, List<Atraction> atractions, List<TuristicStops> ts)
@@ -40,6 +42,34 @@ namespace HCI_Tim10_Putovanja.User
 			this.description = description;
 			this.atractions = atractions;
 			this.touristicStops = ts;
+		}
+
+		public Trip(Trip t, Location startLocation, bool isStart)
+		{
+			this.name = t.name;
+			this.price = t.price;
+			this.startTime = t.startTime;
+			this.endTime = t.endTime;
+			this.StartLocation = startLocation;
+			this.endLocation = t.endLocation;
+			this.description = t.description;
+			this.atractions = t.atractions;
+			this.touristicStops = t.touristicStops;
+			Console.WriteLine(t.startLocation.Address);
+		}
+
+		public Trip(Trip t, Location endLocation)
+		{
+			this.name = t.name;
+			this.price = t.price;
+			this.startTime = t.startTime;
+			this.endTime = t.endTime;
+			this.StartLocation = t.StartLocation;
+			this.endLocation = endLocation;
+			this.description = t.description;
+			this.atractions = t.atractions;
+			this.touristicStops = t.touristicStops;
+			Console.WriteLine(t.endLocation.Address);
 		}
 
 		public double Price { get => price; set => price = value; }

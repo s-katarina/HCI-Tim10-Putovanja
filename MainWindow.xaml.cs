@@ -28,9 +28,10 @@ namespace HCI_Tim10_Putovanja
         public MainWindow()
         {
             InitializeComponent();
+            MapService.SetUpService();
         }
 
-		private void Registration_Click(object sender, RoutedEventArgs e)
+        private void Registration_Click(object sender, RoutedEventArgs e)
 		{
             MainFrame.Content = new UserTrips();
 		}

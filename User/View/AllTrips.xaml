@@ -18,6 +18,24 @@
     </Page.CommandBindings>
     
     <Grid>
+        
+        <Button x:Name="btnAddNew"
+                        Content="+ Dodaj novo putovanje"
+                    Width="290"
+                    Height="50"
+                    Padding="10"
+                    Margin="0, 0, 30, 0"
+                    FontSize="20"
+                    Click="AddNew_Click"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#48C6C6"/>
+                </Style>
+            </Button.Style>
+        </Button>
+        
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="25,18,0,0"
 Name="textBlock1" Text="Pretraga po imenu"
 VerticalAlignment="Top" Width="200" />

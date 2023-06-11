@@ -1,4 +1,4 @@
-﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.UpdateTrip"
+﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.CreateTrip"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,7 +15,7 @@
       Title="UpdateTrip">
 
     <StackPanel Margin="10">
-        <TextBlock Text="Pregled i izmena detalja putovanja" Margin="0, 0, 0, 30">
+        <TextBlock Text="Kreiranje novog putovanja" Margin="0, 0, 0, 30">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Setter Property="FontSize" Value="30" />
@@ -24,35 +24,21 @@
         </TextBlock>
 
         <StackPanel Margin="50 0">
-            
-        <Button x:Name="btnDelete"
-                        Content="Obrisi putovanje"
-                    Click="Delete"
-                    Width="180"
-                    Padding="10"
-                    Margin="0, 10, 20, 0"
-                    HorizontalAlignment="Right">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#ffffff"/>
-                </Style>
-            </Button.Style>
-        </Button>
 
-        <TextBlock Text="Naziv" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
-        <Border CornerRadius="10"
+            <TextBlock Text="Naziv" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="400"
                 HorizontalAlignment="Left"
                         >
-            <Border.BorderBrush>
-                <LinearGradientBrush >
-                    <GradientStop Color="#000000" Offset="0"></GradientStop>
-                    <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#000000" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-            <TextBox x:Name="txtName"
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtName"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -66,33 +52,32 @@
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                     <TextBox.Text>
-                        
-                    <Binding Path="Trip.Name" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Naziv"/>
-                        </Binding.ValidationRules>
-                    </Binding>
+                        <Binding Path="Trip.Name" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Naziv"/>
+                            </Binding.ValidationRules>
+                        </Binding>
                     </TextBox.Text>
                 </TextBox>
 
-        </Border>
+            </Border>
 
-        <StackPanel Orientation="Horizontal">
-            <StackPanel>
-                <TextBlock Text="Vreme polaska" Padding="5, 5, 0, 5" Margin="0 35 0 0"></TextBlock>
-                <Border CornerRadius="10"
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Vreme polaska" Padding="5, 5, 0, 5" Margin="0 35 0 0"></TextBlock>
+                    <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="400"
                 HorizontalAlignment="Left"
                         >
-                    <Border.BorderBrush>
-                        <LinearGradientBrush >
-                            <GradientStop Color="#000000" Offset="0"></GradientStop>
-                            <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                            <GradientStop Color="#000000" Offset="1"></GradientStop>
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                    <TextBox x:Name="txtStartTime"
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtStartTime"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -114,22 +99,21 @@
                             </TextBox.Text>
                         </TextBox>
 
-                </Border>
+                    </Border>
 
-                <TextBlock Text="Mesto polaska (1)" Padding="5, 25, 0, 5"></TextBlock>
-                <Border CornerRadius="10"
+                    <TextBlock Text="Mesto polaska (1)" Padding="5, 25, 0, 5"></TextBlock>
+                    <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="400"
                 HorizontalAlignment="Left">
-                    <Border.BorderBrush>
-                        <LinearGradientBrush >
-                            <GradientStop Color="#000000" Offset="0"></GradientStop>
-                            <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                            <GradientStop Color="#000000" Offset="1"></GradientStop>
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                    <TextBox x:Name="txtStartLocation"
-                     Text="{Binding StartAddress}"
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtStartLocation"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -143,26 +127,27 @@
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
 
-                    </TextBox>
+                        </TextBox>
 
-                </Border>
-            </StackPanel>
+                    </Border>
+                </StackPanel>
 
-            <StackPanel Margin="30 0 0 0">
-                <TextBlock Text="Vreme povratka" Padding="5, 5, 0, 5" Margin="0 35 0 0"></TextBlock>
-                <Border CornerRadius="10"
+                <StackPanel Margin="30 0 0 0">
+                    <TextBlock Text="Vreme povratka" Padding="5, 5, 0, 5" Margin="0 35 0 0"></TextBlock>
+                    <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="400"
                 HorizontalAlignment="Left"
                         >
-                    <Border.BorderBrush>
-                        <LinearGradientBrush >
-                            <GradientStop Color="#000000" Offset="0"></GradientStop>
-                            <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                            <GradientStop Color="#000000" Offset="1"></GradientStop>
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                    <TextBox x:Name="txtEndTime"
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtEndTime"
+                         CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
                          Height="45"
@@ -183,24 +168,23 @@
                             </TextBox.Text>
                         </TextBox>
 
-                </Border>
+                    </Border>
 
-                <TextBlock Text="Odrediste (2)" Padding="5, 25, 0, 5" 
+                    <TextBlock Text="Odrediste (2)" Padding="5, 25, 0, 5" 
                       ></TextBlock>
-                <Border CornerRadius="10"
+                    <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="400"
                 HorizontalAlignment="Left"
                         >
-                    <Border.BorderBrush>
-                        <LinearGradientBrush >
-                            <GradientStop Color="#000000" Offset="0"></GradientStop>
-                            <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                            <GradientStop Color="#000000" Offset="1"></GradientStop>
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                    <TextBox x:Name="txtEndLocation"
-                     Text="{Binding EndAddress}"
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtEndLocation"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -214,10 +198,10 @@
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
 
-                    </TextBox>
+                        </TextBox>
 
-                </Border>
-            </StackPanel>
+                    </Border>
+                </StackPanel>
 
                 <m:Map x:Name="myMap" Height="250" Width="250" Margin="40, 50, 0, 0"
                        CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
@@ -236,21 +220,21 @@
 
             </StackPanel>
 
-        <TextBlock Text="Cena" Padding="5, 0, 0, 5" Margin="0 35 0 0"></TextBlock>
-        <Border CornerRadius="10"
+            <TextBlock Text="Cena" Padding="5, 0, 0, 5" Margin="0 35 0 0"></TextBlock>
+            <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="400"
                 HorizontalAlignment="Left"
                         >
-            <Border.BorderBrush>
-                <LinearGradientBrush >
-                    <GradientStop Color="#000000" Offset="0"></GradientStop>
-                    <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#000000" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
 
-            <TextBox x:Name="txtPrice"
+                <TextBox x:Name="txtPrice"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -273,22 +257,22 @@
                     </TextBox.Text>
                 </TextBox>
 
-        </Border>
+            </Border>
 
-        <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 35 0 0"></TextBlock>
-        <Border CornerRadius="10"
+            <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 35 0 0"></TextBlock>
+            <Border CornerRadius="10"
                 BorderThickness="1"
                 Width="700"
                 HorizontalAlignment="Left"
                         >
-            <Border.BorderBrush>
-                <LinearGradientBrush >
-                    <GradientStop Color="#000000" Offset="0"></GradientStop>
-                    <GradientStop Color="#000000" Offset="0.75"></GradientStop>
-                    <GradientStop Color="#000000" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
-            <TextBox x:Name="txtDesc"
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtDesc"
                      Text="{Binding Trip.Description}"
                         CaretBrush="LightGray"
                          Background="Transparent"
@@ -305,45 +289,45 @@
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
 
-            </TextBox>
+                </TextBox>
 
-        </Border>
+            </Border>
 
-        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
 
-            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
 
-                <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
-                <Grid  HorizontalAlignment="Left">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100*"></ColumnDefinition>
-                        <ColumnDefinition Width="245*"/>
-                        <ColumnDefinition Width="177*"></ColumnDefinition>
-                        <ColumnDefinition Width="68*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
+                    <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
+                    <Grid  HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                            <ColumnDefinition Width="245*"/>
+                            <ColumnDefinition Width="177*"></ColumnDefinition>
+                            <ColumnDefinition Width="68*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
                         <TextBlock Text="Ime"  />
                         <TextBlock Text="Adresa" Grid.Column="1" />
                         <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
                     </Grid>
-                <ListBox Name="lbAttractions" ItemsSource="{Binding Trip.Atractions}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid MinWidth="550">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
+                    <ListBox Name="lbAttractions" ItemsSource="{Binding Trip.Atractions}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MinWidth="550">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="{Binding Name}" />
-                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <Button x:Name="btnRemoveAttraction"
                         Content="Ukloni izabrano"
                         Click="RemoveAttraction"
@@ -362,23 +346,23 @@
                     </Button>
                 </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
+                <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
                     <TextBlock Text="Izbor za dodavanje u spisak atrakcija ovog putovanja" FontSize="13"></TextBlock>
                     <ComboBox Name="cbOtherAttractions" HorizontalContentAlignment="Stretch" Loaded="OnLoadAttr">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
-                            </Grid>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Button x:Name="btnAddAttraction"
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="btnAddAttraction"
                         Content="Dodaj izabrano"
                         Click="AddAttraction"
                         ToolTip="Dodaj izabranu atrakciju iz padajuceg menija"
@@ -388,56 +372,56 @@
                         FontWeight="Normal"
                     Margin="0, 20, 0, 0"
                     HorizontalAlignment="Center">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#ffffff"/>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#ffffff"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
-                
+
+
+                </StackPanel>
 
             </StackPanel>
-            
-        </StackPanel>
 
 
-        <StackPanel Orientation="Horizontal" Margin="0 30">
+            <StackPanel Orientation="Horizontal" Margin="0 30">
 
-            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical">
 
-                <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Restorani i Smestaji"></TextBlock>
-                <Grid  HorizontalAlignment="Left">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
+                    <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Restorani i Smestaji"></TextBlock>
+                    <Grid  HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Text="Ime"  />
-                    <TextBlock Text="Adresa" Grid.Column="1" />
-                    <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
+                        <TextBlock Text="Ime"  />
+                        <TextBlock Text="Adresa" Grid.Column="1" />
+                        <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
 
-                </Grid>
-                <ListBox Name="lbTouristicStops" ItemsSource="{Binding Trip.TouristicStops}">
+                    </Grid>
+                    <ListBox Name="lbTouristicStops" ItemsSource="{Binding Trip.TouristicStops}">
 
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid MinWidth="550">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MinWidth="550">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="{Binding Name}" />
-                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
                     <Button x:Name="btnRemoveTouristicStop"
                         Content="Ukloni izabrano"
@@ -458,23 +442,23 @@
 
                 </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
+                <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
                     <TextBlock Text="Izbor za dodavanje u spisak restorana i smestaja ovog putovanja" FontSize="13"  ></TextBlock>
                     <ComboBox Name="cbOtherTouristicStops" HorizontalContentAlignment="Stretch" Loaded="OnLoadTouristicStop">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
-                            </Grid>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Button x:Name="btnAddTouristicStop"
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="btnAddTouristicStop"
                         Content="Dodaj izabrano"
                         ToolTip="Dodaj izabranu stavku iz padajuceg menija"
                         Click="AddTouristicStop"
@@ -484,33 +468,33 @@
                         FontSize="14"
                         FontWeight="Normal"
                     HorizontalAlignment="Center">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#ffffff"/>
-                        </Style>
-                    </Button.Style>
-                </Button>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#ffffff"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
+
+                </StackPanel>
 
             </StackPanel>
 
-        </StackPanel>
 
-
-        <Button x:Name="btnSave"
-                        Content="Sacuvaj promene"
+            <Button x:Name="btnSave"
+                        Content="Kreiraj putovanje"
                     Click="Save"
                     Width="280"
                     Padding="10"
                     Margin="0, 50, 20, 100"
                     HorizontalAlignment="Center"
                     FontSize="22">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="LightGray"/>
-                </Style>
-            </Button.Style>
-        </Button>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="LightGray"/>
+                    </Style>
+                </Button.Style>
+            </Button>
 
 
         </StackPanel>
