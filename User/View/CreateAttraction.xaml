@@ -6,6 +6,7 @@
       xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18" 
@@ -13,7 +14,11 @@
       d:DesignHeight="831.264" d:DesignWidth="800"
       Title="CreateAttraction">
 
-    <StackPanel Margin="10">
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+    <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#aatrakcijanova">
         <TextBlock Text="Kreiranje nove atrakcije" Margin="0, 0, 0, 30">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -39,6 +44,7 @@
                     </LinearGradientBrush>
                 </Border.BorderBrush>
                 <TextBox x:Name="txtName"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijanovaNazivPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -75,6 +81,7 @@
                     </LinearGradientBrush>
                 </Border.BorderBrush>
                 <TextBox x:Name="txtLocation"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijanovaLokacijaPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -98,7 +105,7 @@
             </Border>
 
             <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
-                       CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
+                       l:HelpProvider.HelpKey="Indeks#aatrakcijanovaMapa" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
                        Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6" 
                        TouchDown="MapWithPushpins_TouchDown"
                        MouseMove="MyMap_MouseMove">
@@ -122,6 +129,7 @@
                     </LinearGradientBrush>
                 </Border.BorderBrush>
                 <TextBox x:Name="txtOpis"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijanovaOpisPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -163,6 +171,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijanovaDodajSliku"
                         Content="Dodaj sliku"
                     Click="AddImages"
                     Width="180"
@@ -179,6 +188,7 @@
 
                 <Button
                     Content="Ukloni izabranu sliku"
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijanovaUkloniSliku"
                     Click="RemoveImage"
                     Width="180"
                     Padding="10"
@@ -196,6 +206,7 @@
 
 
             <Button x:Name="btnSave"
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijanovaKreiranje"
                         Content="Kreiraj atrakciju"
                     Click="Save"
                     Width="280"

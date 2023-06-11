@@ -39,6 +39,10 @@ namespace HCI_Tim10_Putovanja.User.View
 			this.trips = trips;
 			DataContext = this;
 			OneTripShortcut.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.None));
+
+			btnAddNew.Visibility = Visibility.Hidden;
+			if (Database.loggedInUser != null && Database.loggedInUser.Role.Equals(Role.AGENT))
+				btnAddNew.Visibility = Visibility.Visible;
 		}
 
 		public List<Trip> Trips { get => trips; set => trips = value; }
@@ -88,6 +92,16 @@ TextChangedEventArgs e)
 		{
 			CreateTrip page = new CreateTrip();
 			this.NavigationService.Navigate(page);
+		}
+
+		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+			if (focusedControl is DependencyObject)
+			{
+				string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+				HelpProvider.ShowHelp(str);
+			}
 		}
 
 	}

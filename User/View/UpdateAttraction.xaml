@@ -6,6 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18" 
@@ -13,7 +14,11 @@
       d:DesignHeight="1800" d:DesignWidth="2000"
       Title="UpdateAttraction">
 
-    <StackPanel Margin="10">
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+    <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#aatrakcijaizmena">
         <TextBlock Text="Pregled i izmena detalja atrakcije" Margin="0, 0, 0, 30">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -24,6 +29,7 @@
         <StackPanel Margin="50, 0">
             
             <Button x:Name="btnDelete"
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmeniObrisi"
                         Content="Obrisi atrakciju"
                     Click="Delete"
                     Width="180"
@@ -51,6 +57,7 @@
                     </LinearGradientBrush>
                 </Border.BorderBrush>
                 <TextBox x:Name="txtName"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaNazivPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -87,6 +94,7 @@
                     </LinearGradientBrush>
                 </Border.BorderBrush>
                 <TextBox x:Name="txtLocation"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaLokacijaPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -110,7 +118,7 @@
             </Border>
 
             <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
-                       CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
+                       l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaMapa" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
                        Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6" 
                        TouchDown="MapWithPushpins_TouchDown"
                        MouseMove="MyMap_MouseMove">
@@ -134,6 +142,7 @@
                     </LinearGradientBrush>
                 </Border.BorderBrush>
                 <TextBox x:Name="txtOpis"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaOpisPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -176,6 +185,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaDodajSliku"
                         Content="Dodaj sliku"
                     Click="AddImages"
                     Width="180"
@@ -191,6 +201,7 @@
                 </Button>
 
                 <Button
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaUkloniSliku"
                     Content="Ukloni izabranu sliku"
                     Click="RemoveImage"
                     Width="180"
@@ -209,6 +220,7 @@
 
 
             <Button x:Name="btnSave"
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaSacuvaj"
                         Content="Sacuvaj promene"
                     Click="Save"
                     Width="280"

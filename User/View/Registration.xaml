@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
@@ -15,7 +16,11 @@
         Title="Registration" 
         >
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" l:HelpProvider.HelpKey="Indeks#registracija">
 
         <Grid>
             
@@ -55,6 +60,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtName"
+                             l:HelpProvider.HelpKey="Indeks#registracijaImePolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -90,6 +96,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtLastname"
+                             l:HelpProvider.HelpKey="Indeks#registracijaPrezimePolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -125,6 +132,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtEmail"
+                             l:HelpProvider.HelpKey="Indeks#registracijaEmailPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -160,6 +168,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtPhone"
+                             l:HelpProvider.HelpKey="Indeks#registracijaTelefonPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -195,6 +204,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <PasswordBox x:Name="txtPassword"
+                                 l:HelpProvider.HelpKey="Indeks#registracijaLozinkaPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -213,6 +223,7 @@
 
 
                 <Button x:Name="btnRegistration"
+                        l:HelpProvider.HelpKey="Indeks#registracijaDugme"
                         Content="Registruj se"
                     Width="300"
                     Padding="0, 10"

@@ -24,12 +24,19 @@ namespace HCI_Tim10_Putovanja
     public partial class MainWindow : Window
     {
         private static Database dbKata = new Database();
+        public static RoutedCommand HelpCommand = new RoutedCommand();
 
         public MainWindow()
         {
             InitializeComponent();
             MapService.SetUpService();
             MainFrame.Content = new Login();
+            HelpCommand.InputGestures.Add(new KeyGesture(Key.H, ModifierKeys.Control));
+        }
+
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("Indeks#");
         }
 
         private void Registration_Click(object sender, RoutedEventArgs e)
@@ -99,5 +106,15 @@ namespace HCI_Tim10_Putovanja
                 userGrid.Visibility = Visibility.Visible;
             }
         }
-	}
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+            if (focusedControl is DependencyObject)
+            {
+                string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+                HelpProvider.ShowHelp(str);
+            }
+        }
+    }
 }

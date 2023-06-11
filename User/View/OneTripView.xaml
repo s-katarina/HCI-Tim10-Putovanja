@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18"
@@ -27,6 +28,9 @@
                     Executed="Reserve_Click" />
         <CommandBinding Command="{StaticResource MyCommand3}" 
                     Executed="Cancel_Click" />
+        <CommandBinding Command="{x:Static local:OneTripView.GoBackShortcut}" 
+                     Executed="Go_Back_Click"/>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Page.CommandBindings>
     <Page.InputBindings>
         <KeyBinding Key="B" Modifiers="Ctrl" Command="{StaticResource MyCommand1}" />
@@ -35,7 +39,7 @@
     </Page.InputBindings>
 
 
-    <StackPanel>
+    <StackPanel l:HelpProvider.HelpKey="Indeks#putovanje">
         <Grid>
             <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -57,7 +61,7 @@
                 <Grid Margin="0, 0, 0, 15">
                     <materialDesign:PackIcon Kind="PiggyBankOutline" Height="26"/>
                     <TextBlock Text="Cena:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
-                    <TextBlock x:Name="priceTxt" Text="{Binding Trip.Price}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                    <TextBlock x:Name="priceTxt" Text="{Binding Trip.Price, StringFormat={}{0:#\,0.00 din}, ConverterCulture='sr'}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                 </Grid>
                 <Grid Margin="0, 0, 0, 15">
                     <materialDesign:PackIcon Kind="TimerCheckOutline" Height="26"/>
@@ -118,7 +122,7 @@
                 </StackPanel>
                 <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
-            <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Trip.Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+            <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Trip.Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" l:HelpProvider.HelpKey="Indeks#putovanjePrikazAtrakcije">
                     
                     <ListView.ItemTemplate>
                         <DataTemplate>

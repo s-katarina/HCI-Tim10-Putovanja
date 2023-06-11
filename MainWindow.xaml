@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Tim10_Putovanja"
+        xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -42,7 +43,9 @@
                     Executed="Report_Click" />
         <CommandBinding Command="{StaticResource MyCommand9}" 
                     Executed="TripReport_Click" />
-    </Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.HelpCommand}" Executed="ShowHelp" />
+
+        </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{StaticResource MyCommand1}" />
         <KeyBinding Key="S" Modifiers="Ctrl" Command="{StaticResource MyCommand2}" />
@@ -54,8 +57,11 @@
         <KeyBinding Key="C" Modifiers="Ctrl" Command="{StaticResource MyCommand8}" />
         <KeyBinding Key="V" Modifiers="Ctrl" Command="{StaticResource MyCommand9}" />
     </Window.InputBindings>
+
     
+
     <TabControl 
+        l:HelpProvider.HelpKey="Indeks#"
         Style="{StaticResource MaterialDesignNavigatilRailTabControl}" 
         TabStripPlacement="Top"
         materialDesign:ShadowAssist.ShadowDepth="Depth2" 
@@ -95,9 +101,8 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Button ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-
                     <Button ToolTip="CTRL+W" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                    
+
                     <Button ToolTip="CTRL+F" Grid.Column="2" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
                 </Grid>
@@ -122,7 +127,7 @@
                     <Button ToolTip="CTRL+F" Grid.Column="5" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
 
-                    
+
                 </Grid>
             </Grid>
         </materialDesign:NavigationRailAssist.FloatingContent>
