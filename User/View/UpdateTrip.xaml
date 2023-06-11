@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
       xmlns:core="clr-namespace:HCI_Tim10_Putovanja.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
@@ -52,7 +53,6 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
             <TextBox x:Name="txtName"
-                     Text="{Binding Trip.Name}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -65,8 +65,15 @@
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
-
-            </TextBox>
+                    <TextBox.Text>
+                        
+                    <Binding Path="Trip.Name" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Naziv"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
         </Border>
 
@@ -86,7 +93,6 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtStartTime"
-                     Text="{Binding Trip.StartTime}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -99,8 +105,14 @@
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
-
-                    </TextBox>
+                            <TextBox.Text>
+                                <Binding Path="Trip.StartTime" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <val:DateFmt ValidationStep="RawProposedValue" FieldName="Vreme polaska"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
 
                 </Border>
 
@@ -151,8 +163,6 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtEndTime"
-                     Text="{Binding Trip.EndTime}"
-                         CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
                          Height="45"
@@ -164,8 +174,14 @@
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
-
-                    </TextBox>
+                            <TextBox.Text>
+                                <Binding Path="Trip.EndTime" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <val:DateFmt ValidationStep="RawProposedValue" FieldName="Vreme povratka"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
 
                 </Border>
 
@@ -235,7 +251,6 @@
             </Border.BorderBrush>
 
             <TextBox x:Name="txtPrice"
-                     Text="{Binding Trip.Price}"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -248,7 +263,15 @@
                              materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
-            </TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Trip.Price" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:DoubleVal ValidationStep="RawProposedValue" FieldName="Cena"/>
+                                <val:PriceRange ValidationStep="ConvertedProposedValue" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
         </Border>
 

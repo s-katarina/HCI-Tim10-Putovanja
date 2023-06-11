@@ -62,4 +62,72 @@ namespace HCI_Tim10_Putovanja.User.View
             return new ValidationResult(true, null);
         }
     }
+
+    public class PriceRange : ValidationRule
+    {
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            if (value == null || (double) value > 100000 || (double) value < 1000) 
+            {
+                return new ValidationResult(false, $"Cena se krece u opsegu od 1000 do 100 000");
+
+            }
+            return new ValidationResult(true, null);
+        }
+    }
+
+    class DoubleVal : ValidationRule
+    {
+        public string FieldName
+        {
+            get;
+            set;
+        }
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+
+            try
+            {
+                var s = value as string;
+                double r;
+                if (double.TryParse(s, out r))
+                {
+                    return new ValidationResult(true, null);
+                }
+                return new ValidationResult(false, $"Polje {FieldName} se unosi u ciframa");
+            }
+            catch (Exception e)
+            {
+                return new ValidationResult(false, e.Message);
+            }
+        }
+    }
+
+    class DateFmt : ValidationRule
+    {
+        public string FieldName
+        {
+            get;
+            set;
+        }
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+
+            try
+            {
+                var s = value as string;
+                DateTime r;
+                if (DateTime.TryParseExact(s, "d/M/yyyy h:mm:ss tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out r))
+                {
+                    return new ValidationResult(true, null);
+                }
+                return new ValidationResult(false, $"Polje {FieldName} je formata d/M/yyyy h:mm:ss tt");
+            }
+            catch (Exception e)
+            {
+                return new ValidationResult(false, e.Message);
+            }
+        }
+    }
+
 }

@@ -139,19 +139,40 @@ namespace HCI_Tim10_Putovanja.User.View
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OKCancel);
             if (messageBoxResult == MessageBoxResult.OK)
             {
-                if (txtName.Text == null || txtStartTime.Text == null || txtEndTime.Text == null 
-                    || txtStartLocation.Text == null || txtEndLocation == null || txtPrice.Text == null 
-                    || txtDesc.Text == null)
+                if (txtName.Text == "" || txtStartTime.Text == "" || txtEndTime.Text == ""
+                   || txtStartLocation.Text == "" || txtEndLocation.Text == "" || txtPrice.Text == ""
+                   || txtDesc.Text == "")
                 {
                     MessageBox.Show("Molimo vas popunite sva polja", "Neuspesna izmena", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+                if (trip.Price < 1000 || trip.Price > 100000)
+                {
+                    MessageBox.Show("Cena se krece u opsegu od 1000 do 100 000. Molimo vas popunite polje ponovo sa ispravnom vrednoscu.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                try
+                {
+                    trip.StartTime = DateTime.Parse(txtStartTime.Text);
+                    trip.EndTime = DateTime.Parse(txtEndTime.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Polje za vreme je formata dd.MM.yyyy. HH:mm. Molimo vas popunite polje ponovo sa ispravnom vrednoscu.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                try
+                {
+                    trip.Price = double.Parse(txtPrice.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Polje Cena se unosi u ciframa.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 trip.Name = txtName.Text;
-                trip.StartTime = DateTime.Parse(txtStartTime.Text);
-                trip.EndTime = DateTime.Parse(txtEndTime.Text);
                 trip.StartLocation.Address = txtStartLocation.Text;
                 trip.EndLocation.Address = txtEndLocation.Text;
-                trip.Price = double.Parse(txtPrice.Text);
                 trip.Description = txtDesc.Text;
                 MessageBox.Show("Uspesno izmenjeno putovanje!", "Uspesna izmena", MessageBoxButton.OK, MessageBoxImage.Information);
             }

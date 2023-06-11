@@ -40,6 +40,8 @@ namespace HCI_Tim10_Putovanja.User.View
         {
             DataContext = this;
             trip = new Trip();
+            trip.StartTime = DateTime.Now;
+            trip.EndTime = DateTime.Now;
             tdt = new TripDataContext(trip, "", "");
             cbAttractionsItems = LoadCbAttractionsData();
             cbTouristicStopsItems = LoadCbTouristicStopsData();
@@ -174,12 +176,32 @@ namespace HCI_Tim10_Putovanja.User.View
                 MessageBox.Show("Molimo vas popunite sva polja", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (trip.Price < 1000 || trip.Price > 100000)
+            {
+                MessageBox.Show("Cena se krece u opsegu od 1000 do 100 000. Molimo vas popunite polje ponovo sa ispravnom vrednoscu.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
+                trip.StartTime = DateTime.Parse(txtStartTime.Text);
+                trip.EndTime = DateTime.Parse(txtEndTime.Text);
+            } catch (Exception)
+            {
+                MessageBox.Show("Polje za vreme je formata dd.MM.yyyy. HH:mm. Molimo vas popunite polje ponovo sa ispravnom vrednoscu.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
+                trip.Price = double.Parse(txtPrice.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Polje Cena se unosi u ciframa.", "Neuspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             trip.Name = txtName.Text;
-            trip.StartTime = DateTime.Parse(txtStartTime.Text);
-            trip.EndTime = DateTime.Parse(txtEndTime.Text);
             trip.StartLocation = tdt.trip.StartLocation;
             trip.EndLocation = tdt.trip.EndLocation;
-            trip.Price = double.Parse(txtPrice.Text);
             trip.Description = txtDesc.Text;
             Database.Trips.Add(trip);
             MessageBox.Show("Uspesno kreirano putovanje!", "Uspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Information);
