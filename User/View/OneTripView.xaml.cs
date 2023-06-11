@@ -109,14 +109,15 @@ namespace HCI_Tim10_Putovanja.User.View
 
 		private void Cancel_Click(object sender, RoutedEventArgs e)
 		{
-			foreach (Record r in Database.ReservedTrips)
-				if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
-                {
-					Database.ReservedTrips.Remove(r);
-					MessageBox.Show("Uspesno otkazano putovanje!");
-					this.NavigationService.Navigate(new AllTrips(Database.Trips));
-					break;
-                }
+			if (MessageBox.Show("Da li sigurno zelite da otkazete rezervaciju?", "Potvrda", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+				foreach (Record r in Database.ReservedTrips)
+					if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
+					{
+						Database.ReservedTrips.Remove(r);
+						MessageBox.Show("Uspesno otkazano putovanje!");
+						this.NavigationService.Navigate(new AllTrips(Database.Trips));
+						break;
+					}
 		}
 
 		private bool already_reserved()
@@ -161,6 +162,16 @@ namespace HCI_Tim10_Putovanja.User.View
 
 			// Navigate to the page, using the NavigationService
 			this.NavigationService.Navigate(page);
+		}
+
+		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+			if (focusedControl is DependencyObject)
+			{
+				string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+				HelpProvider.ShowHelp(str);
+			}
 		}
 	}
 

@@ -110,5 +110,11 @@ namespace HCI_Tim10_Putovanja
                 HelpProvider.ShowHelp(str);
             }
         }
+
+        private void ShowHelp(object sender, ExecutedRoutedEventArgs args)
+        {
+            MessageBox.Show("Asd");
+            HelpProvider.ShowHelp("Index#");
+        }
     }
 }

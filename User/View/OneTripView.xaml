@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18"
@@ -18,10 +19,11 @@
     <Page.CommandBindings>
         <CommandBinding Command="{x:Static local:OneTripView.GoBackShortcut}" 
                      Executed="Go_Back_Click"/>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Page.CommandBindings>
 
 
-    <StackPanel>
+    <StackPanel l:HelpProvider.HelpKey="Indeks#putovanje">
         <Grid>
             <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -70,10 +72,10 @@
             
             <StackPanel Grid.Column="1" Margin="0, 8, 0, 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="byeBtn" Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
-                    <Button x:Name="reserveBtn" Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                    <Button x:Name="byeBtn" Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black" l:HelpProvider.HelpKey="Indeks#putovanjeKupi"></Button>
+                    <Button x:Name="reserveBtn" Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black" l:HelpProvider.HelpKey="Indeks#putovanjeRezervisi"></Button>
                     <Button x:Name="cancelBtn" Content="Otkazi rezervaciju" Click="Cancel_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
-                    <TextBlock x:Name="buyTb" Text="Kupljeno" Margin="0, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    <TextBlock x:Name="buyTb" Text="Kupljeno" Margin="0, 0, 0, 0" Foreground="#5B5A5A" l:HelpProvider.HelpKey="Indeks#putovanjeOznaka"></TextBlock>
                 </StackPanel>
                 <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12">
                     <m:Pushpin Location="47.620574,22.34942"/>
@@ -90,7 +92,7 @@
                 </StackPanel>
                 <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
-            <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Trip.Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+            <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Trip.Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" l:HelpProvider.HelpKey="Indeks#putovanjePrikazAtrakcije">
                     
                     <ListView.ItemTemplate>
                         <DataTemplate>
