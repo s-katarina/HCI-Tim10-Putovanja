@@ -22,7 +22,7 @@
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Page.CommandBindings>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" l:HelpProvider.HelpKey="Indeks#prijava">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -73,7 +73,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtName"
-                             l:HelpProvider.HelpKey="Indeks#"
+                             l:HelpProvider.HelpKey="Indeks#prijavaEmailPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -97,7 +97,7 @@
                     
                 </Border>
 
-                <TextBlock Text="Lozinka" Margin="5, 30, 0, 5"></TextBlock>
+                <TextBlock Text="Lozinka" Margin="5, 30, 0, 5" l:HelpProvider.HelpKey="Indeks#prijavaLozinkaPolje"></TextBlock>
                 <Border CornerRadius="10"
                 BorderThickness="1"
                         >
@@ -127,6 +127,7 @@
             </StackPanel>
 
             <Button x:Name="btnLogIn"
+                    l:HelpProvider.HelpKey="Indeks#prijavaDugme"
                         Grid.Row="3"
                         Grid.Column="0"
                         Content="Prijavi se"

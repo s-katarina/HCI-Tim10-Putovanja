@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Tim10_Putovanja"
+        xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -45,7 +46,7 @@
                 <Button x:Name="boughtTripsBtn" Visibility="Hidden" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
                 <Button x:Name="registrationBtn" Grid.Column="1" Content="Registracija" HorizontalAlignment="Left" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                <Button x:Name="loginBtn" Grid.Column="1" Margin="150, 0,0, 0" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
+                <Button x:Name="loginBtn" Grid.Column="1" Margin="150, 0,0, 0" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Click="Login_Click" BorderBrush="Transparent" Foreground="Black" l:HelpProvider.HelpKey="Indeks#prijavaProzorDugme">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="0, 4, 3, 0">Prijava</TextBlock>
                         <materialDesign:PackIcon Kind="AccountCircleOutline" Height="26"/>
