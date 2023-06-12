@@ -19,7 +19,7 @@
     </Page.CommandBindings>
 
     <Grid l:HelpProvider.HelpKey="Indeks#aputovanjesvi">
-        
+
         <Button x:Name="btnAddNew"
                 l:HelpProvider.HelpKey="Indeks#aputovanjeNovi"
                         Content="+ Dodaj novo putovanje"
@@ -30,14 +30,11 @@
                     FontSize="20"
                     Click="AddNew_Click"
                 VerticalAlignment="Top"
-                HorizontalAlignment="Right">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#48C6C6"/>
-                    <Setter Property="Foreground" Value="Black"/>
-
-                </Style>
-            </Button.Style>
+                HorizontalAlignment="Right"
+                Background="#94E7F2" 
+                BorderBrush="#06E1FF"
+                Foreground="Black"
+                >
         </Button>
         
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="25,18,0,0" Name="textBlock1" Text="Pretraga po imenu" VerticalAlignment="Top" Width="200" />

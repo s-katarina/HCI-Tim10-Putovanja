@@ -29,12 +29,12 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 30 0 0" >
             <CheckBox x:Name="kupljeniCheckBox" Content="Kupljeno" Checked="FillTrips" Unchecked="FillTrips" l:HelpProvider.HelpKey="Indeks#kuprezKup">
                 <CheckBox.ToolTip>
-                    <ToolTip Content="Ukljucivanje ovog kvadratica ce rezultirati time da se prikazuju i kupljena putovanja. Njegovim iskljucivanjem se vise nece prikazivati kupljena putovanja." />
+                    <ToolTip Content="Oznacavanjem kvadratica se prikazuju kupljena putovanja" />
                 </CheckBox.ToolTip>
             </CheckBox>
             <CheckBox x:Name="rezervisaniCheckBox" Content="Rezervisano" Checked="FillTrips" Unchecked="FillTrips" Margin="30 0 0 0" l:HelpProvider.HelpKey="Indeks#kuprezRez">
                 <CheckBox.ToolTip>
-                    <ToolTip Content="Ukljucivanje ovog kvadratica ce rezultirati time da se prikazuju i rezervisana putovanja. Njegovim iskljucivanjem se vise nece prikazivati rezervisana putovanja." />
+                    <ToolTip Content="Oznacavanjem kvadratica se prikazuju rezervisana putovanja" />
                 </CheckBox.ToolTip>
             </CheckBox>
         </StackPanel>

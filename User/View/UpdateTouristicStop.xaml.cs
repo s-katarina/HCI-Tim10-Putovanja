@@ -121,10 +121,16 @@ namespace HCI_Tim10_Putovanja.User.View
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.OK)
             {
-                AllTouristicStops.TouristicStops.Remove(touristic_stop);
-                MessageBox.Show("Uspesno obrisano!", "Uspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
-                AllTouristicStops page = new AllTouristicStops(AllTouristicStops.TouristicStops);
-                this.NavigationService.Navigate(page);
+                if (!Database.CheckIfTouristicStopIsUsed(touristic_stop))
+                {
+                    AllTouristicStops.TouristicStops.Remove(touristic_stop);
+                    MessageBox.Show("Uspesno obrisano!", "Uspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AllTouristicStops page = new AllTouristicStops(AllTouristicStops.TouristicStops);
+                    this.NavigationService.Navigate(page);
+                } else
+                {
+                    MessageBox.Show("Stavka je sadrzana u drugim putovanjima i nije moguce obrisati je.", "Neuspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

@@ -162,10 +162,16 @@ namespace HCI_Tim10_Putovanja.User.View
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete atrakciju? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.OK)
             {
-                AllAttractions.Attractions.Remove(attraction);
-                MessageBox.Show("Uspesno obrisana atrakcija!", "Uspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
-                AllAttractions page = new AllAttractions(AllAttractions.Attractions);
-                this.NavigationService.Navigate(page);
+                if (!Database.CheckIfAttractionIsUsed(attraction))
+                {
+                    AllAttractions.Attractions.Remove(attraction);
+                    MessageBox.Show("Uspesno obrisana atrakcija!", "Uspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AllAttractions page = new AllAttractions(AllAttractions.Attractions);
+                    this.NavigationService.Navigate(page);
+                } else
+                {
+                    MessageBox.Show("Atrakcija je sadrzana u drugim putovanjima i nije moguce obrisati je.", "Neuspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

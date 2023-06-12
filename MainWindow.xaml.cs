@@ -37,7 +37,14 @@ namespace HCI_Tim10_Putovanja
 
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
-            HelpProvider.ShowHelp("Indeks#");
+            if (Database.loggedInUser != null && Database.loggedInUser.Role == Role.AGENT)
+            {
+                HelpProvider.ShowHelp("Indeks#");
+            } else
+            {
+                HelpProvider.ShowHelp("Indeks_User#");
+            }
+
         }
         private void AllButtonsTransparent() {
             travel1btn.Background = Brushes.Transparent;

@@ -28,12 +28,10 @@
                     Margin="0, 0, 80, 0"
                     FontSize="22"
                     HorizontalAlignment="Right"
-                    Click="AddNew_Click">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#48C6C6"/>
-                </Style>
-            </Button.Style>
+                    Click="AddNew_Click"
+                Background="#94E7F2" 
+                BorderBrush="#06E1FF"
+                Foreground="Black">
         </Button>
 
         <ListView x:Name="attractionsListBox" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding Attractions}" SelectionChanged="ListBox_SelectionChanged" MinWidth="900">

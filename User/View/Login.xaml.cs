@@ -73,9 +73,9 @@ namespace HCI_Tim10_Putovanja.User.View
 			foreach (AppUser user in Database.Users) {
 				Debug.WriteLine(user.Email);
 				if (user.Email == userName && user.Password == Password) {
+					Database.loggedInUser = user;
 					((MainWindow)System.Windows.Application.Current.MainWindow).ChangeNavbar(user.Role);
 					MessageBox.Show("Uspesna prijava.", "Uspesna prijava", MessageBoxButton.OK, MessageBoxImage.Information);
-					Database.loggedInUser = user;
 					return;
 				}
 			}

@@ -43,7 +43,7 @@
                 MaxWidth="700"
                 Margin="5, 0"
                 >
-                <Image Source="/constants/logo.webp"
+                <Image Source="/constants/logo.png"
                        Width="100"
                        Height="100"
 

@@ -34,13 +34,10 @@
                     Margin="0, 0, 80, 0"
                     FontSize="22"
                     HorizontalAlignment="Right"
-                    Click="AddNew_Click">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#48C6C6"/>
-                </Style>
-            </Button.Style>
-        </Button>
+                    Click="AddNew_Click"
+                Background="#94E7F2" 
+                BorderBrush="#06E1FF"
+                Foreground="Black"/>
 
         <ListView x:Name="touristicStopsListBox" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0, 90, 0, 0" ItemsSource="{Binding TouristicStops}" SelectionChanged="ListBox_SelectionChanged" MinWidth="800" l:HelpProvider.HelpKey="Indeks#aatrakcijaPrikazDetalja">
             <ListView.ItemsPanel>

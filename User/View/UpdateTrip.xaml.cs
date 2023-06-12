@@ -199,10 +199,16 @@ namespace HCI_Tim10_Putovanja.User.View
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da obrisete putovanje? Kliknite OK za potvrdu.", "Potvrda brisanja", System.Windows.MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.OK)
             {
-                Database.Trips.Remove(trip);
-                MessageBox.Show("Uspesno obrisano putovanje!", "Uspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
-                AllTrips page = new AllTrips(Database.Trips);
-                this.NavigationService.Navigate(page);
+                if (!Database.CheckIfTripIsUsed(trip))
+                {
+                    Database.Trips.Remove(trip);
+                    MessageBox.Show("Uspesno obrisano putovanje!", "Uspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
+                    AllTrips page = new AllTrips(Database.Trips);
+                    this.NavigationService.Navigate(page);
+                } else
+                {
+                    MessageBox.Show("Putovanje je sadrzano u realizovanim (rezervisana i kupljena putovanja) i nije moguce obrisati ga.", "Neuspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
