@@ -73,7 +73,6 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtName"
-                             l:HelpProvider.HelpKey="Indeks#prijavaEmailPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -97,7 +96,7 @@
                     
                 </Border>
 
-                <TextBlock Text="Lozinka" Margin="5, 30, 0, 5" l:HelpProvider.HelpKey="Indeks#prijavaLozinkaPolje"></TextBlock>
+                <TextBlock Text="Lozinka" Margin="5, 30, 0, 5" ></TextBlock>
                 <Border CornerRadius="10"
                 BorderThickness="1"
                         >
@@ -109,6 +108,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <PasswordBox x:Name="txtPassword"
+                                 l:HelpProvider.HelpKey="Indeks#prijavaLozinkaPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
