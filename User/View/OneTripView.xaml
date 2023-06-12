@@ -102,7 +102,7 @@
                     
                 </Grid>
                 
-                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6">
+                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Road" Center="43.620574,22.34942" ZoomLevel="6">
                     <m:Pushpin ToolTip="{Binding Trip.StartLocation.Address}" Location="{Binding StartLocation}">
                         <TextBlock Text="1"/>
                     </m:Pushpin>
