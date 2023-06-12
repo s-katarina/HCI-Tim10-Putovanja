@@ -43,9 +43,9 @@ namespace HCI_Tim10_Putovanja
 
             if (!File.Exists(path))
             {
-                name = "error";
+                path = path.Replace(name, "error");
             }
-            Uri u = new Uri(Database.helpFolderPath + name + ".htm#" + id);
+            Uri u = new Uri(path + "#" + id);
             wbHelp.Navigate(u);
         }
 
