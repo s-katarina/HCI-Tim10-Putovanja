@@ -37,7 +37,7 @@
         <ListView ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="\constants\logo2.jpg" Width="220"></Image>
+                    <Image Source="{Binding .}" Width="220"></Image>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 

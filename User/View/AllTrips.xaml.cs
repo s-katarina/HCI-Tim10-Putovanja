@@ -35,6 +35,10 @@ namespace HCI_Tim10_Putovanja.User.View
 			InitializeComponent();
 			this.trips = trips;
 			DataContext = this;
+			if (Database.loggedInUser.Role.Equals(Role.PASSENGER))
+			{
+				btnAddNew.Visibility = Visibility.Collapsed;
+			}
 		}
 
 		public List<Trip> Trips { get => trips; set => trips = value; }
