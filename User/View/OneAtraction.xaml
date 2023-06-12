@@ -14,7 +14,7 @@
       Title="OneAtraction">
 
     <StackPanel Margin="10">
-        <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 30">
+        <TextBlock Text="{Binding Atraction.Name}" Margin="0, 0, 0, 30">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Setter Property="FontSize" Value="30" />
@@ -26,18 +26,18 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <m:Map x:Name="myMap" Height="300" MinWidth="300" Margin="0, 0, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12">
-                <m:Pushpin Location="47.620574,22.34942"/>
+            <m:Map x:Name="myMap" Height="300" MinWidth="300" Margin="0, 0, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="6">
+                <m:Pushpin ToolTip="{Binding Atraction.Location.Address}" Location="{Binding MapLocation}"/>
             </m:Map>
             <StackPanel Orientation="Vertical" Grid.Column="1" MaxWidth="500">
-                <TextBlock TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Atraction.Description}"></TextBlock>
             </StackPanel>
         </Grid>
         <TextBlock Margin="0, 30, 0, 15" FontSize="22" Text="Galerija"></TextBlock>
-        <ListView ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+        <ListView ItemsSource="{Binding Atraction.Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding .}" Width="220"></Image>
+                    <Image Source="{Binding}" Width="220"></Image>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 

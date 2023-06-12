@@ -81,7 +81,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="travel1btn" ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
                     <Button ToolTip="CTRL+S" x:Name="registrationBtn" Grid.Column="1" Content="Registracija" HorizontalAlignment="Left" Click="Registration_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
                     <Button ToolTip="CTRL+D" x:Name="loginBtn" Grid.Column="1" Margin="120, 0,0, 0" Background="LightBlue" HorizontalAlignment="Right" HorizontalContentAlignment="Left" Click="Login_Click" BorderBrush="Transparent" Foreground="Black">
@@ -100,8 +100,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                    <Button ToolTip="CTRL+W" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="travel2btn" ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="boughtbtn" ToolTip="CTRL+W" Grid.Column="1" Content="Kupljena putovanja" HorizontalAlignment="Left" Click="Users_Trip_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
                     <Button ToolTip="CTRL+F" Grid.Column="2" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
@@ -118,11 +118,11 @@
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                    <Button ToolTip="CTRL+Z" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                    <Button ToolTip="CTRL+X" Grid.Column="2" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                    <Button ToolTip="CTRL+C" Grid.Column="3" Content="Izvestaji" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
-                    <Button ToolTip="CTRL+V" Grid.Column="4" Content="Izvestaji" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="travel3btn" ToolTip="CTRL+A" Grid.Column="0" Content="Putovanja" HorizontalAlignment="Left" Click="Trips_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="atractionsbtn" ToolTip="CTRL+Z" Grid.Column="1" Content="Atrakcije" HorizontalAlignment="Left" Click="Attractions_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="restorauntsbtn" ToolTip="CTRL+X" Grid.Column="2" Content="Restorani i Smestaji" HorizontalAlignment="Left" Click="TouristicStops_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="reportbtn" ToolTip="CTRL+C" Grid.Column="3" Content="Izvestaji (za mesec)" HorizontalAlignment="Left" Click="Report_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
+                    <Button x:Name="tripReportbtn" ToolTip="CTRL+V" Grid.Column="4" Content="Izvestaji (za putovanje)" HorizontalAlignment="Left" Click="TripReport_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
                     <Button ToolTip="CTRL+F" Grid.Column="5" Content="Odjavi se" HorizontalAlignment="Left" Click="Logout_Click"  Background="Transparent" BorderBrush="Transparent" Foreground="Black"></Button>
 
