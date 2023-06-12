@@ -46,6 +46,7 @@ namespace HCI_Tim10_Putovanja.User.View
             }
         }
 
+
         public TripDataContext Tdt
         {
             get => tdt;
@@ -144,7 +145,12 @@ namespace HCI_Tim10_Putovanja.User.View
             }
         }
 
-        private void Save(object sender, RoutedEventArgs e)
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            Save();
+        }
+
+        private void Save()
         {
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Da li ste sigurni da zelite da izmenite? Kliknite OK za potvrdu.", "Potvrda izmena", System.Windows.MessageBoxButton.OKCancel);
             if (messageBoxResult == MessageBoxResult.OK)

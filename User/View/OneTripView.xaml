@@ -16,11 +16,27 @@
       Title="OneTripView"
       x:Name="atractions">
 
+    <Page.Resources>
+        <RoutedUICommand x:Key="MyCommand1" Text="Text" />
+        <RoutedUICommand x:Key="MyCommand2" Text="Another Text" />
+        <RoutedUICommand x:Key="MyCommand3" Text="Another Text" />
+    </Page.Resources>
     <Page.CommandBindings>
+        <CommandBinding Command="{StaticResource MyCommand1}" 
+                    Executed="Bye_Click" />
+        <CommandBinding Command="{StaticResource MyCommand2}" 
+                    Executed="Reserve_Click" />
+        <CommandBinding Command="{StaticResource MyCommand3}" 
+                    Executed="Cancel_Click" />
         <CommandBinding Command="{x:Static local:OneTripView.GoBackShortcut}" 
                      Executed="Go_Back_Click"/>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding Key="B" Modifiers="Ctrl" Command="{StaticResource MyCommand1}" />
+        <KeyBinding Key="R" Modifiers="Ctrl" Command="{StaticResource MyCommand2}" />
+        <KeyBinding Key="C" Modifiers="Ctrl" Command="{StaticResource MyCommand3}" />
+    </Page.InputBindings>
 
 
     <StackPanel l:HelpProvider.HelpKey="Indeks#putovanje">
@@ -71,14 +87,28 @@
             </StackPanel>
             
             <StackPanel Grid.Column="1" Margin="0, 8, 0, 0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="byeBtn" Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black" l:HelpProvider.HelpKey="Indeks#putovanjeKupi"></Button>
-                    <Button x:Name="reserveBtn" Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black" l:HelpProvider.HelpKey="Indeks#putovanjeRezervisi"></Button>
-                    <Button x:Name="cancelBtn" Content="Otkazi rezervaciju" Click="Cancel_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
-                    <TextBlock x:Name="buyTb" Text="Kupljeno" Margin="0, 0, 0, 0" Foreground="#5B5A5A" l:HelpProvider.HelpKey="Indeks#putovanjeOznaka"></TextBlock>
-                </StackPanel>
-                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12">
-                    <m:Pushpin Location="47.620574,22.34942"/>
+                <Grid>
+                    <StackPanel x:Name="originalStack" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
+                        <Button Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                    </StackPanel>
+                    <StackPanel x:Name="reservedStack" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
+                        <Button Content="Otkazi rezervaciju" Click="Cancel_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                    </StackPanel>
+                    <StackPanel x:Name="boughtStack" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Kupljeno" Margin="0, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    </StackPanel>
+                    
+                </Grid>
+                
+                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6">
+                    <m:Pushpin ToolTip="{Binding Trip.StartLocation.Address}" Location="{Binding StartLocation}">
+                        <TextBlock Text="1"/>
+                    </m:Pushpin>
+                    <m:Pushpin ToolTip="{Binding Trip.EndLocation.Address}" Location="{Binding EndLocation}">
+                        <TextBlock Text="2"/>
+                    </m:Pushpin>
                 </m:Map>
 
             </StackPanel>

@@ -15,9 +15,16 @@
       d:DesignHeight="1800" d:DesignWidth="2000"
       Title="UpdateTrip">
 
+    <Page.Resources>
+        <RoutedCommand x:Key="SaveCommand"/>
+    </Page.Resources>
     <Page.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="{StaticResource SaveCommand}" Executed="SaveClick" />
     </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding  Key="S" Modifiers="Ctrl" Command="{StaticResource SaveCommand}" />
+    </Page.InputBindings>
 
     <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#aputovanjeizmena">
         <TextBlock Text="Pregled i izmena detalja putovanja" Margin="0, 0, 0, 30">
@@ -517,7 +524,7 @@
         <Button x:Name="btnSave"
                 l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaSacuvaj"
                         Content="Sacuvaj promene"
-                    Click="Save"
+                    Click="SaveClick"
                     Width="280"
                     Padding="10"
                     Margin="0, 50, 20, 100"

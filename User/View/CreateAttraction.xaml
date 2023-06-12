@@ -14,9 +14,13 @@
       d:DesignHeight="831.264" d:DesignWidth="800"
       Title="CreateAttraction">
 
+
     <Page.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding  Key="S" Modifiers="Ctrl" Command="{Binding SaveCommand}" />
+    </Page.InputBindings>
 
     <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#aatrakcijanova">
         <TextBlock Text="Kreiranje nove atrakcije" Margin="0, 0, 0, 30">
@@ -208,7 +212,7 @@
             <Button x:Name="btnSave"
                     l:HelpProvider.HelpKey="Indeks#aatrakcijanovaKreiranje"
                         Content="Kreiraj atrakciju"
-                    Click="Save"
+                    Click="SaveClick"
                     Width="280"
                     Padding="10"
                     Margin="0, 50, 20, 0"
