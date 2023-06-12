@@ -127,6 +127,8 @@ namespace HCI_Tim10_Putovanja.User.View
             Double.TryParse(latlong[1], out lon);
             AllAttractions.Attractions.Add(new Atraction(name, new Location(lat, lon, addr), desc, images));
             MessageBox.Show("Uspesno kreirana atrakcija!", "Uspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Information);
+            AllAttractions page = new AllAttractions(Database.Attractions);
+            this.NavigationService.Navigate(page);
 
         }
 

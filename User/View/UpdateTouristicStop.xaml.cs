@@ -125,7 +125,7 @@ namespace HCI_Tim10_Putovanja.User.View
                 {
                     AllTouristicStops.TouristicStops.Remove(touristic_stop);
                     MessageBox.Show("Uspesno obrisano!", "Uspesno brisanje", MessageBoxButton.OK, MessageBoxImage.Information);
-                    AllTouristicStops page = new AllTouristicStops(AllTouristicStops.TouristicStops);
+                    AllTouristicStops page = new AllTouristicStops(Database.TouristicStops);
                     this.NavigationService.Navigate(page);
                 } else
                 {

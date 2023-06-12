@@ -60,6 +60,8 @@ namespace HCI_Tim10_Putovanja.User.View
             Double.TryParse(latlong[1], out lon);
             AllTouristicStops.TouristicStops.Add(new TuristicStops(tsDataContext.TSName, new Location(lat, lon, tsDataContext.LocationAddress)));
             MessageBox.Show("Uspesno kreirano!", "Uspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Information);
+            AllTouristicStops page = new AllTouristicStops(Database.TouristicStops);
+            this.NavigationService.Navigate(page);
         }
 
         private void MapWithPushpins_TouchDown(object sender, TouchEventArgs t)

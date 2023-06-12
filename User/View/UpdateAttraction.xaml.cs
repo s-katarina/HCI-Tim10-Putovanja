@@ -120,6 +120,7 @@ namespace HCI_Tim10_Putovanja.User.View
                 attraction.Location.Address = addr;
                 attraction.Description = desc;
                 attraction.Images = images;
+                if (images.Count > 0) attraction.MainImage = images[0];
                 MessageBox.Show("Uspesno izmenjena atrakcija!", "Uspesna izmena", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

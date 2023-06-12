@@ -215,6 +215,8 @@ namespace HCI_Tim10_Putovanja.User.View
             trip.Description = txtDesc.Text;
             Database.Trips.Add(trip);
             MessageBox.Show("Uspesno kreirano putovanje!", "Uspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Information);
+            AllTrips page = new AllTrips(Database.Trips);
+            this.NavigationService.Navigate(page);
         }
 
         private void MapWithPushpins_TouchDown(object sender, TouchEventArgs t)

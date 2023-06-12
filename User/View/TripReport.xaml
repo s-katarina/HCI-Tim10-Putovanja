@@ -16,43 +16,52 @@
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
     </Page.CommandBindings>
 
-    <Grid l:HelpProvider.HelpKey="Indeks#iputovanje">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <StackPanel Orientation="Vertical">
+        <TextBlock Text="Izvestaj kupljenih aranzamana za izabrano putovanje" Margin="20, 10, 0, 30">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30" />
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Grid l:HelpProvider.HelpKey="Indeks#iputovanje">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <StackPanel Orientation="Vertical" Margin="10 0 40 0">
-                <Label Content="Putovanje:" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <ComboBox x:Name="TripComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150" ToolTip="Klikom na neko od ponudjenih putovanja, izabrabrace se to putovanje." l:HelpProvider.HelpKey="Indeks#iputovanjePutovanje" />
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+                <StackPanel Orientation="Vertical" Margin="10 0 40 0">
+                    <Label Content="Putovanje:" VerticalAlignment="Center" Margin="6 0 0 0"/>
+                    <ComboBox x:Name="TripComboBox" Margin="10 0" SelectedIndex="0" MinWidth="150" ToolTip="Klikom na neko od ponudjenih putovanja, izabrabrace se to putovanje." l:HelpProvider.HelpKey="Indeks#iputovanjePutovanje" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical">
+                    <Label Content="" VerticalAlignment="Center" Margin="6 0 0 0"/>
+                    <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" BorderThickness="0" Click="Show_trips" ToolTip="Klikom na dugme ce u tabeli biti prikazani kupljeni aranzmani izabranog putovanja." l:HelpProvider.HelpKey="Indeks#iputovanjeDugme"></Button>
+                </StackPanel>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical">
-                <Label Content="" VerticalAlignment="Center" Margin="6 0 0 0"/>
-                <Button Content="Prikazi" Background="#FFDB97" Foreground="Black" BorderThickness="0" Click="Show_trips" ToolTip="Klikom na dugme ce u tabeli biti prikazani kupljeni aranzmani izabranog putovanja." l:HelpProvider.HelpKey="Indeks#iputovanjeDugme"></Button>
-            </StackPanel>
-        </StackPanel>
-
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" AutoGenerateColumns="False" Margin="10" l:HelpProvider.HelpKey="Indeks#iputovanjeTabela">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Kupac" IsReadOnly="True">
-                    <DataGridTextColumn.Binding>
-                        <MultiBinding StringFormat="{}{0} {1}">
-                            <Binding Path="User.Name" />
-                            <Binding Path="User.Lastname" />
-                        </MultiBinding>
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Cena putovanja (din)" Binding="{Binding Trip.Price, StringFormat={}{0:#\,0.00}, ConverterCulture='sr'}" Width="Auto" IsReadOnly="True">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Right" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Datum kupovine" Binding="{Binding Date}" Width="Auto" IsReadOnly="True" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+            <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" AutoGenerateColumns="False" Margin="10" l:HelpProvider.HelpKey="Indeks#iputovanjeTabela">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Kupac" IsReadOnly="True">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="User.Name" />
+                                <Binding Path="User.Lastname" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Cena putovanja (din)" Binding="{Binding Trip.Price, StringFormat={}{0:#\,0.00}, ConverterCulture='sr'}" Width="Auto" IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Datum kupovine" Binding="{Binding Date}" Width="Auto" IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </StackPanel>
 </Page>

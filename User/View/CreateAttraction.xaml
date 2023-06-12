@@ -108,16 +108,22 @@
 
             </Border>
 
-            <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
+            <ScrollViewer>
+                <Grid>
+                    <Border>
+                        <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
                        l:HelpProvider.HelpKey="Indeks#aatrakcijanovaMapa" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
                        Mode="Road" Center="43.620574,22.34942" ZoomLevel="6" 
                        TouchDown="MapWithPushpins_TouchDown"
                        MouseMove="MyMap_MouseMove">
-                <m:Pushpin x:Name="mapPin" Location="{Binding CoordinatesString}" 
+                            <m:Pushpin x:Name="mapPin" Location="{Binding CoordinatesString}" 
                                ToolTip="{Binding LocationAddress}"
                                MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
-                </m:Pushpin>
-            </m:Map>
+                            </m:Pushpin>
+                        </m:Map>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
 
             <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
             <Border CornerRadius="10"
@@ -185,7 +191,7 @@
                     FontSize="16">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#48C6C6"/>
+                            <Setter Property="Background" Value="White"/>
                         </Style>
                     </Button.Style>
                 </Button>
@@ -201,7 +207,7 @@
                     FontSize="16">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#48C6C6"/>
+                            <Setter Property="Background" Value="White"/>
                         </Style>
                     </Button.Style>
                 </Button>

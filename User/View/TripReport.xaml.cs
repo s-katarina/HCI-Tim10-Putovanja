@@ -42,14 +42,10 @@ namespace HCI_Tim10_Putovanja.User.View
         private void Show_trips(object sender, RoutedEventArgs e)
         {
             string tripName = GetSelectedTrip();
-            MessageBox.Show(tripName);
             Records.Clear();
             foreach (Record record in Database.SoldTrips)
                 if (tripName == record.Trip.Name)
                     Records.Add(record);
-
-            //foreach (Record trip in Records)
-            //    MessageBox.Show(trip.Trip.Name);
         }
 
         private string GetSelectedTrip()

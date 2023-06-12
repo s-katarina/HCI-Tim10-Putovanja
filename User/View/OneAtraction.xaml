@@ -26,9 +26,15 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <m:Map x:Name="myMap" Height="300" MinWidth="300" Margin="0, 0, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Road" Center="47.620574,22.34942" ZoomLevel="6">
-                <m:Pushpin ToolTip="{Binding Atraction.Location.Address}" Location="{Binding MapLocation}"/>
-            </m:Map>
+            <ScrollViewer>
+                <Grid>
+                    <Border>
+                        <m:Map x:Name="myMap" Height="300" MinWidth="300" Margin="0, 0, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Road" Center="47.620574,22.34942" ZoomLevel="6">
+                            <m:Pushpin ToolTip="{Binding Atraction.Location.Address}" Location="{Binding MapLocation}"/>
+                        </m:Map>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
             <StackPanel Orientation="Vertical" Grid.Column="1" MaxWidth="500">
                 <TextBlock TextWrapping="Wrap" Text="{Binding Atraction.Description}"></TextBlock>
             </StackPanel>

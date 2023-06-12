@@ -60,7 +60,7 @@
                 </TextBlock>
                 <Grid Margin="0, 0, 0, 15">
                     <materialDesign:PackIcon Kind="PiggyBankOutline" Height="26"/>
-                    <TextBlock Text="Cena:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
+                    <TextBlock Text="Cena (din):" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
                     <TextBlock x:Name="priceTxt" Text="{Binding Trip.Price, StringFormat={}{0:#\,0.00 din}, ConverterCulture='sr'}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                 </Grid>
                 <Grid Margin="0, 0, 0, 15">
@@ -101,16 +101,21 @@
                     </StackPanel>
                     
                 </Grid>
-                
-                <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Road" Center="43.620574,22.34942" ZoomLevel="6">
-                    <m:Pushpin ToolTip="{Binding Trip.StartLocation.Address}" Location="{Binding StartLocation}">
-                        <TextBlock Text="1"/>
-                    </m:Pushpin>
-                    <m:Pushpin ToolTip="{Binding Trip.EndLocation.Address}" Location="{Binding EndLocation}">
-                        <TextBlock Text="2"/>
-                    </m:Pushpin>
-                </m:Map>
 
+                <ScrollViewer>
+                    <Grid>
+                        <Border>
+                            <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" Mode="Road" Center="43.620574,22.34942" ZoomLevel="6">
+                                <m:Pushpin ToolTip="{Binding Trip.StartLocation.Address}" Location="{Binding StartLocation}">
+                                    <TextBlock Text="1"/>
+                                </m:Pushpin>
+                                <m:Pushpin ToolTip="{Binding Trip.EndLocation.Address}" Location="{Binding EndLocation}">
+                                    <TextBlock Text="2"/>
+                                </m:Pushpin>
+                            </m:Map>
+                        </Border>
+                    </Grid>
+                </ScrollViewer>
             </StackPanel>
 
             
@@ -131,7 +136,6 @@
                                         <Image Source="{Binding MainImage}" Height="180"></Image>
                                         <Grid Background="#E5E5E5" Height="40">
                                         <TextBlock Text="{Binding Name}" Margin="20, 8, 0, 0" ></TextBlock>
-                                            <Button Content="Detalji" HorizontalAlignment="Right" BorderBrush="#5B5A5A" Foreground="Black" Background="#C2C1C1" Margin="0, 0, 10, 0"/>
                                         </Grid>
                                     </StackPanel>
                                 </materialDesign:Card>
