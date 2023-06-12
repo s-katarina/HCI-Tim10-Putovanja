@@ -8,8 +8,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="constants\carska.jpg" />
+    <None Remove="constants\carska2.jpg" />
+    <None Remove="constants\logo.png" />
+    <None Remove="constants\logo.webp" />
+    <None Remove="constants\logo2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
     <PackageReference Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Help\" />
+    <Folder Include="constants\NewFolder\" />
+    <Folder Include="User\Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="constants\carska.jpg" />
+    <Resource Include="constants\carska2.jpg" />
+    <Resource Include="constants\logo.png" />
+    <Resource Include="constants\logo.webp" />
+    <Resource Include="constants\logo2.jpg" />
   </ItemGroup>
 
 </Project>

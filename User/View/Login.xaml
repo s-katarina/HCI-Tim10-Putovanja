@@ -1,0 +1,152 @@
+﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="16"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Login">
+    
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:Login.MyCommand}" 
+                     Executed="Login_Click"/>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" l:HelpProvider.HelpKey="Indeks#prijava">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                MaxWidth="700"
+                Margin="5, 0"
+                >
+                <Image Source="/constants/logo.png"
+                       Width="100"
+                       Height="100"
+
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"></Image>
+                <TextBlock
+                           HorizontalAlignment="Center"
+                       
+                       Text="Prijava"
+                    Margin="0, 0, 0, 20">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="35" />
+
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="Email" Padding="5, 0, 0, 5"></TextBlock>
+                <Border CornerRadius="10"
+                BorderThickness="1"
+                        >
+                    <Border.BorderBrush>
+                        <LinearGradientBrush >
+                            <GradientStop Color="#48C6C6" Offset="0"></GradientStop>
+                            <GradientStop Color="#da34ae" Offset="0.75"></GradientStop>
+                            <GradientStop Color="#8a16c1" Offset="1"></GradientStop>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <TextBox x:Name="txtName"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="35"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                        <TextBox.Text>
+                            <Binding Path="UserName" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <val:EmailValidation ValidationStep="ConvertedProposedValue"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+
+                    </TextBox>
+                    
+                </Border>
+
+                <TextBlock Text="Lozinka" Margin="5, 30, 0, 5" ></TextBlock>
+                <Border CornerRadius="10"
+                BorderThickness="1"
+                        >
+                    <Border.BorderBrush>
+                        <LinearGradientBrush >
+                            <GradientStop Color="#48C6C6" Offset="0"></GradientStop>
+                            <GradientStop Color="#da34ae" Offset="0.75"></GradientStop>
+                            <GradientStop Color="#8a16c1" Offset="1"></GradientStop>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <PasswordBox x:Name="txtPassword"
+                                 l:HelpProvider.HelpKey="Indeks#prijavaLozinkaPolje"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="35"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                         PasswordChanged="PasswordBox_PasswordChanged">
+
+
+                    </PasswordBox>
+
+                </Border>
+                <TextBlock Margin="15, 0, 0, 0" x:Name="passwordErrorTextBlock" Foreground="Red"/>
+            </StackPanel>
+
+            <Button x:Name="btnLogIn"
+                    l:HelpProvider.HelpKey="Indeks#prijavaDugme"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Content="Prijavi se"
+                    Width="300"
+                    Padding="0, 10"
+                    Margin="0, 40"
+                    Click="Login_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#48C6C6"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

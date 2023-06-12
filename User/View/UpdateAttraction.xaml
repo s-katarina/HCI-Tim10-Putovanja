@@ -1,0 +1,266 @@
+﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.UpdateAttraction"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="18" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1800" d:DesignWidth="2000"
+      Title="UpdateAttraction">
+
+    <Page.Resources>
+        <RoutedCommand x:Key="SaveCommand"/>
+    </Page.Resources>
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="{StaticResource SaveCommand}" Executed="Save" />
+    </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding  Key="S" Modifiers="Ctrl" Command="{StaticResource SaveCommand}" />
+    </Page.InputBindings>
+
+    <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#aatrakcijaizmena">
+        <TextBlock Text="Pregled i izmena detalja atrakcije" Margin="0, 0, 0, 30">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30" />
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <StackPanel Margin="50, 0">
+            
+            <Button x:Name="btnDelete"
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmeniObrisi"
+                        Content="Obrisi atrakciju"
+                    Click="Delete"
+                    Width="180"
+                    Padding="10"
+                    Margin="0, 10, 20, 0"
+                    HorizontalAlignment="Right">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#ffffff"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <TextBlock Text="Naziv" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left"
+                        >
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtName"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaNazivPolje"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                    <TextBox.Text>
+                        <Binding Path="AName" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Naziv"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+            </Border>
+
+            <TextBlock Text="Lokacija" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left"
+                        >
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtLocation"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaLokacijaPolje"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                    <TextBox.Text>
+                        <Binding Path="LocationAddress" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Lokacija"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+            </Border>
+            <ScrollViewer>
+                <Grid>
+                    <Border>
+                        <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
+                       l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaMapa" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
+                       Mode="Road" Center="43.620574,22.34942" ZoomLevel="6" 
+                       TouchDown="MapWithPushpins_TouchDown"
+                       MouseMove="MyMap_MouseMove">
+                            <m:Pushpin x:Name="mapPin" Location="{Binding CoordinatesString}" 
+                               MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
+                            </m:Pushpin>
+                        </m:Map>
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+
+            <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="700"
+                HorizontalAlignment="Left"
+                        >
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtOpis"
+                         l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaOpisPolje"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         VerticalContentAlignment="Center"
+                         MaxHeight="150"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                         TextWrapping="Wrap"
+                          AcceptsReturn="True"
+                          VerticalScrollBarVisibility="Visible"
+                          materialDesign:ValidationAssist.FontSize="16"
+                         TextAlignment="Left"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                    <TextBox.Text>
+                        <Binding Path="Description"  UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Opis"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+            </Border>
+
+            <TextBlock Margin="0, 30, 0, 15" Text="Galerija"></TextBlock>
+            <ListView x:Name="lbImages" ItemsSource="{Binding Images}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}" Width="220"></Image>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Right"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaDodajSliku"
+                        Content="Dodaj sliku"
+                    Click="AddImages"
+                    Width="180"
+                    Padding="10"
+                    Margin="0, 10, 40, 0"
+                    HorizontalAlignment="Center"
+                    FontSize="16">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="White"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaUkloniSliku"
+                    Content="Ukloni izabranu sliku"
+                    Click="RemoveImage"
+                    Width="180"
+                    Padding="10"
+                    Margin="40, 10, 20, 0"
+                    HorizontalAlignment="Center"
+                    FontSize="16">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="White"/>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </StackPanel>
+
+
+            <Button x:Name="btnSave"
+                    l:HelpProvider.HelpKey="Indeks#aatrakcijaizmenaSacuvaj"
+                        Content="Sacuvaj promene"
+                    Click="Save"
+                    Width="280"
+                    Padding="10"
+                    Margin="0, 50, 20, 0"
+                    HorizontalAlignment="Center"
+                    FontSize="22">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtName}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtLocation}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </StackPanel>
+
+    </StackPanel>
+    
+    
+
+</Page>

@@ -1,0 +1,534 @@
+﻿<Page x:Class="HCI_Tim10_Putovanja.User.View.CreateTrip"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:core="clr-namespace:HCI_Tim10_Putovanja.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
+      Background="{DynamicResource MaterialDesignPaper}"
+      TextElement.FontWeight="Medium"
+      TextElement.FontSize="18" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1800" d:DesignWidth="2000"
+      Title="UpdateTrip">
+
+    <Page.Resources>
+        <RoutedCommand x:Key="SaveCommand"/>
+    </Page.Resources>
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="{StaticResource SaveCommand}" Executed="Save" />
+    </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding  Key="S" Modifiers="Ctrl" Command="{StaticResource SaveCommand}" />
+    </Page.InputBindings>
+
+    <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#aputovanjenovo">
+        <TextBlock Text="Kreiranje novog putovanja" Margin="0, 0, 0, 30">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="30" />
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <StackPanel Margin="50 0">
+
+            <TextBlock Text="Naziv" Padding="5, 0, 0, 5" Margin="0 20 0 0"></TextBlock>
+            <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left"
+                        >
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtName"
+                         l:HelpProvider.HelpKey="Indeks#aputovanjenovoNazivPolje"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                         FontWeight="Normal"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                    <TextBox.Text>
+                        <Binding Path="Trip.Name" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:NotNullText ValidationStep="ConvertedProposedValue" FieldName="Naziv"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+            </Border>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Vreme polaska" Padding="5, 5, 0, 5" Margin="0 35 0 0"></TextBlock>
+                    <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left"
+                        >
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtStartTime"
+                                 l:HelpProvider.HelpKey="Indeks#aputovanjenovoVremePolazak"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                         FontWeight="Normal"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                            <TextBox.Text>
+                                <Binding Path="Trip.StartTime" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <val:DateFmt ValidationStep="RawProposedValue" FieldName="Vreme polaska"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                    </Border>
+
+                    <TextBlock Text="Mesto polaska (1)" Padding="5, 25, 0, 5"></TextBlock>
+                    <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtStartLocation"
+                                 l:HelpProvider.HelpKey="Indeks#aputovanjenovoPolazak"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         FontWeight="Normal"
+                         HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+
+                        </TextBox>
+
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Margin="30 0 0 0">
+                    <TextBlock Text="Vreme povratka" Padding="5, 5, 0, 5" Margin="0 35 0 0"></TextBlock>
+                    <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left"
+                        >
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtEndTime"
+                                 l:HelpProvider.HelpKey="Indeks#aputovanjenovoVremePovratak"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         FontWeight="Normal"
+                         HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                            <TextBox.Text>
+                                <Binding Path="Trip.EndTime" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <val:DateFmt ValidationStep="RawProposedValue" FieldName="Vreme povratka"/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                    </Border>
+
+                    <TextBlock Text="Odrediste (2)" Padding="5, 25, 0, 5" 
+                      ></TextBlock>
+                    <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left"
+                        >
+                        <Border.BorderBrush>
+                            <LinearGradientBrush >
+                                <GradientStop Color="#000000" Offset="0"></GradientStop>
+                                <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                                <GradientStop Color="#000000" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <TextBox x:Name="txtEndLocation"
+                                 l:HelpProvider.HelpKey="Indeks#aputovanjenovoOdrediste"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         FontWeight="Normal"
+                         HorizontalAlignment="Stretch"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+
+                        </TextBox>
+
+                    </Border>
+                </StackPanel>
+
+                <ScrollViewer>
+                    <Grid>
+                        <Border>
+                            <m:Map x:Name="myMap" Height="250" Width="250" Margin="40, 50, 0, 0"
+                       l:HelpProvider.HelpKey="Indeks#aputovanjenovoMapa" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
+                       Mode="Road" Center="43.620574,22.34942" ZoomLevel="6" 
+                       TouchDown="MapWithPushpins_TouchDown"
+                       MouseMove="MyMap_MouseMove">
+                                <m:Pushpin x:Name="startPin" Location="{Binding CoordinatesString[0]}" 
+                               MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
+                                    <TextBlock Text="1"/>
+                                </m:Pushpin>
+                                <m:Pushpin x:Name="endPin" Location="{Binding CoordinatesString[1]}" 
+                               MouseDown="Pin_MouseDown" MouseUp="Pin_MouseUp">
+                                    <TextBlock Text="2"/>
+                                </m:Pushpin>
+                            </m:Map>
+                        </Border>
+                    </Grid>
+                </ScrollViewer>
+
+            </StackPanel>
+
+            <TextBlock Text="Cena (din)" Padding="5, 0, 0, 5" Margin="0 35 0 0"></TextBlock>
+            <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="400"
+                HorizontalAlignment="Left"
+                        >
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+
+                <TextBox x:Name="txtPrice"
+                         l:HelpProvider.HelpKey="Indeks#aputovanjenovoCena"
+                         CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         Height="45"
+                         VerticalContentAlignment="Center"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                         FontWeight="Normal"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+                    <TextBox.Text>
+                        <Binding Path="Trip.Price" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <val:DoubleVal ValidationStep="RawProposedValue" FieldName="Cena"/>
+                                <val:PriceRange ValidationStep="ConvertedProposedValue" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+            </Border>
+
+            <TextBlock Text="Opis" Padding="5, 0, 0, 5" Margin="0 35 0 0"></TextBlock>
+            <Border CornerRadius="10"
+                BorderThickness="1"
+                Width="700"
+                HorizontalAlignment="Left"
+                        >
+                <Border.BorderBrush>
+                    <LinearGradientBrush >
+                        <GradientStop Color="#000000" Offset="0"></GradientStop>
+                        <GradientStop Color="#000000" Offset="0.75"></GradientStop>
+                        <GradientStop Color="#000000" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <TextBox x:Name="txtDesc"
+                         l:HelpProvider.HelpKey="Indeks#aputovanjenovoOpis"
+                     Text="{Binding Trip.Description}"
+                        CaretBrush="LightGray"
+                         Background="Transparent"
+                         BorderBrush="Transparent"
+                         VerticalContentAlignment="Center"
+                         MaxHeight="150"
+                         Padding="10, 0"
+                         Margin="5, 0"
+                         HorizontalAlignment="Stretch"
+                         TextWrapping="Wrap"
+                          AcceptsReturn="True"
+                         FontWeight="Normal"
+                             materialDesign:ValidationAssist.FontSize="16"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         >
+
+                </TextBox>
+
+            </Border>
+
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
+                    <Grid  HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                            <ColumnDefinition Width="245*"/>
+                            <ColumnDefinition Width="177*"></ColumnDefinition>
+                            <ColumnDefinition Width="68*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Ime"  />
+                        <TextBlock Text="Adresa" Grid.Column="1" />
+                        <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
+                    </Grid>
+                    <ListBox Name="lbAttractions" ItemsSource="{Binding Trip.Atractions}" l:HelpProvider.HelpKey="Indeks#aputovanjenovoAtrakcije">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MinWidth="550">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button x:Name="btnRemoveAttraction"
+                            l:HelpProvider.HelpKey="Indeks#aputovanjenovoAtrakcijeUkloni"
+                        Content="Ukloni izabrano"
+                        Click="RemoveAttraction"
+                        ToolTip="Ukloni izabranu atrakciju sa spiska (iznad)"
+                    Width="160"
+                    Padding="10"
+                    Margin="0, 40, 0, 0"
+                        FontWeight="Normal"
+                        FontSize="14"
+                    HorizontalAlignment="Center">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#ffffff"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
+                    <TextBlock Text="Izbor za dodavanje u spisak atrakcija ovog putovanja" FontSize="13"></TextBlock>
+                    <ComboBox Name="cbOtherAttractions" HorizontalContentAlignment="Stretch" Loaded="OnLoadAttr" l:HelpProvider.HelpKey="Indeks#aputovanjenovoAtrakcijeIzbor">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="btnAddAttraction"
+                            l:HelpProvider.HelpKey="Indeks#aputovanjenovoAtrakcijeDodaj"
+                        Content="Dodaj izabrano"
+                        Click="AddAttraction"
+                        ToolTip="Dodaj izabranu atrakciju iz padajuceg menija"
+                    Width="160"
+                    Padding="10"
+                        FontSize="14"
+                        FontWeight="Normal"
+                    Margin="0, 20, 0, 0"
+                    HorizontalAlignment="Center">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#ffffff"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+
+
+                </StackPanel>
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0 30">
+
+                <StackPanel Orientation="Vertical">
+
+                    <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Restorani i Smestaji"></TextBlock>
+                    <Grid  HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Ime"  />
+                        <TextBlock Text="Adresa" Grid.Column="1" />
+                        <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
+
+                    </Grid>
+                    <ListBox Name="lbTouristicStops" ItemsSource="{Binding Trip.TouristicStops}" l:HelpProvider.HelpKey="Indeks#aputovanjenovoRes">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MinWidth="550">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Button x:Name="btnRemoveTouristicStop"
+                            l:HelpProvider.HelpKey="Indeks#aputovanjenovoResUkloni"
+                        Content="Ukloni izabrano"
+                        ToolTip="Ukloni izabranu stavku sa spiska (iznad)"
+                        Click="RemoveTouristicStop"
+                    Width="160"
+                    Padding="10"
+                    Margin="0, 40, 0, 0"
+                        FontSize="14"
+                        FontWeight="Normal"
+                    HorizontalAlignment="Center">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#ffffff"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
+                    <TextBlock Text="Izbor za dodavanje u spisak restorana i smestaja ovog putovanja" FontSize="13"  ></TextBlock>
+                    <ComboBox Name="cbOtherTouristicStops" HorizontalContentAlignment="Stretch" Loaded="OnLoadTouristicStop" l:HelpProvider.HelpKey="Indeks#aputovanjenovoResIzbor">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Grid.Column="0" Text="{Binding Name}" FontSize="15"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Location.Address}" FontSize="15" HorizontalAlignment="Right" />
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="btnAddTouristicStop"
+                            l:HelpProvider.HelpKey="Indeks#aputovanjenovoResDodaj"
+                        Content="Dodaj izabrano"
+                        ToolTip="Dodaj izabranu stavku iz padajuceg menija"
+                        Click="AddTouristicStop"
+                    Width="160"
+                    Padding="10"
+                    Margin="0, 20, 0, 0"
+                        FontSize="14"
+                        FontWeight="Normal"
+                    HorizontalAlignment="Center">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#ffffff"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+
+                </StackPanel>
+
+            </StackPanel>
+
+
+            <Button x:Name="btnSave"
+                    l:HelpProvider.HelpKey="Indeks#aputovanjenovoKreiraj"
+                        Content="Kreiraj putovanje"
+                    Click="Save"
+                    Width="280"
+                    Padding="10"
+                    Margin="0, 50, 20, 100"
+                    HorizontalAlignment="Center"
+                    FontSize="22">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="LightGray"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+        </StackPanel>
+
+    </StackPanel>
+
+</Page>
