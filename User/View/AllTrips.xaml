@@ -34,6 +34,8 @@
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="#48C6C6"/>
+                    <Setter Property="Foreground" Value="Black"/>
+
                 </Style>
             </Button.Style>
         </Button>

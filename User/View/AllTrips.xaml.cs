@@ -38,6 +38,7 @@ namespace HCI_Tim10_Putovanja.User.View
 			InitializeComponent();
 			this.trips = trips;
 			DataContext = this;
+
 			OneTripShortcut.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.None));
 
 			btnAddNew.Visibility = Visibility.Hidden;

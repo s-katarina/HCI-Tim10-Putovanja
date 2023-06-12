@@ -41,7 +41,12 @@ namespace HCI_Tim10_Putovanja.User.View
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private void Save(object sender, RoutedEventArgs e)
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            Save();
+        }
+
+        private void Save()
         {
             if (tsDataContext.TSName == null || tsDataContext.LocationAddress == null)
             {

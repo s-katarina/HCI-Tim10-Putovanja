@@ -89,6 +89,18 @@ namespace HCI_Tim10_Putovanja.User.View
             DataContext = this;
         }
 
+        private ICommand saveCommand;
+        public ICommand SaveCommand {
+            get
+            {
+                return saveCommand
+                    ?? (saveCommand = new SaveCommand(() =>
+                    {
+                        Save();
+                    }));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -96,7 +108,12 @@ namespace HCI_Tim10_Putovanja.User.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Save(object sender, RoutedEventArgs e)
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            Save();
+        }
+
+        private void Save()
         {
             if (name == null || addr == null)
             {
@@ -110,6 +127,7 @@ namespace HCI_Tim10_Putovanja.User.View
             Double.TryParse(latlong[1], out lon);
             AllAttractions.Attractions.Add(new Atraction(name, new Location(lat, lon, addr), desc, images));
             MessageBox.Show("Uspesno kreirana atrakcija!", "Uspesno kreiranje", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
         private void AddImages(object sender, RoutedEventArgs e)
@@ -201,5 +219,29 @@ namespace HCI_Tim10_Putovanja.User.View
             }
         }
 
+        
+
     }
+}
+
+public class SaveCommand : ICommand
+{
+    private readonly Action _action;
+
+    public SaveCommand(Action action)
+    {
+        _action = action;
+    }
+
+    public void Execute(object parameter)
+    {
+        _action();
+    }
+
+    public bool CanExecute(object parameter)
+    {
+        return true;
+    }
+
+    public event EventHandler CanExecuteChanged;
 }

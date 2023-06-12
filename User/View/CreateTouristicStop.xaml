@@ -14,9 +14,16 @@
       d:DesignHeight="831.264" d:DesignWidth="800"
       Title="CreateTouristicStop">
 
+    <Page.Resources>
+        <RoutedCommand x:Key="SaveCommand"/>
+    </Page.Resources>
     <Page.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+        <CommandBinding Command="{StaticResource SaveCommand}" Executed="SaveClick" />
     </Page.CommandBindings>
+    <Page.InputBindings>
+        <KeyBinding  Key="S" Modifiers="Ctrl" Command="{StaticResource SaveCommand}" />
+    </Page.InputBindings>
 
     <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#arestorannovi">
         <TextBlock Text="Kreiranje novog restorana/smestaja" Margin="0, 0, 0, 30">
@@ -118,7 +125,7 @@
             <Button x:Name="btnSave"
                     l:HelpProvider.HelpKey="Indeks#arestorannoviKreiranje"
                         Content="Kreiraj"
-                    Click="Save"
+                    Click="SaveClick"
                     Width="280"
                     Padding="10"
                     Margin="0, 20, 20, 0"
