@@ -110,7 +110,7 @@
 
             <m:Map x:Name="myMap" Height="300" Width="750" Margin="0, 50"
                        l:HelpProvider.HelpKey="Indeks#aatrakcijanovaMapa" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
-                       Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6" 
+                       Mode="Road" Center="43.620574,22.34942" ZoomLevel="6" 
                        TouchDown="MapWithPushpins_TouchDown"
                        MouseMove="MyMap_MouseMove">
                 <m:Pushpin x:Name="mapPin" Location="{Binding CoordinatesString}" 

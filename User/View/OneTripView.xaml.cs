@@ -46,7 +46,7 @@ namespace HCI_Tim10_Putovanja.User.View
 			this.startLocation = trip.StartLocation.Latitude.ToString() + "," + trip.StartLocation.Lagnitude.ToString();
 			this.endLocation = trip.EndLocation.Latitude.ToString() + "," + trip.EndLocation.Lagnitude.ToString();
 			InitializeComponent();
-			GetRoute();
+			drawRoute();
 			DataContext = this;
 			Debug.WriteLine(trip.Price);
 			GoBackShortcut.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.Shift));
@@ -179,7 +179,7 @@ namespace HCI_Tim10_Putovanja.User.View
 							}
 							else
 							{
-								MessageBox.Show("No Results found.");
+								//MessageBox.Show("No Results found.");
 							}
 						});
 					});
@@ -214,7 +214,7 @@ namespace HCI_Tim10_Putovanja.User.View
 		private void Bye_Click(object sender, RoutedEventArgs e)
 		{
 			if (!(reservedStack.Visibility == Visibility.Visible || originalStack.Visibility == Visibility.Visible)) return;
-			if (MessageBox.Show("Da li zelite da zavrsite kupovinu " + Trip.Name + "?", "Potvrda", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+			if (MessageBox.Show("Da li zelite da zavrsite kupovinu " + Trip.Name + "?", "Potvrda", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.Cancel)
 			{
 				Debug.WriteLine("no");
 			}
@@ -244,7 +244,7 @@ namespace HCI_Tim10_Putovanja.User.View
 		private void Reserve_Click(object sender, RoutedEventArgs e)
 		{
 			if (originalStack.Visibility != Visibility.Visible) return;
-			if (MessageBox.Show("Da li zelite da rezervisete " + Trip.Name + "?", "Potvrda", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+			if (MessageBox.Show("Da li zelite da rezervisete " + Trip.Name + "?", "Potvrda", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.Cancel)
 			{
 				Debug.WriteLine("no");
 			}
@@ -264,7 +264,7 @@ namespace HCI_Tim10_Putovanja.User.View
 		private void Cancel_Click(object sender, RoutedEventArgs e)
 		{
 			if (reservedStack.Visibility != Visibility.Visible) return;
-			if (MessageBox.Show("Da li sigurno zelite da otkazete rezervaciju?", "Potvrda", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			if (MessageBox.Show("Da li sigurno zelite da otkazete rezervaciju?", "Potvrda", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
 			{
 				reservedStack.Visibility = Visibility.Hidden;
 				originalStack.Visibility = Visibility.Visible;
