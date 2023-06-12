@@ -41,7 +41,7 @@ namespace HCI_Tim10_Putovanja.User.View
 			OneTripShortcut.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.None));
 
 			btnAddNew.Visibility = Visibility.Hidden;
-			if (Database.loggedInUser != null && Database.loggedInUser.Role.Equals(Role.AGENT))
+			if (Database.loggedInUser != null && Database.loggedInUser.Role == Role.AGENT)
 				btnAddNew.Visibility = Visibility.Visible;
 		}
 

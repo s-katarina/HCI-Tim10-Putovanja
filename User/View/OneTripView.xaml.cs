@@ -265,6 +265,10 @@ namespace HCI_Tim10_Putovanja.User.View
 		{
 			if (reservedStack.Visibility != Visibility.Visible) return;
 			if (MessageBox.Show("Da li sigurno zelite da otkazete rezervaciju?", "Potvrda", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+			{
+				reservedStack.Visibility = Visibility.Hidden;
+				originalStack.Visibility = Visibility.Visible;
+				boughtStack.Visibility = Visibility.Hidden;
 				foreach (Record r in Database.ReservedTrips)
 					if (r.User.Email == Database.loggedInUser.Email && r.Trip.Name == trip.Name)
 					{
@@ -272,6 +276,8 @@ namespace HCI_Tim10_Putovanja.User.View
 						MessageBox.Show("Uspesno otkazano putovanje!");
 						break;
 					}
+			}
+				
 		}
 
 		private bool already_reserved()
