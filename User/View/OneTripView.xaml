@@ -128,7 +128,7 @@
                         <DataTemplate>
                                 <materialDesign:Card VerticalAlignment="Center" MinWidth="270" HorizontalAlignment="Center">
                                     <StackPanel>
-                                        <Image Source="\constants\logo2.jpg" Height="180"></Image>
+                                        <Image Source="{Binding MainImage}" Height="180"></Image>
                                         <Grid Background="#E5E5E5" Height="40">
                                         <TextBlock Text="{Binding Name}" Margin="20, 8, 0, 0" ></TextBlock>
                                             <Button Content="Detalji" HorizontalAlignment="Right" BorderBrush="#5B5A5A" Foreground="Black" Background="#C2C1C1" Margin="0, 0, 10, 0"/>

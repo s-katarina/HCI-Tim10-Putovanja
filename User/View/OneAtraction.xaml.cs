@@ -20,14 +20,21 @@ namespace HCI_Tim10_Putovanja.User.View
 	/// </summary>
 	public partial class OneAtraction : Page
 	{
+		private Atraction atraction;
+		private string mapLocation;
 		public OneAtraction()
 		{
 			InitializeComponent();
 		}
-		public OneAtraction(Atraction atraction)
+		public OneAtraction(Atraction atraction_)
 		{
 			InitializeComponent();
-			DataContext = atraction;
+			this.Atraction = atraction_;
+			mapLocation = atraction.Location.Latitude.ToString() + "," + atraction.Location.Lagnitude.ToString();
+			DataContext = this;
 		}
+
+		public Atraction Atraction { get => atraction; set => atraction = value; }
+		public string MapLocation { get => mapLocation; set => mapLocation = value; }
 	}
 }

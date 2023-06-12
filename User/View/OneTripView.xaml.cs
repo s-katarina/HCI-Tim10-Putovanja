@@ -270,7 +270,6 @@ namespace HCI_Tim10_Putovanja.User.View
 					{
 						Database.ReservedTrips.Remove(r);
 						MessageBox.Show("Uspesno otkazano putovanje!");
-						this.NavigationService.Navigate(new AllTrips(Database.Trips));
 						break;
 					}
 		}

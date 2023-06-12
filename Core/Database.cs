@@ -30,7 +30,7 @@ namespace HCI_Tim10_Putovanja.Core
 		public static List<Record> ReservedTrips { get => reservedTrips; }
 
 		public static AppUser loggedInUser;
-		public static string helpFolderPath = "D:/Faks/3. Godina/Interakcija covek racunar/HCI-Tim10-Putovanja/Help/";
+		public static string helpFolderPath = "D:/3. godina SIIT/letnji semestar/iteracija covek racunar/HCI-Tim10-Putovanja/Help/";
 
 
 		public Database()
@@ -49,7 +49,7 @@ namespace HCI_Tim10_Putovanja.Core
 
 				List<String> images = new List<string>();
 				images.Add("\\constants\\logo2.jpg");
-				images.Add("\\constants\\logo2.jpg");
+				images.Add("\\constants\\logo.webp");
 				images.Add("\\constants\\logo2.jpg");
 				images.Add("\\constants\\logo2.jpg");
 				List<String> images2 = new List<string>();
