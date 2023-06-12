@@ -46,7 +46,7 @@ namespace HCI_Tim10_Putovanja.User.View
 			this.startLocation = trip.StartLocation.Latitude.ToString() + "," + trip.StartLocation.Lagnitude.ToString();
 			this.endLocation = trip.EndLocation.Latitude.ToString() + "," + trip.EndLocation.Lagnitude.ToString();
 			InitializeComponent();
-			GetRoute();
+			drawRoute();
 			DataContext = this;
 			Debug.WriteLine(trip.Price);
 			GoBackShortcut.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.Shift));
