@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
       xmlns:core="clr-namespace:HCI_Tim10_Putovanja.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
@@ -14,7 +15,11 @@
       d:DesignHeight="1800" d:DesignWidth="2000"
       Title="UpdateTrip">
 
-    <StackPanel Margin="10">
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+    <StackPanel Margin="10" l:HelpProvider.HelpKey="Indeks#aputovanjeizmena">
         <TextBlock Text="Pregled i izmena detalja putovanja" Margin="0, 0, 0, 30">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -26,6 +31,7 @@
         <StackPanel Margin="50 0">
             
         <Button x:Name="btnDelete"
+                l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaObrisi"
                         Content="Obrisi putovanje"
                     Click="Delete"
                     Width="180"
@@ -53,6 +59,7 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
             <TextBox x:Name="txtName"
+                     l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaNazivPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -93,6 +100,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtStartTime"
+                             l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaVremePolazak"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -129,6 +137,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtStartLocation"
+                             l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaPolazak"
                      Text="{Binding StartAddress}"
                          CaretBrush="LightGray"
                          Background="Transparent"
@@ -163,6 +172,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtEndTime"
+                             l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaVremePovratak"
                          Background="Transparent"
                          BorderBrush="Transparent"
                          Height="45"
@@ -200,6 +210,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <TextBox x:Name="txtEndLocation"
+                             l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaOdrediste"
                      Text="{Binding EndAddress}"
                          CaretBrush="LightGray"
                          Background="Transparent"
@@ -220,7 +231,7 @@
             </StackPanel>
 
                 <m:Map x:Name="myMap" Height="250" Width="250" Margin="40, 50, 0, 0"
-                       CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
+                       l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaMapa" CredentialsProvider="SnHYMam6TI3eih8XdGcM~O9u2ALoPJSaWq00iBIY_gQ~AloMVoJvFusZA7hMcea7h0eqZ0f7EkNT5VkUGBz_WOP9oYxgem-Dm5h4JnC_hILn" 
                        Mode="Aerial" Center="43.620574,22.34942" ZoomLevel="6" 
                        TouchDown="MapWithPushpins_TouchDown"
                        MouseMove="MyMap_MouseMove">
@@ -251,6 +262,7 @@
             </Border.BorderBrush>
 
             <TextBox x:Name="txtPrice"
+                     l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaCena"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -289,6 +301,7 @@
                 </LinearGradientBrush>
             </Border.BorderBrush>
             <TextBox x:Name="txtDesc"
+                     l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaOpis"
                      Text="{Binding Trip.Description}"
                         CaretBrush="LightGray"
                          Background="Transparent"
@@ -329,7 +342,7 @@
                         <TextBlock Text="Adresa" Grid.Column="1" />
                         <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
                     </Grid>
-                <ListBox Name="lbAttractions" ItemsSource="{Binding Trip.Atractions}">
+                    <ListBox Name="lbAttractions" ItemsSource="{Binding Trip.Atractions}" l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaAtrakcije">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid MinWidth="550">
@@ -345,6 +358,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                     <Button x:Name="btnRemoveAttraction"
+                            l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaAtrakcijeUkloni"
                         Content="Ukloni izabrano"
                         Click="RemoveAttraction"
                         ToolTip="Ukloni izabranu atrakciju sa spiska (iznad)"
@@ -364,7 +378,7 @@
 
             <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
                     <TextBlock Text="Izbor za dodavanje u spisak atrakcija ovog putovanja" FontSize="13"></TextBlock>
-                    <ComboBox Name="cbOtherAttractions" HorizontalContentAlignment="Stretch" Loaded="OnLoadAttr">
+                    <ComboBox Name="cbOtherAttractions" HorizontalContentAlignment="Stretch" Loaded="OnLoadAttr" l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaAtrakcijeIzbor">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -379,6 +393,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button x:Name="btnAddAttraction"
+                        l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaAtrakcijeDodaj"
                         Content="Dodaj izabrano"
                         Click="AddAttraction"
                         ToolTip="Dodaj izabranu atrakciju iz padajuceg menija"
@@ -422,7 +437,7 @@
                     <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
 
                 </Grid>
-                <ListBox Name="lbTouristicStops" ItemsSource="{Binding Trip.TouristicStops}">
+                    <ListBox Name="lbTouristicStops" ItemsSource="{Binding Trip.TouristicStops}" l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaRes">
 
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -440,6 +455,7 @@
                 </ListBox>
 
                     <Button x:Name="btnRemoveTouristicStop"
+                            l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaResUkloni"
                         Content="Ukloni izabrano"
                         ToolTip="Ukloni izabranu stavku sa spiska (iznad)"
                         Click="RemoveTouristicStop"
@@ -460,7 +476,7 @@
 
             <StackPanel Orientation="Vertical" Margin="100 130 0 0" Width="400">
                     <TextBlock Text="Izbor za dodavanje u spisak restorana i smestaja ovog putovanja" FontSize="13"  ></TextBlock>
-                    <ComboBox Name="cbOtherTouristicStops" HorizontalContentAlignment="Stretch" Loaded="OnLoadTouristicStop">
+                    <ComboBox Name="cbOtherTouristicStops" HorizontalContentAlignment="Stretch" Loaded="OnLoadTouristicStop" l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaIzbor">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -475,6 +491,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button x:Name="btnAddTouristicStop"
+                        l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaResDodaj"
                         Content="Dodaj izabrano"
                         ToolTip="Dodaj izabranu stavku iz padajuceg menija"
                         Click="AddTouristicStop"
@@ -498,6 +515,7 @@
 
 
         <Button x:Name="btnSave"
+                l:HelpProvider.HelpKey="Indeks#aputovanjeizmenaSacuvaj"
                         Content="Sacuvaj promene"
                     Click="Save"
                     Width="280"

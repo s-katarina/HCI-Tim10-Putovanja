@@ -24,6 +24,9 @@ namespace HCI_Tim10_Putovanja.User.View
 	public partial class AllTrips : Page
 	{
 		private List<Trip> trips;
+		public static readonly System.Windows.DependencyProperty TabNavigationProperty;
+		public static RoutedCommand OneTripShortcut = new RoutedCommand();
+
 		public AllTrips()
 		{
 			InitializeComponent();
@@ -35,29 +38,43 @@ namespace HCI_Tim10_Putovanja.User.View
 			InitializeComponent();
 			this.trips = trips;
 			DataContext = this;
-			if (Database.loggedInUser.Role.Equals(Role.PASSENGER))
-			{
-				btnAddNew.Visibility = Visibility.Collapsed;
-			}
+
+			OneTripShortcut.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.None));
+
+			btnAddNew.Visibility = Visibility.Hidden;
+			if (Database.loggedInUser != null && Database.loggedInUser.Role.Equals(Role.AGENT))
+				btnAddNew.Visibility = Visibility.Visible;
 		}
 
 		public List<Trip> Trips { get => trips; set => trips = value; }
 
 		private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			Debug.WriteLine(tripsListBox.SelectedItem.ToString());
-			Debug.WriteLine("Holamibebebe");
-			// Instantiate the page to navigate to
-			if (Database.loggedInUser.Role.Equals(Role.PASSENGER))
+			OpenOneTrip();
+		}
+		private void ListBox_Klick(object sender, MouseButtonEventArgs e)
+		{
+			var item = sender as ListViewItem;
+			if (item != null)
+			{
+				OpenOneTrip();
+			}
+		}
+
+		private void OpenOneTrip()
+		{
+			if (Database.loggedInUser == null || Database.loggedInUser.Role.Equals(Role.PASSENGER))
 			{
 				OneTripView page = new OneTripView((Trip)tripsListBox.SelectedItem);
 				this.NavigationService.Navigate(page);
-			} else if (Database.loggedInUser.Role.Equals(Role.AGENT))
-            {
+			}
+			else if (Database.loggedInUser.Role.Equals(Role.AGENT))
+			{
 				UpdateTrip page = new UpdateTrip((Trip)tripsListBox.SelectedItem);
 				this.NavigationService.Navigate(page);
-            }
+			}
 		}
+
 		private void txtNameToSearch_TextChanged(object sender,
 TextChangedEventArgs e)
 		{
@@ -76,6 +93,16 @@ TextChangedEventArgs e)
 		{
 			CreateTrip page = new CreateTrip();
 			this.NavigationService.Navigate(page);
+		}
+
+		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+			if (focusedControl is DependencyObject)
+			{
+				string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+				HelpProvider.ShowHelp(str);
+			}
 		}
 
 	}

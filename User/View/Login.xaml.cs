@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +23,14 @@ namespace HCI_Tim10_Putovanja.User.View
 	public partial class Login : Page
 	{
 		private ObservableObject observableObject = new ObservableObject();
-		private Database database = new Database();
+		public static RoutedCommand MyCommand = new RoutedCommand();
 
 		public Login()
 		{
 			InitializeComponent();
 			DataContext = this;
 			ErrorMessagee = "";
+			MyCommand.InputGestures.Add(new KeyGesture(Key.Enter, ModifierKeys.None));
 		}
 
 		private string userName;
@@ -66,8 +68,12 @@ namespace HCI_Tim10_Putovanja.User.View
 				MessageBox.Show("Molimo vas popunite sva polja.", "Obustavljena prijava", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
-			foreach (AppUser user in database.Users) {
+
+			Debug.WriteLine("u loginu2");
+			foreach (AppUser user in Database.Users) {
+				Debug.WriteLine(user.Email);
 				if (user.Email == userName && user.Password == Password) {
+					((MainWindow)System.Windows.Application.Current.MainWindow).ChangeNavbar(user.Role);
 					MessageBox.Show("Uspesna prijava.", "Uspesna prijava", MessageBoxButton.OK, MessageBoxImage.Information);
 					Database.loggedInUser = user;
 					return;
@@ -80,8 +86,18 @@ namespace HCI_Tim10_Putovanja.User.View
 		{
 			Password = ((PasswordBox)sender).Password;
 			ErrorMessagee = Password.Length < 5 ? "Lozinka mora imati bar 5 karaktera" : "";
-			
 			passwordErrorTextBlock.Text = ErrorMessagee;
 		}
+
+		private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+			IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
+			if (focusedControl is DependencyObject)
+			{
+				string str = HelpProvider.GetHelpKey((DependencyObject)focusedControl);
+				HelpProvider.ShowHelp(str);
+			}
+		}
+
 	}
 }

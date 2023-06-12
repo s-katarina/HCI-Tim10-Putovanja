@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
       Background="{DynamicResource MaterialDesignPaper}"
       TextElement.FontWeight="Medium"
       TextElement.FontSize="18"
@@ -14,11 +15,15 @@
       d:DesignHeight="800" d:DesignWidth="875.449"
       Title="OneTripView"
       x:Name="atractions">
-    <Page.Resources>
-        <converters:GreaterThanConverter x:Key="GreaterThanConverter"></converters:GreaterThanConverter>
-    </Page.Resources>
 
-        <StackPanel>
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:OneTripView.GoBackShortcut}" 
+                     Executed="Go_Back_Click"/>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
+
+
+    <StackPanel l:HelpProvider.HelpKey="Indeks#putovanje">
         <Grid>
             <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -30,7 +35,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Margin="10, 0, 0, 0">
-                    <TextBlock Text="{Binding Name}" Margin="0, 0, 0, 30">
+                <TextBlock Text="{Binding Trip.Name}" Margin="0, 0, 0, 30">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="30" />
@@ -40,35 +45,37 @@
                 <Grid Margin="0, 0, 0, 15">
                     <materialDesign:PackIcon Kind="PiggyBankOutline" Height="26"/>
                     <TextBlock Text="Cena:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
-                    <TextBlock x:Name="priceTxt" Text="{Binding Price}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                    <TextBlock x:Name="priceTxt" Text="{Binding Trip.Price, StringFormat={}{0:#\,0.00 din}, ConverterCulture='sr'}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                 </Grid>
                 <Grid Margin="0, 0, 0, 15">
                     <materialDesign:PackIcon Kind="TimerCheckOutline" Height="26"/>
                     <TextBlock Text="Datum polaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
-                    <TextBlock x:Name="startDateTxt" Text="{Binding StartTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                    <TextBlock x:Name="startDateTxt" Text="{Binding Trip.StartTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                 </Grid>
                 <Grid Margin="0, 0, 0, 15">
                     <materialDesign:PackIcon Kind="TimerMarkerOutline" Height="26"/>
                     <TextBlock Text="Datum dolaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
-                    <TextBlock x:Name="endDateTxt" Text="{Binding EndTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                    <TextBlock x:Name="endDateTxt" Text="{Binding Trip.EndTime}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                 </Grid>
                 <Grid Margin="0, 0, 0, 15">
                     <materialDesign:PackIcon Kind="LocationEnter" Height="26"/>
                     <TextBlock Text="Mesto polaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
-                    <TextBlock x:Name="startLocationTxt" Text="{Binding StartLocation.Address}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                    <TextBlock x:Name="startLocationTxt" Text="{Binding Trip.StartLocation.Address}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                 </Grid>
                 <Grid>
                     <materialDesign:PackIcon Kind="LocationExit" Height="26"/>
                     <TextBlock Text="Mesto dolaska:" Margin="20, 0, 0, 0" Foreground="#5B5A5A"></TextBlock>
-                    <TextBlock x:Name="endLocationTxt" Text="{Binding EndLocation.Address}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
+                    <TextBlock x:Name="endLocationTxt" Text="{Binding Trip.EndLocation.Address}" HorizontalAlignment="Right" Margin="0, 0, 10, 0"/>
                 </Grid>
                 
             </StackPanel>
             
             <StackPanel Grid.Column="1" Margin="0, 8, 0, 0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black"></Button>
-                    <Button Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                    <Button x:Name="byeBtn" Content="Kupi" Click="Bye_Click" FontSize="18" Height="40" MinWidth="100" Margin="0, 0, 15, 0" Background="#FFDB97" BorderBrush="#FFAA06" Foreground="Black" l:HelpProvider.HelpKey="Indeks#putovanjeKupi"></Button>
+                    <Button x:Name="reserveBtn" Content="Rezervisi" Click="Reserve_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black" l:HelpProvider.HelpKey="Indeks#putovanjeRezervisi"></Button>
+                    <Button x:Name="cancelBtn" Content="Otkazi rezervaciju" Click="Cancel_Click" FontSize="18" Height="40" MinWidth="100" Background="#94E7F2" BorderBrush="#06E1FF" Foreground="Black"></Button>
+                    <TextBlock x:Name="buyTb" Text="Kupljeno" Margin="0, 0, 0, 0" Foreground="#5B5A5A" l:HelpProvider.HelpKey="Indeks#putovanjeOznaka"></TextBlock>
                 </StackPanel>
                 <m:Map x:Name="myMap" Height="300" MaxWidth="600" Margin="10, 30, 10, 0" CredentialsProvider="" Mode="Aerial" Center="47.620574,22.34942" ZoomLevel="12">
                     <m:Pushpin Location="47.620574,22.34942"/>
@@ -81,11 +88,11 @@
             <StackPanel HorizontalAlignment="Left" Margin="10, 8, 0, 0">
                 <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Opis"></TextBlock>
                 <StackPanel Orientation="Vertical" >
-                    <TextBlock TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Trip.Description}"></TextBlock>
                 </StackPanel>
-                <TextBlock Margin="0, 10, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
+                <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Atrakcije"></TextBlock>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
-                <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left">
+            <ListView x:Name="atractionListBox" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Trip.Atractions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" l:HelpProvider.HelpKey="Indeks#putovanjePrikazAtrakcije">
                     
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -103,24 +110,14 @@
 
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <!--/<StackPanel>
-                                <StackPanel.Style>
-                                    <Style TargetType="StackPanel">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ActualWidth, ElementName=atractions, Converter={StaticResource GreaterThanConverter}, ConverterParameter=400}" Value="True">
-                                                <Setter Property="Orientation" Value="Horizontal"></Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </StackPanel.Style>
-                            </StackPanel>/-->
+                            
                             <WrapPanel HorizontalAlignment="Right"></WrapPanel>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                 </ListView>
                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Right"/>
 
-                <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Restorani i Smestaji"></TextBlock>
+                <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Restorani i smestaji"></TextBlock>
                 <Grid  HorizontalAlignment="Left">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -136,6 +133,55 @@
                     <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
 
                 </Grid>
+            <ListBox ItemsSource="{Binding Trip.TouristicStops}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid MinWidth="550">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
+                        </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+           </ListBox>
+
+               <!-- <TextBlock Margin="0, 40, 0, 15" FontSize="22" Text="Smestaji"></TextBlock>
+                <Grid  HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Ime"  />
+                    <TextBlock Text="Adresa" Grid.Column="1" />
+                    <Line Grid.Row="1" Stroke="DarkGray" StrokeThickness="5" X1="10" X2="600" Y1="10" Y2="10" Grid.ColumnSpan="2" Margin="-10,0,0,0" ></Line>
+
+                </Grid>
+            <ListBox ItemsSource="{Binding Trip.Acommodations}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                        <Grid MinWidth="400" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                            
+<<<<<<< HEAD
+=======
+
             <ListBox ItemsSource="{Binding TouristicStops}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -145,13 +191,17 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="{Binding Name}" />
-                            <TextBlock Text="{Binding Location.Address}" Grid.Column="1" />
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
 
-        </StackPanel>
+>>>>>>> origin/milos
+                            <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Location.Address}" Grid.Column="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                
+            </ListBox> -->
+
+            </StackPanel>
         </StackPanel>
 </Page>

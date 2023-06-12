@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:val="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:local="clr-namespace:HCI_Tim10_Putovanja.User.View"
+      xmlns:l="clr-namespace:HCI_Tim10_Putovanja"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
@@ -13,8 +15,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Login">
+    
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:Login.MyCommand}" 
+                     Executed="Login_Click"/>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Page.CommandBindings>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" l:HelpProvider.HelpKey="Indeks#prijava">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -44,7 +52,7 @@
                 <TextBlock
                            HorizontalAlignment="Center"
                        
-                       Text="Prijava na sistem"
+                       Text="Prijava"
                     Margin="0, 0, 0, 20">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
@@ -73,7 +81,7 @@
                          Padding="10, 0"
                          Margin="5, 0"
                          HorizontalAlignment="Stretch"
-                             materialDesign:ValidationAssist.FontSize="14"
+                             materialDesign:ValidationAssist.FontSize="16"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          >
                         <TextBox.Text>
@@ -88,7 +96,7 @@
                     
                 </Border>
 
-                <TextBlock Text="Lozinka" Margin="5, 30, 0, 5"></TextBlock>
+                <TextBlock Text="Lozinka" Margin="5, 30, 0, 5" ></TextBlock>
                 <Border CornerRadius="10"
                 BorderThickness="1"
                         >
@@ -100,6 +108,7 @@
                         </LinearGradientBrush>
                     </Border.BorderBrush>
                     <PasswordBox x:Name="txtPassword"
+                                 l:HelpProvider.HelpKey="Indeks#prijavaLozinkaPolje"
                          CaretBrush="LightGray"
                          Background="Transparent"
                          BorderBrush="Transparent"
@@ -114,10 +123,11 @@
                     </PasswordBox>
 
                 </Border>
-                <TextBlock x:Name="passwordErrorTextBlock" Foreground="Red"/>
+                <TextBlock Margin="15, 0, 0, 0" x:Name="passwordErrorTextBlock" Foreground="Red"/>
             </StackPanel>
 
             <Button x:Name="btnLogIn"
+                    l:HelpProvider.HelpKey="Indeks#prijavaDugme"
                         Grid.Row="3"
                         Grid.Column="0"
                         Content="Prijavi se"

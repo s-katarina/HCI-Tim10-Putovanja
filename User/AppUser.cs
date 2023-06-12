@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HCI_Tim10_Putovanja.User
 {
-	class AppUser
+	public class AppUser
 	{
 		private string name;
 		private string lastname;
@@ -23,6 +23,7 @@ namespace HCI_Tim10_Putovanja.User
 			this.phone = phone;
 			this.password = password;
 			this.role = role;
+
 		}
 
 		public AppUser()
@@ -37,7 +38,7 @@ namespace HCI_Tim10_Putovanja.User
 		internal Role Role { get => role; set => role = value; }
 	}
 
-	enum Role { 
+	public enum Role { 
 		PASSENGER,
 		AGENT
 	}
